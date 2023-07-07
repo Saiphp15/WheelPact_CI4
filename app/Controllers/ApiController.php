@@ -1,0 +1,412 @@
+<?php
+
+namespace App\Controllers;
+use App\Services\OTPService;
+
+use App\Controllers\BaseController;
+use App\Models\CustomerModel;
+use App\Models\UserModel;
+use CodeIgniter\API\ResponseTrait;
+
+use App\Libraries\JwtLibrary;
+
+class ApiController extends BaseController
+{
+    use ResponseTrait;
+
+    private $jwtLib;
+    protected $CustomerModel;
+    protected $UserModel;
+   
+
+    public function __construct()
+    {
+        $this->jwtLib = new JwtLibrary();
+        $this->CustomerModel = new CustomerModel();
+        $this->UserModel = new UserModel();
+        
+    }
+
+    public function customer_register() {
+		$name = $this->request->getVar('name');
+        $email = $this->request->getVar('email');
+        $contact_no = $this->request->getVar('contact_no');
+        $profile_picture = $this->request->getFile('profile_picture');
+		$response = '';
+        if(isset($name) && !empty($name)){
+            if(isset($email) && !empty($email)){
+                if(isset($contact_no) && !empty($contact_no)){
+                    $customer = $this->CustomerModel->where('email', $email)->where('contact_no', $contact_no)->first();
+                    if($customer) {
+                        $response = array(
+                            'responseCode'   => 409,
+                            'responseMessage' => 'Customer already exists'
+                        );
+                    } else {	
+                        $this->CustomerModel->save([
+                            'name' => $name,
+                            'email' => $email,
+                            'contact_no' => $contact_no
+                        ]);	
+                        $response = array(
+                            'responseCode'   => 200,
+                            'responseMessage' => 'Customer registered successfully'
+                        );
+                    }
+                }else{
+                    $response = array(
+                        'responseCode'   => 409,
+                        'responseMessage' => 'Required Contact Number.'
+                    );
+                }
+            }else{
+                $response = array(
+                    'responseCode'   => 409,
+                    'responseMessage' => 'Required Email.'
+                );
+            }
+        }else{
+            $response = array(
+				'responseCode'   => 409,
+				'responseMessage' => 'Required Name.'
+			);
+        }
+        return $this->respond(json_encode($response));
+    }
+	
+	public function customer_login() {
+		$contact_no = $this->request->getVar('contact_no');
+        if(isset($contact_no) && !empty($contact_no)){
+            $customer = $this->CustomerModel->where('contact_no', $contact_no)->first();
+            if($customer) {
+                
+                // Generate and store OTP
+                $otp = OTPService::generateOTP();
+                $this->CustomerModel->update($customer['id'], ['otp' => $otp, 'otp_status'=>true]);
+                
+                //$contact_no = $this->jwtLib->base64url_encode($customer['contact_no']);
+
+                $response = array(
+                    'responseCode'   => 200,
+                    'responseMessage' => 'OTP generated successfully',
+                    'responseData' => $contact_no
+                );
+            } else {
+                $response = array(
+                   'responseCode'   => 404,
+                   'responseMessage' => 'Customer not found'
+                );
+            }
+        }else{
+            $response = array(
+				'responseCode'   => 409,
+				'responseMessage' => 'Required Contact Number.'
+			);
+        } 
+        return $this->respond(json_encode($response));
+    }
+
+    public function update_otp_status(){
+        $contact_no = $this->request->getPost('contact_no');
+        if(isset($contact_no) && !empty($contact_no)){
+            $customer = $this->CustomerModel->where('contact_no', $contact_no)->first();
+            if($customer) {
+                
+                // update OTP status
+                $this->CustomerModel->update($customer['id'], ['otp_status'=>false]);
+                
+                $response = array(
+                   'responseCode'   => 200,
+                   'responseMessage' => 'OTP updated successfully'
+                );
+            } else {
+                $response = array(
+                  'responseCode'   => 404,
+                  'responseMessage' => 'Customer not found'
+                );
+            }
+        }else{
+            $response = array(
+               'responseCode'   => 409,
+               'responseMessage' => 'Required Contact Number.'
+            );
+        }
+        return $this->respond(json_encode($response));
+    }
+
+    public function generate_new_otp(){
+        
+        $contact_no = $this->request->getPost('contact_no');
+        if(isset($contact_no) && !empty($contact_no)){
+            $customer = $this->CustomerModel->where('contact_no', $contact_no)->first();
+            if($customer) {
+                
+                // Generate and store OTP
+                $otp = OTPService::generateOTP();
+                $this->CustomerModel->update($customer['id'], ['otp' => $otp, 'otp_status'=>true]);
+                
+                $response = array(
+                   'responseCode'   => 200,
+                   'responseMessage' => 'OTP generated successfully'
+                );
+            } else {
+                $response = array(
+                  'responseCode'   => 404,
+                  'responseMessage' => 'Customer not found'
+                );
+            }
+        }else{
+            $response = array(
+               'responseCode'   => 409,
+               'responseMessage' => 'Required Contact Number.'
+            );
+        }
+        return $this->respond(json_encode($response));
+    }
+
+    public function customer_login_verify_otp()
+    {
+        $otp = $this->request->getVar('otp');
+        $contact_no = $this->request->getVar('contact_no');
+        if(isset($otp) && !empty($otp)){
+            if(isset($contact_no) &&!empty($contact_no)){
+                /* Verify OTP */
+                $customer = $this->CustomerModel->where('contact_no', $contact_no)->where('otp', $otp)->where('otp_status', true)->first();
+                if($customer) {
+                    /* Update customer as verified */
+                    $this->CustomerModel->update($customer['id'], ['otp_status' => false]);
+
+                    $expiryTime = time() + 60; /* 60 seconds from the current time */
+                    //$expiryTime = time() + (24 * 60 * 60); /* 24 hours in seconds 
+                    $headers = array('alg'=>'HS256','typ'=>'JWT');
+                    $payload = array('id'=>$customer['id'], 'name'=>$customer['name'], 'email'=>$customer['email'], 'contact_no'=>$customer['contact_no'], 'exp'=>$expiryTime);
+                    $jwt = $this->jwtLib->generate_jwt($headers, $payload);
+
+                    /* Redirect to the dashboard or any other page */
+                    $response = array(
+                        'responseCode'   => 200,
+                        'responseMessage' => 'OTP verified, Customer logged in successfully.',
+                        'responseData' => $customer,
+                        'token' => $jwt
+                    );
+                } else {
+                    $response = array(
+                      'responseCode'   => 404,
+                      'responseMessage' => 'OTP not verified'
+                    );
+                }
+            }else{
+                $response = array(
+                    'responseCode'   => 409,
+                    'responseMessage' => 'Required Contact Number.'
+                );
+            }
+        }else{
+            $response = array(
+                'responseCode'   => 409,
+                'responseMessage' => 'Required OTP.'
+            );
+        }
+        return $this->respond(json_encode($response));
+    }
+
+    public function chk_otp_status(){
+        $contact_no = $this->request->getVar('contact_no');
+        if(isset($contact_no) &&!empty($contact_no)){
+            $customer = $this->CustomerModel->where('contact_no', $contact_no)->where('otp_status', 1)->first();
+            if($customer) {
+                $response = array(
+                   "responseCode" => 200,
+                   "responseMessage" => "OTP verification pending, please Enter OTP and verify identity."
+                );
+            } else {
+                $response = array(
+                  'responseCode'   => 404,
+                  'responseMessage' => 'Customer not found'
+                );
+            }
+        }else{
+            $response = array(
+               'responseCode'   => 409,
+               'responseMessage' => 'Required Contact Number.'
+            );
+        }
+        return $this->respond(json_encode($response));
+    }
+
+    public function customer_is_already_logined(){
+        $authorizationHeader = $this->request->getHeaderLine('Authorization');
+        $token = str_replace('Bearer ', '', $authorizationHeader);
+        $bearer_token = $this->jwtLib->get_bearer_token();
+		$is_jwt_valid = $this->jwtLib->is_jwt_valid($bearer_token);
+		if($is_jwt_valid) {
+            if(isset($token) && !empty($token)){
+                $decoded = $this->jwtLib->decode_jwt($token);
+                $customerData = json_decode($decoded,true); 
+                $customer = $this->CustomerModel->where('id', $customerData['id'])->first();
+                if($customer) {
+                    $response = array(
+                        'responseCode'   => 200,
+                        'responseMessage' => 'Customer logged in successfully',
+                        'responseData' => $customer
+                    );
+                } else {
+                    $response = array(
+                        'responseCode'   => 404,
+                        'responseMessage' => 'Customer not found'
+                    );
+                }
+            }else{
+                $response = array(
+                    'responseCode'   => 409,
+                    'responseMessage' => 'Required Token.'
+                );
+            }
+		} else {
+            $response = array(
+                'responseCode'   => 409,
+                'responseMessage' => 'Unauthorized Access'
+            );
+		}
+        return $this->respond(json_encode($response));
+    }
+
+    public function customer_profile(){
+        $userId = $this->request->getVar('user_id');
+        if(isset($userId) && !empty($userId)){
+           
+                $user = $this->userModel->where('id', $userId)->first();
+                if($user) {
+                    $response = array(
+                        'status'   => 200,
+                        'messages' => 'User profile data retrived successfully.',
+                        'data' => $user
+                    );
+                } else {	
+                    $response = array(
+                        'status'   => 401,
+                        'messages' => 'No user found'
+                    );
+                }
+            
+        }else{
+            $response = array(
+				'status'   => 409,
+				'messages' => 'Required User ID.'
+			);
+        }
+        return $this->respond($response);
+    }
+
+    public function index()
+    {
+        $bearer_token = $this->jwtLib->get_bearer_token();
+		$is_jwt_valid = $this->jwtLib->is_jwt_valid($bearer_token);
+		if($is_jwt_valid) {
+			$data = $this->UserModel->orderBy('id', 'DESC')->findAll();
+            if($data){
+                return $this->respond([
+                    'status' => 200,
+                    'message' => 'data retrived successfully',
+                    'data' => $data
+                ]);
+            }else {
+                return $this->respond([
+                    'status' => 404,
+                    'message' => $id . ' Not Found'
+                ]);
+            }
+		} else {
+			return $this->failUnauthorized('Unauthorized Access');
+		}
+    }
+
+    // create students
+    public function create()
+    {
+        $data = [
+            'name' => $this->request->getVar('name'),
+            'email' => $this->request->getVar('email'),
+            'contact_no' => $this->request->getVar('contact_no'),
+        ];
+        $result = $this->UserModel->save($data);
+        if ($result) {
+            return $this->respond([
+                'status' => 200,
+                'message' => 'Student Add Successfully'
+            ]);
+        } else {
+            return $this->respond([
+                'status' => 500,
+                'message' => 'Student Not Add Successfully'
+            ]);
+        }
+    }
+
+    public function show($id)
+    {
+        $data = $this->UserModel->find($id);
+        if ($data) {
+            return $this->respond([
+                'status' => 200,
+                'message' => 'data retrived successfully',
+                'data' => $data
+            ]);
+        } else {
+            return $this->respond([
+                'status' => 0,
+                'message' => $id . ' Not Found'
+            ]);
+        }
+    }
+
+    public function update($id)
+    {
+        $bearer_token = $this->jwtLib->get_bearer_token();
+		$is_jwt_valid = $this->jwtLib->is_jwt_valid($bearer_token);
+		if($is_jwt_valid) {
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'email' => $this->request->getVar('email'),
+                'contact' => $this->request->getVar('contact'),
+            ];
+
+            $result = $this->UserModel->update($id, $data);
+            if ($result) {
+                return $this->respond([
+                    'status' => 1,
+                    'message' => 'Student Update Successfully'
+                ]);
+            } else {
+                return $this->respond([
+                    'status' => 0,
+                    'message' => 'Student Not Update Successfully'
+                ]);
+            }
+        } else {
+            return $this->failUnauthorized('Unauthorized Access');
+        }
+    }
+
+    public function delete($id)
+    {
+        $bearer_token = $this->jwtLib->get_bearer_token();
+		$is_jwt_valid = $this->jwtLib->is_jwt_valid($bearer_token);
+		if($is_jwt_valid) {
+            $result = $this->UserModel->delete($id);
+            if ($result) {
+                return $this->respond([
+                    'status' => 1,
+                    'message' => 'Student Delete Successfully'
+                ]);
+            } else {
+                return $this->respond([
+                    'status' => 0,
+                    'message' => $id . " Not Found, ' Student Not Delete Successfully"
+                ]);
+            }
+        } else {
+            return $this->failUnauthorized('Unauthorized Access');
+        }
+    }
+}
