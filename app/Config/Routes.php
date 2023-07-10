@@ -45,9 +45,21 @@ $routes->get('/', 'HomeController::index');
  $routes->get('/vehicle-details/(:num)', 'VehicleController::vehicle_details/$1');
  $routes->get("/my-account", "CustomerController::my_account");
  $routes->get("/my-wishlist", "CustomerController::my_wishlist");
-
-
  $routes->get("/verify-otp/(:any)", "CustomerController::verify_otp/$1");
+
+ /*
+ * --------------------------------------------------------------------
+ * Admin Routing
+ * --------------------------------------------------------------------
+ */
+
+$routes->get('admin/generate_password', 'AuthController::generate_password');
+$routes->get('admin/', 'AuthController::user_login');
+$routes->get('admin/login', 'AuthController::user_login');
+$routes->post('admin/authenticate', 'AuthController::chk_user_login');
+$routes->get('admin/logout', 'AuthController::user_logout');
+$routes->get('admin/dashboard', 'AdminController::dashboard');
+
 
 /*
  * --------------------------------------------------------------------
@@ -59,22 +71,20 @@ $routes->post('/api/customer/customer-register', 'ApiController::customer_regist
 $routes->post('/api/customer/customer-login', 'ApiController::customer_login');
 $routes->post('/api/customer/customer-login-verify-otp', 'ApiController::customer_login_verify_otp');
 $routes->post('/api/customer/generate-new-otp', 'ApiController::generate_new_otp');
-
 $routes->post('/api/customer/update-otp-status', 'ApiController::update_otp_status');
-
 $routes->post('/api/customer/customer-is-already-logined', 'ApiController::customer_is_already_logined');
-
 $routes->post('/api/customer/chk-otp-status', 'ApiController::chk_otp_status');
-
-
 
 $routes->post('/api/customer/customer-profile', 'ApiController::customer_profile');
 
-$routes->get('/api/students', 'ApiController::index');
-$routes->post('/api/students', 'ApiController::create');
-$routes->get('/api/students/(:num)', 'ApiController::show/$1');
-$routes->post('/api/students/(:num)', 'ApiController::update/$1');
-$routes->delete('/api/students/(:num)', 'ApiController::delete/$1');
+$routes->get('/api/vehicle-details/(:num)', 'ApiController::get_vehicle_details/$1');
+
+
+// $routes->get('/api/students', 'ApiController::index');
+// $routes->post('/api/students', 'ApiController::create');
+// $routes->get('/api/students/(:num)', 'ApiController::show/$1');
+// $routes->post('/api/students/(:num)', 'ApiController::update/$1');
+// $routes->delete('/api/students/(:num)', 'ApiController::delete/$1');
 
 
 /*

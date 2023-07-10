@@ -6,9 +6,11 @@ use App\Services\OTPService;
 use App\Controllers\BaseController;
 use App\Models\CustomerModel;
 use App\Models\UserModel;
+use App\Models\VehicleModel;
 use CodeIgniter\API\ResponseTrait;
 
 use App\Libraries\JwtLibrary;
+use CodeIgniter\HTTP\Response;
 
 class ApiController extends BaseController
 {
@@ -17,6 +19,7 @@ class ApiController extends BaseController
     private $jwtLib;
     protected $CustomerModel;
     protected $UserModel;
+    protected $VehicleModel;
    
 
     public function __construct()
@@ -24,6 +27,7 @@ class ApiController extends BaseController
         $this->jwtLib = new JwtLibrary();
         $this->CustomerModel = new CustomerModel();
         $this->UserModel = new UserModel();
+        $this->VehicleModel = new VehicleModel();
         
     }
 
@@ -71,7 +75,7 @@ class ApiController extends BaseController
 				'responseMessage' => 'Required Name.'
 			);
         }
-        return $this->respond(json_encode($response));
+        return $this->response->setJSON($response);
     }
 	
 	public function customer_login() {
@@ -103,7 +107,7 @@ class ApiController extends BaseController
 				'responseMessage' => 'Required Contact Number.'
 			);
         } 
-        return $this->respond(json_encode($response));
+        return $this->response->setJSON($response);
     }
 
     public function update_otp_status(){
@@ -131,7 +135,7 @@ class ApiController extends BaseController
                'responseMessage' => 'Required Contact Number.'
             );
         }
-        return $this->respond(json_encode($response));
+        return $this->response->setJSON($response);
     }
 
     public function generate_new_otp(){
@@ -161,7 +165,7 @@ class ApiController extends BaseController
                'responseMessage' => 'Required Contact Number.'
             );
         }
-        return $this->respond(json_encode($response));
+        return $this->response->setJSON($response);
     }
 
     public function customer_login_verify_otp()
@@ -207,7 +211,7 @@ class ApiController extends BaseController
                 'responseMessage' => 'Required OTP.'
             );
         }
-        return $this->respond(json_encode($response));
+        return $this->response->setJSON($response);
     }
 
     public function chk_otp_status(){
@@ -231,7 +235,7 @@ class ApiController extends BaseController
                'responseMessage' => 'Required Contact Number.'
             );
         }
-        return $this->respond(json_encode($response));
+        return $this->response->setJSON($response);
     }
 
     public function customer_is_already_logined(){
@@ -268,7 +272,7 @@ class ApiController extends BaseController
                 'responseMessage' => 'Unauthorized Access'
             );
 		}
-        return $this->respond(json_encode($response));
+        return $this->response->setJSON($response);
     }
 
     public function customer_profile(){
@@ -295,7 +299,32 @@ class ApiController extends BaseController
 				'messages' => 'Required User ID.'
 			);
         }
-        return $this->respond($response);
+        return $this->response->setJSON($response);
+    }
+
+    public function get_vehicle_details($vehicleId){
+        if(isset($vehicleId) &&!empty($vehicleId)){
+            $vehicle = $this->VehicleModel->where('id', $vehicleId)->first();
+            //echo '<pre>'; print_r($vehicle); exit; 
+            if($vehicle) {
+                $response = array(
+                    'status'   => 200,
+                    'messages' => 'Vehicle data retrived successfully.',
+                    'data' => $vehicle
+                );
+            } else {    
+                $response = array(
+                    'status'   => 401,
+                    'messages' => 'No record found'
+                );
+            }
+        }else{
+            $response = array(
+                'status'   => 401,
+                'messages' => 'vehicle id required'
+            );
+        }
+        return $this->response->setJSON($response);
     }
 
     public function index()

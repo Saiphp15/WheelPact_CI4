@@ -140,7 +140,7 @@
             <div class="carousel-wrapper mt-3">
                 <div id="popular-carWrapper-carousel" class="owl-carousel owl-theme">
                     <div class="item">
-                        <a href="<?php echo base_url('vehicle-details'); ?>">
+                        <a href="<?php echo base_url('vehicle-details/'); ?>">
                             <div class="store-wrapper">
                                 <img
                                     src="https://content.jdmagicbox.com/comp/mumbai/d1/022pxx22.xx22.140728162311.i1d1/catalogue/car-galaxy-thane-west-thane-car-dealers-p3q87.jpg?clr=">
@@ -304,50 +304,43 @@
 
             <div class="carousel-wrapper mt-3">
                 <div id="featured-carWrapper-carousel" class="owl-carousel owl-theme">
+                    <?php foreach ($vehicles as $vehicle) : ?>
                     <div class="item">
                         <div class="vehicle-wrapper">
-                            <a href="#">
-                                <img
-                                    src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
+                            <a href="<?php echo base_url('vehicle-details/'.$vehicle['id']); ?>">
+                                <img src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
                             </a>
-
                             <div class="vehicle-wrapper-title">
-                                <a href="#">
-                                    <h5>Mercedes-Benz GLE</h5>
+                                <a href="<?php echo base_url('vehicle-details/'.$vehicle['id']); ?>">
+                                    <h5><?php echo $vehicle['make']; ?>, <?php echo $vehicle['model']; ?></h5>
                                 </a>
                             </div>
                             <div class="d-flex vehicle-overview">
                                 <div class="overview-badge">
                                     <h6>Year</h6>
-                                    <h5>2021</h5>
+                                    <h5><?php echo $vehicle['year']; ?></h5>
                                 </div>
-
                                 <div class="overview-badge">
                                     <h6>Driven</h6>
                                     <h5>50,000km</h5>
                                 </div>
-
                                 <div class="overview-badge">
                                     <h6>Fuel Type</h6>
                                     <h5>Diesel</h5>
                                 </div>
-
                                 <div class="overview-badge">
                                     <h6>Owner</h6>
                                     <h5>1st</h5>
                                 </div>
-
                                 <div class="wishlist">
                                     <i class="icofont-heart"></i>
                                 </div>
-
                                 <div class="verified-tag">
-                                    <span class="verification-badge"><i class="icofont-check-circled"></i> Verified
-                                        Seller</span>
+                                    <span class="verification-badge"><i class="icofont-check-circled"></i> Verified Seller</span>
                                 </div>
                             </div>
                             <div class="vehicle-price d-flex align-items-center">
-                                <h5>₹56,00,0000</h5>
+                                <h5>₹<?php echo $vehicle['price']; ?></h5>
                                 <h6>(Negotiable)</h6>
                             </div>
                             <div class="vehicle-emi d-flex">
@@ -356,168 +349,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="item">
-                        <a href="#">
-                            <div class="vehicle-wrapper">
-                                <a href="#">
-                                    <img
-                                        src="https://cdn.bigboytoyz.com/new-version/products/porsche718boxsteryellow-1.jpg">
-                                </a>
-                                <div class="vehicle-wrapper-title">
-                                    <a href="#">
-                                        <h5>Porsche Panamera</h5>
-                                    </a>
-                                </div>
-                                <div class="d-flex vehicle-overview">
-                                    <div class="overview-badge">
-                                        <h6>Year</h6>
-                                        <h5>2021</h5>
-                                    </div>
-
-                                    <div class="overview-badge">
-                                        <h6>Driven</h6>
-                                        <h5>20,000km</h5>
-                                    </div>
-
-                                    <div class="overview-badge">
-                                        <h6>Fuel Type</h6>
-                                        <h5>Petrol</h5>
-                                    </div>
-
-                                    <div class="overview-badge">
-                                        <h6>Owner</h6>
-                                        <h5>1st</h5>
-                                    </div>
-                                </div>
-
-                                <div class="wishlist">
-                                    <i class="icofont-heart"></i>
-                                </div>
-
-                                <div class="verified-tag">
-                                    <span class="verification-badge"><i class="icofont-check-circled"></i> Verified
-                                        Seller</span>
-                                </div>
-
-                                <div class="vehicle-price d-flex align-items-center">
-                                    <h5>₹32,00,0000</h5>
-                                    <h6>(Fixed Price)</h6>
-                                </div>
-                                <div class="vehicle-emi d-flex">
-                                    <h6>EMI from</h6>
-                                    <h6>23,000/month</h6>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                        <div class="vehicle-wrapper">
-                            <a href="#">
-                                <img
-                                    src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
-                            </a>
-                            <div class="vehicle-wrapper-title">
-                                <a href="#">
-                                    <h5>Mercedes-Benz GLE</h5>
-                                </a>
-                            </div>
-                            <div class="d-flex vehicle-overview">
-                                <div class="overview-badge">
-                                    <h6>Year</h6>
-                                    <h5>2021</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Driven</h6>
-                                    <h5>50,000km</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Fuel Type</h6>
-                                    <h5>Diesel</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Owner</h6>
-                                    <h5>1st</h5>
-                                </div>
-                            </div>
-
-                            <div class="wishlist">
-                                <i class="icofont-heart"></i>
-                            </div>
-
-                            <div class="verified-tag">
-                                <span class="verification-badge"><i class="icofont-check-circled"></i> Verified
-                                    Seller</span>
-                            </div>
-
-                            <div class="vehicle-price d-flex align-items-center">
-                                <h5>₹56,00,0000</h5>
-                                <h6>(Negotiable)</h6>
-                            </div>
-                            <div class="vehicle-emi d-flex">
-                                <h6>EMI from</h6>
-                                <h6>40,000/month</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="vehicle-wrapper">
-                            <a href="#">
-                                <img
-                                    src="https://cdn.bigboytoyz.com/new-version/products/porsche718boxsteryellow-1.jpg">
-                            </a>
-
-                            <div class="vehicle-wrapper-title">
-                                <a href="#">
-                                    <h5>Porsche Panamera</h5>
-                                </a>
-                            </div>
-                            <div class="d-flex vehicle-overview">
-                                <div class="overview-badge">
-                                    <h6>Year</h6>
-                                    <h5>2021</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Driven</h6>
-                                    <h5>20,000km</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Fuel Type</h6>
-                                    <h5>Petrol</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Owner</h6>
-                                    <h5>1st</h5>
-                                </div>
-                            </div>
-
-                            <div class="wishlist">
-                                <i class="icofont-heart"></i>
-                            </div>
-
-                            <div class="verified-tag">
-                                <span class="verification-badge"><i class="icofont-check-circled"></i> Verified
-                                    Seller</span>
-                            </div>
-
-                            <div class="vehicle-price d-flex align-items-center">
-                                <h5>₹32,00,0000</h5>
-                                <h6>(Fixed Price)</h6>
-                            </div>
-                            <div class="vehicle-emi d-flex">
-                                <h6>EMI from</h6>
-                                <h6>23,000/month</h6>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
+                    
                 </div>
             </div>
         </div>

@@ -1,139 +1,98 @@
 <?php
 namespace App\Controllers;
 
+
+use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\UserCredentialModel;
 use CodeIgniter\API\ResponseTrait;
-use App\Libraries\JwtLibrary;
 use Exception;
+use CodeIgniter\Services;
 
 class AuthController extends BaseController {
     
     use ResponseTrait;
 		
-	private $jwtLib;
-	private $userModel;
+	private $UserModel;
+    private $UserCredentialModel;
 
 	public function __construct() {
-		$this->jwtLib = new JwtLibrary();
-        $this->userModel = new UserModel();
+        $this->UserModel = new UserModel();
+        $this->UserCredentialModel = new UserCredentialModel();
 	}
 
-    public function register() {
-        
-		$name = $this->request->getVar('name');
-        $email = $this->request->getVar('email');
-        $password = $this->request->getVar('password');
-		$response = '';
-        if(isset($name) && !empty($name)){
-            if(isset($email) && !empty($email)){
-                if(isset($password) && !empty($password)){
-                    $user = $this->userModel->where('email', $email)->first();
-                    if($user) {
-                        $response = array(
-                            'status'   => 409,
-                            'messages' => 'User already exists'
-                        );
-                    } else {	
-                        $this->userModel->save([
-                            'name' => $name,
-                            'email' => $email,
-                            'password' => password_hash($password, PASSWORD_DEFAULT)
-                        ]);	
-                        $response = array(
-                            'status'   => 200,
-                            'messages' => 'User registered successfully'
-                        );
-                    }
-                }else{
-                    $response = array(
-                        'status'   => 409,
-                        'messages' => 'Required Password.'
-                    );
-                }
-            }else{
-                $response = array(
-                    'status'   => 409,
-                    'messages' => 'Required Email.'
-                );
-            }
-        }else{
-            $response = array(
-				'status'   => 409,
-				'messages' => 'Required Name.'
-			);
-        }
-        return $this->respond($response);
+    public function generate_password(){
+        echo password_hash('Admin@123', PASSWORD_DEFAULT);
     }
 	
-	public function login() {
-		$email = $this->request->getVar('email');
-        $password = $this->request->getPost('password');
-        if(isset($email) && !empty($email)){
-            if(isset($password) && !empty($password)){
-                $user = $this->userModel->where('email', $email)->first();
-                if($user) {
-                    if (!$user || !password_verify($password, $user['password'])) {
-                        $response = array(
-                            'status'   => 409,
-                            'messages' => 'Invalid Credentials!'
-                        );
-                    }else{
-                        $headers = array('alg'=>'HS256','typ'=>'JWT');
-                        $payload = array('id'=>$user['id'], 'email'=>$user['email'], 'exp'=>(time() + 60));
-                        $jwt = $this->jwtLib->generate_jwt($headers, $payload);
-                        $response = array(
-                            'status'   => 200,
-                            'messages' => 'Login Success.',
-                            'token' => $jwt
-                        );
-                    }
-                } else {	
-                    $response = array(
-                        'status'   => 401,
-                        'messages' => 'No user found'
-                    );
-                }
-            }else{
-                $response = array(
-                    'status'   => 409,
-                    'messages' => 'Required Password.'
-                );
-            }
-        }else{
-            $response = array(
-				'status'   => 409,
-				'messages' => 'Required Email.'
-			);
-        }
-        return $this->respond($response);
+	public function user_login() {
+		// Display admin login form
+        return view('admin/login');
     }
 
-    public function profile(){
-        $userId = $this->request->getVar('user_id');
-        if(isset($userId) && !empty($userId)){
-           
-                $user = $this->userModel->where('id', $userId)->first();
-                if($user) {
-                    $response = array(
-                        'status'   => 200,
-                        'messages' => 'User profile data retrived successfully.',
-                        'data' => $user
-                    );
-                } else {	
-                    $response = array(
-                        'status'   => 401,
-                        'messages' => 'No user found'
-                    );
-                }
+    public function chk_user_login(){
+        try {
+            // Load the form validation library
+            $validation = \Config\Services::validation();
+
+            // Set validation rules for each form field
+            $validation->setRules([
+                'email' => 'required',
+                'password' => 'required'
+            ]);
+
+            // Run the validation
+            if (!$validation->withRequest($this->request)->run()) {
+                // Validation failed, return to the form with errors
+                return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+            }
+
+            $email = $this->request->getPost('email');
+            $plainPassword = $this->request->getPost('password');
+
+            // Check if email and password exist in the usercredentials table
+            $userCredentials = $this->UserModel->chkUserCredentials($email, $plainPassword);
+            if(!$userCredentials) {
+                return redirect()->back()->withInput()->with('errors', ['Invalid Credentials!']);
+            }
             
-        }else{
-            $response = array(
-				'status'   => 409,
-				'messages' => 'Required User ID.'
-			);
+            // Password exists, retrieve user data
+            $userData = [
+                'email' => $userCredentials['email'],
+                'role_id' => $userCredentials['role_id'],
+                'role_name' => $userCredentials['role_name'],
+                'is_active' => $userCredentials['is_active']
+            ];
+            // Set admin session data
+            $adminData = [
+                'loggedUserInfo' => $userData,
+                'isLoggedIn' => true
+            ];
+            session()->set('adminData', $adminData);
+            // Redirect to admin dashboard or any other page
+            return redirect()->to('admin/dashboard');
+
+        } catch (\Exception $e) {
+            
+            // Error handling and logging
+            //$logger = Services::logger();
+            $logger = service('logger');
+            $logger->error('Error occurred while super admin login: ' . $e->getMessage());
+
+            // Throw or handle the exception as needed
+            throw $e;
         }
-        return $this->respond($response);
+    }
+
+    public function user_logout()
+    {
+        // Destroy admin session data
+        session()->remove('adminData');
+        session()->destroy();
+
+        // Redirect to admin login page
+        return redirect()->to('admin/login');
     }
 
 }

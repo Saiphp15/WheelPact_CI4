@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WheelPact | Get the best used cars</title>
+
+    <!-- Iconfont Link -->
+    <link rel="stylesheet" href="assets/icofont/icofont.min.css" />
+
+    <!-- BOOTSTRAP -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/wheelpact-styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+
+    <!-- OWL CAROUSEL -->
+    <link rel="stylesheet" href="assets/owl-carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owl-carousel/dist/assets/owl.theme.default.min.css">
+</head>
+
+<body>
+    <!-- LOCATION MODAL STARTS -->
+    <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="modal-title text-center mb-3">
+                        <h5>Select your city</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <!-- <div class="col-md-6 col-lg-3"> -->
+                            <!-- <div class="location-wrapper">  
+                                    <img src="assets/images/mumbai-img.jpg">
+                                </div> -->
+
+                            <div class="grid-wrapper grid-col-auto">
+                                <label for="radio-card-1" class="radio-card">
+                                    <input type="radio" name="radio-card" id="radio-card-1" checked />
+                                    <div class="location-card-content-wrapper">
+                                        <span class="check-icon"></span>
+                                        <div class="location-card-content">
+                                            <img src="assets/images/mumbai-img.jpg" alt="" />
+                                            <h4>Mumbai</h4>
+                                            <!-- <h5>Lorem ipsum dolor sit amet, consectetur.</h5> -->
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- /.radio-card -->
+
+                                <label for="radio-card-2" class="radio-card">
+                                    <input type="radio" name="radio-card" id="radio-card-2" />
+                                    <div class="location-card-content-wrapper">
+                                        <span class="check-icon"></span>
+                                        <div class="location-card-content">
+                                            <img src="assets/images/mumbai-img.jpg" alt="" />
+                                            <h4>Pune</h4>
+                                            <!-- <h5>Lorem ipsum dolor sit amet, consectetur.</h5> -->
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- /.radio-card-->
+                            </div>
+                            <!--</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOCATION MODAL ENDS -->
+
+    <!-- LOGIN MODAL STARTS -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-key"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>Login / Signup</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="login-input mt-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="brand-label mb-1">Full Name<span class="required">*</span></label>
+                                        <input type="text" class="brand-input">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="brand-label mb-1">Email Address<span
+                                                class="required">*</span></label>
+                                        <input type="email" class="brand-input">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label class="brand-label mb-1">Enter Mobile Number<span class="required">*</span></label>
+                            <input type="tel" class="brand-input" id="loginNumber">
+                        </div>
+
+                        <div class="modal-notify">
+                            <p>By loging in, I agree to <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                                    Policy</a></p>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <a href="#" type="submit" class="dg-brand-btn" data-bs-target="#otpModal"
+                                data-bs-toggle="modal" data-bs-dismiss="modal" onclick="OTPMessage()">Send OTP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGIN MODAL ENDS -->
+
+    <!-- OTP MODAL STARTS -->
+    <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-key"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>OTP Verification</h5>
+                    </div>
+
+                    <div class="modal-notify">
+                        <p>Enter the OTP sent to <span id="loginNumberShow"></span></p>
+                    </div>
+
+                    <div class="container">
+                        <div class="login-input mt-4">
+                            <label class="brand-label mb-1">Enter OTP</label>
+                            <input type="tel" class="brand-input">
+                        </div>
+
+                        <div class="modal-otp-notify">
+                            <p>Resend OTP in <span id="countdownTimer">30</span> seconds</p>
+                        </div>
+
+                        <div class="text-center mt-4 resend-otp-btn">
+                            <a href="#" class="dg-brand-btn">Resend</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- OTP MODAL ENDS -->
+
+    <!-- WRITE A REVIEW MODAL STARTS -->
+    <div class="modal fade" id="writeReviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-comment"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>Write a Review</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="review-input">
+                            <div class="mb-3">
+                                <div class="rate">
+                                    <input type="radio" id="star5" name="rate" value="5" />
+                                    <label for="star5" title="text">5 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" />
+                                    <label for="star4" title="text">4 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" />
+                                    <label for="star3" title="text">3 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <label for="star2" title="text">2 stars</label>
+                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <label for="star1" title="text">1 star</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="brand-label mb-1">Write Your Review<span class="required">*</span></label>
+                                <textarea class="brand-textarea" rows="4"></textarea>
+                            </div>
+                            <div class="text-end">
+                                <button class="dg-brand-btn">Submit Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- WRITE A REVIEW MODAL ENDS -->
+
+    <!-- VIEW ALL REVIEWS MODAL STARTS -->
+    <div class="modal fade" id="viewAllReviewModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-comment"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>View All Reviews</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="review-block">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTd8ODY2MjMwNzF8fGVufDB8fHx8&w=1000&q=80">
+                            <div class="review-detail">
+                                <h6>Reviewer Name</h6>
+                                <div class="review-rating">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="store-rating-icon">
+                                            <i class="icofont-star"></i>
+                                        </div>
+                                        <div class="store-rating-count">5.0</div>
+                                    </div>
+                                </div>
+                                <p class="main-review">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry.</p>
+                            </div>
+                        </div>
+
+                        <div class="review-block">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTd8ODY2MjMwNzF8fGVufDB8fHx8&w=1000&q=80">
+                            <div class="review-detail">
+                                <h6>Reviewer Name</h6>
+                                <div class="review-rating">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="store-rating-icon">
+                                            <i class="icofont-star"></i>
+                                        </div>
+                                        <div class="store-rating-count">5.0</div>
+                                    </div>
+                                </div>
+                                <p class="main-review">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry.</p>
+                            </div>
+                        </div>
+
+                        <div class="review-block">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTd8ODY2MjMwNzF8fGVufDB8fHx8&w=1000&q=80">
+                            <div class="review-detail">
+                                <h6>Reviewer Name</h6>
+                                <div class="review-rating">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="store-rating-icon">
+                                            <i class="icofont-star"></i>
+                                        </div>
+                                        <div class="store-rating-count">5.0</div>
+                                    </div>
+                                </div>
+                                <p class="main-review">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- VIEW ALL REVIEWS MODAL ENDS -->
+
+    <!-- RESERVATION REFUND POLICY MODAL STARTS -->
+    <div class="modal fade" id="reservationRefundModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-shield-alt"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>Reservation Refund Policy</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="rrp-content">
+                            <h5 class="text-center mb-4">Thankyou for your interest in reserving a vehicle on WheelPact!
+                            </h5>
+                            <ul class="rrf-list">
+                                <li>
+                                    <p>The Reservation Refund Policies are mentioned below:</p>
+                                </li>
+                                <li>
+                                    <p>1. The Reservation fee is refundable when the visiting person rejects the vehicle
+                                        and the reservation cancelled request has been raised by the Partner Dealer.</p>
+                                </li>
+                                <li>
+                                    <p>2. The Reservation fee in non-refundable if the person does not visit the vehicle
+                                        on the scheduled date and time.</p>
+                                </li>
+                                <li>
+                                    <p>3. The Reservation fee is non-refundable until the scheduled date & time.</p>
+                                </li>
+                                <li>
+                                    <p>4. The 10% service charge mentioned in Bill Summary is non-refundable in any
+                                        case, only the reservation fee will be refunded.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- RESERVATION REFUND POLICY MODAL ENDS -->
+
+    <!-- HEADER STARTS -->
+    <header>
+        <!-- DESKTOP HEADER STARTS -->
+        <div id="desk-header">
+            <div class="header-container">
+                <!-- logo -->
+                <strong class="logo">
+                    <a href="index.html">
+                        <!-- <h2>Wheelpact</h2> -->
+                        <img src="assets/images/logo.png">
+                    </a>
+                </strong>
+                <!-- open nav mobile -->
+
+                <!--search -->
+                <label class="open-search" for="open-search">
+                    <i class="icofont-search"></i>
+                    <input class="input-open-search" id="open-search" type="checkbox" name="menu" />
+                    <div class="search">
+                        <button class="button-search"><i class="icofont-search"></i></button>
+                        <input type="text" placeholder="Search your vehicle" class="input-search" />
+                    </div>
+                </label>
+                <!-- // search -->
+                <nav class="nav-content">
+                    <!-- nav -->
+                    <ul class="nav-content-list">
+                        <li class="nav-content-item"><a class="nav-content-link" href="#"
+                                data-bs-target="#locationModal" data-bs-toggle="modal"><i
+                                    class="icofont-map"></i>Location</a></li>
+
+                        <li class="nav-content-item account-login">
+                            <label class="open-menu-login-account" for="open-menu-login-account">
+
+                                <input class="input-menu" id="open-menu-login-account" type="checkbox" name="menu" />
+
+                                <i class="icofont-ui-user"></i><span class="login-text">Hello, Sign in <strong>Create
+                                        Account</strong></span> <span class="item-arrow"></span>
+
+                                <!-- submenu -->
+                                <ul class="login-list">
+                                    <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal">
+                                        <li class="login-list-item">Login / Sign up</li>
+                                    </a>
+                                    <a href="profile.html">
+                                        <li class="login-list-item">Profile Info</li>
+                                    </a>
+                                    <a href="wishlist.html">
+                                        <li class="login-list-item">Wishlist</li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="login-list-item">Logout</li>
+                                    </a>
+                            </label>
+                        </li>
+                    </ul>
+                    <!-- call to action -->
+                </nav>
+            </div>
+        </div>
+        <!-- DESKTOP HEADER ENDS -->
+
+        <!-- MOBILE HEADER STARTS -->
+        <div id="mob-header">
+            <div class="mob-nav">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex">
+                            <div class="text-end">
+                                <button class="mob-nav-btn" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft"><i
+                                        class="icofont-navigation-menu"></i></button>
+                            </div>
+                            <div class="logo">
+                                <a href="index.html">
+                                    <!-- <h2>Wheelpact</h2> -->
+                                    <img src="assets/images/logo.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mob-location">
+                            <i class="icofont-map"></i>
+                            <h6>Mumbai</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="offcanvas offcanvas-start mob-offcanvas" tabindex="-1" id="offcanvasLeft"
+            aria-labelledby="offcanvasLeftLabel">
+            <div class="offcanvas-header mob-menu-header">
+                <div class="mob-menu-user">
+                    <span class="mob-login-text">Hello, User</span>
+                </div>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body mob-menu-body">
+                <ul class="mob-nav-list">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <li><i class="icofont-login"></i>Login / Sign Up</li>
+                    </a>
+                    <a href="profile.html">
+                        <li><i class="icofont-user"></i>Profile Info</li>
+                    </a>
+                    <a href="wishlist.html">
+                        <li><i class="icofont-heart"></i> Wishlist</li>
+                    </a>
+                    <a href="#">
+                        <li><i class="icofont-logout"></i>Logout</li>
+                    </a>
+                </ul>
+
+                <ul class="mob-nav-imp-list">
+                    <a href="#">
+                        <li>About Us</li>
+                        <i class="icofont-right"></i>
+                    </a>
+                    <a href="#">
+                        <li>Pricing</li>
+                    </a>
+                    <a href="#">
+                        <li>Become Our Partner</li>
+                    </a>
+                    <a href="#">
+                        <li>Terms & Condition</li>
+                    </a>
+                    <a href="#">
+                        <li>Privacy Policy</li>
+                    </a>
+                </ul>
+
+                <div class="sidebar-title">
+                    <h6>Download Our App</h6>
+                </div>
+                <div class="sidebar-app">
+                    <a href="#">
+                        <img src="assets/images/google-play-store-transparent.png">
+                    </a>
+                    <a href="#">
+                        <img src="assets/images/apple-store.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- MOBILE HEADER ENDS -->
+    </header>
+    <!-- HEADER ENDS -->
+
+    <!-- PARTNER LOGIN/SIGNUP SECTION STARTS -->
+
+    <section class="section-spacing">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="section-title mb-3">
+                        <h3>Become Our Partner</h3>
+                    </div>
+
+                    <div class="partner-benefits-wrapper">
+                        <div class="partner-benefits">
+                            <div class="benefits-icon">
+                                <i class="icofont-tick-boxed"></i>
+                            </div>
+                            <div class="partner-benefits-content">
+                                <h5>Features</h5>
+                                <p>Enhance your store accessibility with our feature rich platform.</p>
+                            </div>
+                        </div>
+
+                        <div class="partner-benefits">
+                            <div class="benefits-icon">
+                                <i class="icofont-bullhorn"></i>
+                            </div>
+                            <div class="partner-benefits-content">
+                                <h5>Promotion</h5>
+                                <p>Promote your showroom and invetories</p>
+                            </div>
+                        </div>
+
+                        <div class="partner-benefits">
+                            <div class="benefits-icon">
+                                <i class="icofont-chart-histogram-alt"></i>
+                            </div>
+                            <div class="partner-benefits-content">
+                                <h5>Customer Reach</h5>
+                                <p>Reach millions of customers on our platform.</p>
+                            </div>
+                        </div>
+
+                        <div class="partner-benefits">
+                            <div class="benefits-icon">
+                                <i class="icofont-support"></i>
+                            </div>
+                            <div class="partner-benefits-content">
+                                <h5>Support</h5>
+                                <p>Get 24x7 Support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-7">
+                    <div class="partner-ls-wrap">
+                        <div class="section-title mb-4">
+                            <h3>Create Partner Account</h3>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Showroom Name<span class="required">*</span></label>
+                                    <input type="text" class="brand-input">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Vehicle Selling Category<span
+                                            class="required">*</span></label>
+                                    <select type="text" class="brand-select">
+                                        <option>Cars</option>
+                                        <option>Bikes</option>
+                                        <option>Both</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="brand-label mb-1">Owner Name<span class="required">*</span></label>
+                            <input type="text" class="brand-input">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Owner Contact Number<span
+                                            class="required">*</span></label>
+                                    <input type="tel" class="brand-input">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Owner WhatsApp Number<span
+                                            class="required">*</span></label>
+                                    <input type="tel" class="brand-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="brand-label mb-1">Email Address<span class="required">*</span></label>
+                            <input type="email" class="brand-input">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Password<span class="required">*</span></label>
+                                    <input type="password" class="brand-input">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Confirm Password<span
+                                            class="required">*</span></label>
+                                    <input type="password" class="brand-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="dg-brand-btn">Create Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STORE BANNER SECTION STARTS -->
+
+    <section class="pt-3 pb-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="v-banner-wrapper">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
+                            data-bs-interval="false">
+                            <div class="carousel-indicators d-none">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                                    aria-label="Slide 4"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                                    aria-label="Slide 5"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"
+                                    aria-label="Slide 6"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6"
+                                    aria-label="Slide 7"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7"
+                                    aria-label="Slide 8"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8"
+                                    aria-label="Slide 9"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9"
+                                    aria-label="Slide 10"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="10"
+                                    aria-label="Slide 11"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="11"
+                                    aria-label="Slide 12"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="12"
+                                    aria-label="Slide 13"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="13"
+                                    aria-label="Slide 14"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="14"
+                                    aria-label="Slide 15"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="15"
+                                    aria-label="Slide 16"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="16"
+                                    aria-label="Slide 17"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="17"
+                                    aria-label="Slide 18"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="18"
+                                    aria-label="Slide 19"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="19"
+                                    aria-label="Slide 20"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="20"
+                                    aria-label="Slide 21"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="21"
+                                    aria-label="Slide 22"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="22"
+                                    aria-label="Slide 23"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="23"
+                                    aria-label="Slide 24"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="24"
+                                    aria-label="Slide 25"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="25"
+                                    aria-label="Slide 26"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="26"
+                                    aria-label="Slide 27"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="27"
+                                    aria-label="Slide 28"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="28"
+                                    aria-label="Slide 29"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="29"
+                                    aria-label="Slide 30"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="30"
+                                    aria-label="Slide 31"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="31"
+                                    aria-label="Slide 32"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="32"
+                                    aria-label="Slide 33"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="33"
+                                    aria-label="Slide 34"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="34"
+                                    aria-label="Slide 35"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="35"
+                                    aria-label="Slide 36"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item v-image-item active">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/PHVdPlNdRheH0BtVodjPaw/file.JPG"
+                                        alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Thumbnail Image</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/7VvIoyk1SdeZpesQ6BsR6Q/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Front</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/igwB%2Bvh_SPuGjFQKSpw91Q/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Right Front Diagonal</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/Gjd9OJTJR7WVkQ7d7cuedA/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Right</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/_2oS_06CRhW2UCtxLqI9sQ/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Right Back Diagonal</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/zlOhknFBQOG9XWyKzkjuyQ/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Back</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/UTKxvQEgT4%2BfVa2Np9EiIw/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Left Back Diagonal</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/APR_g71bS5yuLWrkL_5nbA/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Left</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/PHVdPlNdRheH0BtVodjPaw/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Left Front Diagonal</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/9obVP4CqQBKbMTlL98tXRg/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Open Bonet</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/sthBvchqSpuFPo6h8S_LBg/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Right Front Wheel</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/%2BRlu8691QBazTBiHos7wmA/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Right Back Wheel</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/gMv4fTNORIyz4dtt5XVGbQ/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Left Back Wheel</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/4zRRSBuWS7q3kfqQ27C3qw/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Left Front Wheel</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/4ffb90f6-38f1-4306-a908-0c7c5f6247c2/slot/camera-Right-Front-Tyre-Tread.jpg?w=1080&auto=format"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Right Front Tyre Tread</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/62cbc8ad-6e3e-445c-abd4-f1615ee310e1/slot/camera-Right-Rear-Tyre-Tread.jpg?w=1080&auto=format"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Right Rear Tyre Tread</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/49e749d7-2a9d-4379-a2ee-1de4feae6224/slot/camera-Left-Rear-Tyre-Tread.jpg?w=1080&auto=format"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Left Rear Tyre Tread</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/49e749d7-2a9d-4379-a2ee-1de4feae6224/slot/camera-Left-Rear-Tyre-Tread.jpg?w=1080&auto=format"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Left Front Tyre Tread</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/tibkA1dHTlWcpxlQCpbRvw/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Spare Wheels</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/heX0ey55RYavzk__AFV88g/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Roof</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/xXz2xFzQQke648Dg2l0pqg/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Front Underbody</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/3j%2BxFRLrQ12a1p9oEp8AeA/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Rear Underbody</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/PdrA9UE3SzmWE0yh7ctMLA/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Dashboard</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/Lk5wGfigTiaiV0mYF3q5IA/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Infotainment System</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/JpUf1CgDSJK%2BFpvq0tGeVg/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Steering Wheel</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/O14fglAjTWiNBZiFGrp5TQ/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Odometer</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/hpoQVMTTSnKf_0Wqnae%2Bfg/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Gear Lever</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/WSKqUoKkSCOtOOjd8xiSug/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Pedals</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/xIL6AXART4OtO_1RZ5saUw/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Front Cabin</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/3pb0cePKQQKpsWFtO9DIlw/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Mid Cabin</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/hHofOJZSRTWp5LWk%2B6QdNw/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Rear Cabin</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/cb2aa17c-a639-49c7-9ab0-417c7ff25c52/slot/camera-Driver-Side-Door-Panels-Control-.jpg?w=1080&auto=format"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Driver Side Door Panel</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/617d04f7-83ad-4984-9ea7-29c2fff4a64d/slot/camera-Driver-Side-Adjustment-Panel.jpg?w=1080&auto=format"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Driver Side Adjustment</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/U3gnFdf0TSC0Y5Wbwo9Ocg/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Boot Inside</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/lpxG2DDCTpaXpZqAMya6tQ/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Boot Door Open</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item v-image-item">
+                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/St687SCoQ%2BmxMaQ8qHkpmQ/file.JPG"
+                                        class="d-block w-100" alt="...">
+                                    <div class="image-angle-tag">
+                                        <p>Keys</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="vbd-wrapper">
+                        <div class="vehicle-title">
+                            <h4>Maruti Suzuki Ertiga Vxi</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-4">
+                                <div class="vehicle-overview">
+                                    <div class="d-flex">
+                                        <div class="v-detail-icon">
+                                            <i class="icofont-calendar"></i>
+                                        </div>
+                                        <div class="overview-badge">
+                                            <h6>Year</h6>
+                                            <h5>2015</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="vehicle-overview">
+                                    <div class="d-flex">
+                                        <div class="v-detail-icon">
+                                            <i class="icofont-road"></i>
+                                        </div>
+                                        <div class="overview-badge">
+                                            <h6>Driven</h6>
+                                            <h5>20,000km</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="vehicle-overview">
+                                    <div class="d-flex">
+                                        <div class="v-detail-icon">
+                                            <i class="icofont-water-drop"></i>
+                                        </div>
+                                        <div class="overview-badge">
+                                            <h6>Fuel Type</h6>
+                                            <h5>Petrol</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="vehicle-overview">
+                                    <div class="d-flex">
+                                        <div class="v-detail-icon">
+                                            <i class="icofont-key"></i>
+                                        </div>
+                                        <div class="overview-badge">
+                                            <h6>Owner</h6>
+                                            <h5>1st</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="vehicle-overview">
+                                    <div class="d-flex">
+                                        <div class="v-detail-icon">
+                                            <i class="icofont-traffic-light"></i>
+                                        </div>
+                                        <div class="overview-badge">
+                                            <h6>RTO</h6>
+                                            <h5>MH04</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4">
+                                <div class="vehicle-overview">
+                                    <div class="d-flex">
+                                        <div class="v-detail-icon">
+                                            <i class="icofont-umbrella"></i>
+                                        </div>
+                                        <div class="overview-badge">
+                                            <h6>Insurance</h6>
+                                            <h5>Zero Dep</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vehicle-price d-flex align-items-center">
+                            <h5>₹9,00,000</h5>
+                            <h6>(Fixed Price)</h6>
+                        </div>
+
+                        <div class="vehicle-emi d-flex">
+                            <h6>EMI from</h6>
+                            <h6 class="emi-value">0</h6><span class="emi-month">/month</span>
+                        </div>
+                    </div>
+
+                    <div class="v-location-wrapper">
+                        <div class="row align-items-center">
+                            <div class="col-10">
+                                <h6>Parked At</h6>
+                                <a href="#">
+                                    <div class="d-flex">
+                                        <h5>Big Boys Toyz</h5>
+                                        <span class="verification-badge"><i class="icofont-check-circled"></i> Verified
+                                            Seller</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                            <div class="col-2">
+                                <div class="v-detail-icon float-end">
+                                    <i class="icofont-location-arrow"></i>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <p class="mt-2">Sanjari Business Park, Near Mira Industrial Estate, Western Express
+                                    Highway, Mira Road (East), Thane-401107.</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button class="dg-brand-btn">Reserve Now</button>
+                        <button class="dg-brand-btn">Contact Seller</button>
+                        <button class="whatsapp-brand-btn"><i class="icofont-whatsapp"></i> WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- STORE BANNER SECTION ENDS -->
+
+    <section class="pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="vfd-wrapper">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Overview
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="vehicle-overview-table">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="table-field">Accidental</td>
+                                                                <td class="table-field-data">No</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Flooded</td>
+                                                                <td class="table-field-data">No</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Last Service Kilometer</td>
+                                                                <td class="table-field-data">29,967km</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Last Service Date</td>
+                                                                <td class="table-field-data">29 May 2022</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="vehilce-overview-table">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="table-field">Registered In</td>
+                                                                <td class="table-field-data">Nov 2013</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Transmission</td>
+                                                                <td class="table-field-data">Manual</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Insurance Type</td>
+                                                                <td class="table-field-data">Zero Dep</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Insurance Validity</td>
+                                                                <td class="table-field-data">20 May 2023</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Features
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="vehicle-overview-table">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="table-field">Airbags</td>
+                                                                <td class="table-field-data">2 Airbags</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Seat Upholstery</td>
+                                                                <td class="table-field-data">No</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Integrated (in-dash) Music
+                                                                    System
+                                                                </td>
+                                                                <td class="table-field-data">Yes</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Outside Rear View Mirrors</td>
+                                                                <td class="table-field-data">No</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Engine start-stop</td>
+                                                                <td class="table-field-data">No</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="vehilce-overview-table">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="table-field">Central Locking</td>
+                                                                <td class="table-field-data">Keyless</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Sunroof / Moonroof</td>
+                                                                <td class="table-field-data">No</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Rear AC</td>
+                                                                <td class="table-field-data">Yes</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Power Windows</td>
+                                                                <td class="table-field-data">Yes</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="table-field">Headlamps</td>
+                                                                <td class="table-field-data">Halogen</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 col-sm-12 col-md-4 mx-auto mt-3 mb-3">
+                        <button class="dg-brand-btn"><i class="icofont-file-pdf"></i> Download Inspection
+                            Report</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="emi-calc-wrapper">
+                        <div class="emi-sec-title">
+                            <h5>EMI Calculator</h5>
+                        </div>
+
+                        <div class="calc-form">
+                            <form action="#">
+                                <div class="mb-2">
+                                    <label class="brand-label mb-1">Loan Amount</label>
+                                    <input type="text" value="720000" class="brand-input loan-amount">
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="brand-label mb-1">Interest Rate (%)</label>
+                                    <input type="text" value="12.99" class="brand-input interest-rate">
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="brand-label mb-1">Tenure (in months)</label>
+                                    <input type="text" value="35" class="brand-input loan-tenure">
+                                </div>
+
+                                <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-3">
+                                    <button class="dg-brand-btn calculate-btn">Calculate EMI</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="row align-items-end">
+                            <div class="col-4">
+                                <div class="calc-result mt-3">
+                                    <div class="loan-emi">
+                                        <h6>EMI</h6>
+                                        <h5 class="value">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="calc-result mt-3">
+                                    <div class="total-interest">
+                                        <h6>Interest Payable</h6>
+                                        <h5 class="value">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="calc-result mt-3">
+                                    <div class="total-amount">
+                                        <h6>Total Amount</h6>
+                                        <h5 class="value">0</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="loan-chart">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMILAR CAR SECTION STARTS -->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="section-title mb-4">
+                        <h3>Similar Cars</h3>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="text-end">
+                        <button class="dg-brand-btn">View All</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-wrapper mt-3">
+                <div id="similar-vehicle-carousel" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="vehicle-wrapper">
+                            <a href="#">
+                                <img
+                                    src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
+                            </a>
+
+                            <div class="vehicle-wrapper-title">
+                                <a href="#">
+                                    <h5>Mercedes-Benz GLE</h5>
+                                </a>
+                            </div>
+                            <div class="d-flex vehicle-overview">
+                                <div class="overview-badge">
+                                    <h6>Year</h6>
+                                    <h5>2021</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Driven</h6>
+                                    <h5>50,000km</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Fuel Type</h6>
+                                    <h5>Diesel</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Owner</h6>
+                                    <h5>1st</h5>
+                                </div>
+
+                                <div class="wishlist">
+                                    <i class="icofont-heart"></i>
+                                </div>
+                            </div>
+                            <div class="vehicle-price d-flex align-items-center">
+                                <h5>₹56,00,0000</h5>
+                                <h6>(Negotiable)</h6>
+                            </div>
+                            <div class="vehicle-emi d-flex">
+                                <h6>EMI from</h6>
+                                <h6>40,000/month</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="vehicle-wrapper">
+                                <a href="#">
+                                    <img
+                                        src="https://cdn.bigboytoyz.com/new-version/products/porsche718boxsteryellow-1.jpg">
+                                </a>
+                                <div class="vehicle-wrapper-title">
+                                    <a href="#">
+                                        <h5>Porsche Panamera</h5>
+                                    </a>
+                                </div>
+                                <div class="d-flex vehicle-overview">
+                                    <div class="overview-badge">
+                                        <h6>Year</h6>
+                                        <h5>2021</h5>
+                                    </div>
+
+                                    <div class="overview-badge">
+                                        <h6>Driven</h6>
+                                        <h5>20,000km</h5>
+                                    </div>
+
+                                    <div class="overview-badge">
+                                        <h6>Fuel Type</h6>
+                                        <h5>Petrol</h5>
+                                    </div>
+
+                                    <div class="overview-badge">
+                                        <h6>Owner</h6>
+                                        <h5>1st</h5>
+                                    </div>
+                                </div>
+
+                                <div class="wishlist">
+                                    <i class="icofont-heart"></i>
+                                </div>
+
+                                <div class="vehicle-price d-flex align-items-center">
+                                    <h5>₹32,00,0000</h5>
+                                    <h6>(Fixed Price)</h6>
+                                </div>
+                                <div class="vehicle-emi d-flex">
+                                    <h6>EMI from</h6>
+                                    <h6>23,000/month</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <div class="vehicle-wrapper">
+                            <a href="#">
+                                <img
+                                    src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
+                            </a>
+                            <div class="vehicle-wrapper-title">
+                                <a href="#">
+                                    <h5>Mercedes-Benz GLE</h5>
+                                </a>
+                            </div>
+                            <div class="d-flex vehicle-overview">
+                                <div class="overview-badge">
+                                    <h6>Year</h6>
+                                    <h5>2021</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Driven</h6>
+                                    <h5>50,000km</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Fuel Type</h6>
+                                    <h5>Diesel</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Owner</h6>
+                                    <h5>1st</h5>
+                                </div>
+                            </div>
+
+                            <div class="wishlist">
+                                <i class="icofont-heart"></i>
+                            </div>
+
+                            <div class="vehicle-price d-flex align-items-center">
+                                <h5>₹56,00,0000</h5>
+                                <h6>(Negotiable)</h6>
+                            </div>
+                            <div class="vehicle-emi d-flex">
+                                <h6>EMI from</h6>
+                                <h6>40,000/month</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="vehicle-wrapper">
+                            <a href="#">
+                                <img
+                                    src="https://cdn.bigboytoyz.com/new-version/products/porsche718boxsteryellow-1.jpg">
+                            </a>
+
+                            <div class="vehicle-wrapper-title">
+                                <a href="#">
+                                    <h5>Porsche Panamera</h5>
+                                </a>
+                            </div>
+                            <div class="d-flex vehicle-overview">
+                                <div class="overview-badge">
+                                    <h6>Year</h6>
+                                    <h5>2021</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Driven</h6>
+                                    <h5>20,000km</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Fuel Type</h6>
+                                    <h5>Petrol</h5>
+                                </div>
+
+                                <div class="overview-badge">
+                                    <h6>Owner</h6>
+                                    <h5>1st</h5>
+                                </div>
+                            </div>
+
+                            <div class="wishlist">
+                                <i class="icofont-heart"></i>
+                            </div>
+
+                            <div class="vehicle-price d-flex align-items-center">
+                                <h5>₹32,00,0000</h5>
+                                <h6>(Fixed Price)</h6>
+                            </div>
+                            <div class="vehicle-emi d-flex">
+                                <h6>EMI from</h6>
+                                <h6>23,000/month</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMILAR CAR SECTION ENDS -->
+
+    <footer>
+        <div class="main-footer section-spacing">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-logo">
+                            <!-- <h2>Wheelpact</h2> -->
+                            <img src="assets/images/logo-bg.png">
+                        </div>
+                        <div class="footer-comp-details">
+                            <p>** All product names, logos, and brands are property of their respective owners. All
+                                company, product and service names used in this website are for identification purposes
+                                only. Use of these names, logos, and brands does not imply endorsement.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-title">
+                            <h3>Important Links</h3>
+                        </div>
+                        <ul class="footer-link">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="become-partner.html">Become Our Partner</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Refund & Return Policy</a></li>
+                            <li><a href="#">FAQ's</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-title">
+                            <h3>Popular Brands</h3>
+                        </div>
+                        <ul class="footer-link">
+                            <li><a href="#">Maruti Suzuki</a></li>
+                            <li><a href="#">Hyundai</a></li>
+                            <li><a href="#">Mahindra</a></li>
+                            <li><a href="#">Toyota</a></li>
+                            <li><a href="#">Tata</a></li>
+                            <li><a href="#">Honda</a></li>
+                            <li><a href="#">Skoda</a></li>
+                            <li><a href="#">Volkswagen</a></li>
+                            <li><a href="#">BMW</a></li>
+                            <li><a href="#">Mercedes</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-title">
+                            <h3>Connect with us</h3>
+                        </div>
+                        <ul class="footer-social-media">
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-facebook"></i>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-instagram"></i>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-twitter"></i>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-linkedin"></i>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-whatsapp"></i>
+                                </li>
+                            </a>
+                        </ul>
+                        <div class="footer-title mt-4">
+                            <h3>Download Our App</h3>
+                        </div>
+                        <div class="footer-app">
+                            <a href="#" target="_blank">
+                                <img src="assets/images/google-play-store-transparent.png">
+                            </a>
+                            <a href="#" target="_blank">
+                                <img src="assets/images/apple-store.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer">
+            <div class="text-center text-white">
+                <p>&copy; Copyright 2022. All Rights Reserved | Product by <a href="https://parastone.in"
+                        target="_blank">Parastone</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JQUERY SCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- LOCAL SCRIPT -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- OWL CAROUSEL SCCRIPT -->
+    <script src="assets/owl-carousel/dist/owl.carousel.min.js"></script>
+
+</body>
+
+</html>

@@ -1,8 +1,3 @@
-<?php
-/**
- * @var \CodeIgniter\View\View $this
- */
-?>
 <?php $this->extend('web/layout/main-layout'); ?>
 <?php $this->section('content'); ?>
     <!-- STORE BANNER SECTION STARTS -->
