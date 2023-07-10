@@ -5,7 +5,6 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
-use App\Models\UserCredentialModel;
 use CodeIgniter\API\ResponseTrait;
 use Exception;
 use CodeIgniter\Services;
