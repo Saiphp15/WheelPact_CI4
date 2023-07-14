@@ -59,7 +59,10 @@ $routes->get('admin/login', 'AuthController::user_login');
 $routes->post('admin/authenticate', 'AuthController::chk_user_login');
 $routes->get('admin/logout', 'AuthController::user_logout');
 $routes->get('admin/dashboard', 'AdminController::dashboard');
-
+$routes->get('admin/add-branch', 'AdminController::add_branch');
+$routes->post('admin/save-branch', 'AdminController::save_branch');
+$routes->get('admin/add-vehicle', 'AdminController::add_vehicle');
+$routes->post('admin/save-vehicle', 'AdminController::save_vehicle');
 
 /*
  * --------------------------------------------------------------------
@@ -78,6 +81,8 @@ $routes->post('/api/customer/chk-otp-status', 'ApiController::chk_otp_status');
 $routes->post('/api/customer/customer-profile', 'ApiController::customer_profile');
 
 $routes->get('/api/vehicle-details/(:num)', 'ApiController::get_vehicle_details/$1');
+$routes->post('/api/country-states', 'ApiController::get_country_state');
+$routes->post('/api/state-cities', 'ApiController::get_state_cities');
 
 
 // $routes->get('/api/students', 'ApiController::index');

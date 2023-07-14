@@ -65,13 +65,13 @@
                                 </div>
                             <?php endif ?>
 							<div class="input-group custom">
-								<input type="email" name="email" id="email" value="<?= old('email') ?>" class="form-control form-control-lg" placeholder="Email Address">
+								<input type="email" name="email" id="email"  class="form-control form-control-lg" placeholder="Email Address">
 								<div class="input-group-append custom">
 									<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
 								</div>
 							</div>
 							<div class="input-group custom">
-								<input type="password" name="password" id="password" value="<?= old('password') ?>" class="form-control form-control-lg" placeholder="**********">
+								<input type="password" name="password" id="password"  class="form-control form-control-lg" placeholder="**********">
 								<div class="input-group-append custom">
 									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
 								</div>

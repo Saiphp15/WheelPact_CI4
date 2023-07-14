@@ -43,6 +43,7 @@ class Autoload extends AutoloadConfig
         APP_NAMESPACE => APPPATH, // For custom app namespace
         'Config'      => APPPATH . 'Config',
         'App\Controllers' => APPPATH . 'Controllers',
+        'CodeIgniter\Session' => SYSTEMPATH . 'Session',
     ];
 
     /**
@@ -96,5 +97,4 @@ class Autoload extends AutoloadConfig
      */
     public $helpers = ['url', 'form','response'];
 
-    public $libraries = ['log'];
 }

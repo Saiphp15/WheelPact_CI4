@@ -1,11 +1,11 @@
 $(document).ready(function(){
 
     let base_url = window.location.origin;
-    // if(base_url == "http://localhost"){
-    //     base_url = '/WheelPact';        
-    // }else{
-    //     base_url = '/WheelPact';
-    // }
+    if(base_url == "http://localhost:8080"){
+        base_url = 'http://localhost:8080';        
+    }else{
+        base_url = 'http://localhost:8080';
+    }
 
     var token = localStorage.getItem('token');
     if (token) {
@@ -25,11 +25,11 @@ $(document).ready(function(){
                 xhr.setRequestHeader('Authorization', 'Bearer ' + token);
             },
             success: function(response) {
-                resp = JSON.parse(response);
-                console.log(resp);
-                if(resp.responseCode==200){
+                //resp = JSON.parse(response);
+                console.log(response);
+                if(response.responseCode==200){
                     $("span#loggedInCstmrNameSpan").empty();
-                    $("span#loggedInCstmrNameSpan").html('<strong>Hello, '+resp.responseData.name+'</strong>');
+                    $("span#loggedInCstmrNameSpan").html('<strong>Hello, '+response.responseData.name+'</strong>');
 
                     $("ul#cstmrDropdown").empty();
                     $("ul#cstmrDropdown").html(
@@ -134,16 +134,18 @@ $(document).ready(function(){
                     });
                 },
                 success: function(response) { 
-                    respData = JSON.parse(response);
-                    if(respData.responseCode == 200){
+                    console.log(response);
+                    //respData = JSON.parse(response);
+
+                    if(response.responseCode == 200){
                         //localStorage.setItem('token', respData.token);  
-                        swal({title: "", text: respData.responseMessage, type: "success"},
+                        swal({title: "", text: response.responseMessage, type: "success"},
 		                    function(){ 
                                 $("#customer_login_form")[0].reset();
                                 
                                 $("#loginModal").modal('hide');
                                 $("#otpModal").modal('show');
-                                $("#otpModal").find("#contact_no").val(respData.responseData);
+                                $("#otpModal").find("#contact_no").val(response.responseData);
 
                                 OTPMessage();
                                 //window.location.reload();
@@ -153,7 +155,7 @@ $(document).ready(function(){
 		                    }
 		                );
                     }else{
-                        swal({title: "", text: respData.responseMessage, type: "error"});
+                        swal({title: "", text: response.responseMessage, type: "error"});
                     }
                 },
                 error: function(xhr, status, error) { 
@@ -182,16 +184,17 @@ $(document).ready(function(){
                 });
             },
             success: function(response) { 
-                respData = JSON.parse(response);
-                if(respData.responseCode == 200){
-                    swal({title: "", text: respData.responseMessage, type: "success"},
+                //respData = JSON.parse(response);
+
+                if(response.responseCode == 200){
+                    swal({title: "", text: response.responseMessage, type: "success"},
                         function(){ 
                             $('.modal-otp-notify').html('<p>Resend OTP in <span id="countdownTimer">30</span> seconds</p>');
                             OTPMessage();
                         }
                     );
                 }else{
-                    swal({title: "", text: respData.responseMessage, type: "error"});
+                    swal({title: "", text: response.responseMessage, type: "error"});
                 }
             },
             error: function(xhr, status, error) { 
@@ -245,10 +248,11 @@ $(document).ready(function(){
                     });
                 },
                 success: function(response) { 
-                    respData = JSON.parse(response);
-                    if(respData.responseCode == 200){
-                        localStorage.setItem('token', respData.token);  
-                        swal({title: "", text: respData.responseMessage, type: "success"},
+                    //respData = JSON.parse(response);
+
+                    if(response.responseCode == 200){
+                        localStorage.setItem('token', response.token);  
+                        swal({title: "", text: response.responseMessage, type: "success"},
 		                    function(){ 
                                 $("#customer_login_verify_otp_form")[0].reset();
                                 window.location.reload();
@@ -256,7 +260,7 @@ $(document).ready(function(){
 		                    }
 		                );
                     }else{
-                        swal({title: "", text: respData.responseMessage, type: "error"});
+                        swal({title: "", text: response.responseMessage, type: "error"});
                         //window.location.reload();
                     }
                 },

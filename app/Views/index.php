@@ -312,7 +312,7 @@
                             </a>
                             <div class="vehicle-wrapper-title">
                                 <a href="<?php echo base_url('vehicle-details/'.$vehicle['id']); ?>">
-                                    <h5><?php echo $vehicle['make']; ?>, <?php echo $vehicle['model']; ?></h5>
+                                    <h5><?php echo $vehicle['cmp_id']; ?>, <?php echo $vehicle['model_id']; ?></h5>
                                 </a>
                             </div>
                             <div class="d-flex vehicle-overview">

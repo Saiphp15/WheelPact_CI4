@@ -1,3 +1,5 @@
+
+
 jQuery(window).on("load",function() {
 	"use strict";
 	// bootstrap wysihtml5
@@ -337,4 +339,5 @@ function CopyToClipboard(value, showNotification, notificationText) {
     // other browser
     return false;
 })();
+
 

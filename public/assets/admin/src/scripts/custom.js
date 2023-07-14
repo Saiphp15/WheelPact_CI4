@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    let base_url = window.location.origin;
+    if(base_url == "http://localhost:8080"){
+        base_url= 'http://localhost:8080';        
+    }else{
+        base_url;
+    }
+
     $("#saleInput").hide();
 
     $("#pricingTypeList").change(function () {
@@ -33,4 +40,7 @@ $(document).ready(function () {
         var silverPlanChecked = $("input[name='custom-radio']:checked").val();
         $('#planValue').text(silverPlanChecked);
     });
+
+    
+
 });

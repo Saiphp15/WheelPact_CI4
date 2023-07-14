@@ -7,6 +7,7 @@ use App\Controllers\BaseController;
 use App\Models\CustomerModel;
 use App\Models\UserModel;
 use App\Models\VehicleModel;
+use App\Models\CommonModel;
 use CodeIgniter\API\ResponseTrait;
 
 use App\Libraries\JwtLibrary;
@@ -20,7 +21,7 @@ class ApiController extends BaseController
     protected $CustomerModel;
     protected $UserModel;
     protected $VehicleModel;
-   
+    protected $CommonModel;
 
     public function __construct()
     {
@@ -28,6 +29,7 @@ class ApiController extends BaseController
         $this->CustomerModel = new CustomerModel();
         $this->UserModel = new UserModel();
         $this->VehicleModel = new VehicleModel();
+        $this->CommonModel = new CommonModel();
         
     }
 
@@ -180,7 +182,7 @@ class ApiController extends BaseController
                     /* Update customer as verified */
                     $this->CustomerModel->update($customer['id'], ['otp_status' => false]);
 
-                    $expiryTime = time() + 60; /* 60 seconds from the current time */
+                    $expiryTime = time() + 1500; /* 1500 seconds (25 minutes) from the current time */
                     //$expiryTime = time() + (24 * 60 * 60); /* 24 hours in seconds 
                     $headers = array('alg'=>'HS256','typ'=>'JWT');
                     $payload = array('id'=>$customer['id'], 'name'=>$customer['name'], 'email'=>$customer['email'], 'contact_no'=>$customer['contact_no'], 'exp'=>$expiryTime);
@@ -348,6 +350,56 @@ class ApiController extends BaseController
 		} else {
 			return $this->failUnauthorized('Unauthorized Access');
 		}
+    }
+
+    public function get_country_state(){
+        $countryId = $this->request->getVar('country_id');
+        if(isset($countryId) &&!empty($countryId)){
+            $states = $this->CommonModel->get_country_states($countryId);
+            if($states) {
+                $response = array(
+                   'status'   => 200,
+                   'messages' => 'State data retrived successfully.',
+                    'data' => $states
+                );
+            } else {    
+                $response = array(
+                   'status'   => 401,
+                   'messages' => 'No record found'
+                );
+            }
+        }else{
+            $response = array(
+              'status'   => 401,
+              'messages' => 'country id required'
+            );
+        }
+        return $this->response->setJSON($response);
+    }
+
+    public function get_state_cities(){
+        $stateId = $this->request->getVar('state_id');
+        if(isset($stateId) &&!empty($stateId)){
+            $cities = $this->CommonModel->get_state_cities($stateId);
+            if($cities) {
+                $response = array(
+                   'status'   => 200,
+                   'messages' => 'Cities data retrived successfully.',
+                    'data' => $cities
+                );
+            } else {    
+                $response = array(
+                   'status'   => 401,
+                   'messages' => 'No record found'
+                );
+            }
+        }else{
+            $response = array(
+              'status'   => 401,
+              'messages' => 'state id required'
+            );
+        }
+        return $this->response->setJSON($response);
     }
 
     // create students

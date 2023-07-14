@@ -14,11 +14,9 @@ class AuthController extends BaseController {
     use ResponseTrait;
 		
 	private $UserModel;
-    private $UserCredentialModel;
 
 	public function __construct() {
         $this->UserModel = new UserModel();
-        $this->UserCredentialModel = new UserCredentialModel();
 	}
 
     public function generate_password(){

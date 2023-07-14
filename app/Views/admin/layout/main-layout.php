@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
@@ -16,14 +14,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/vendors/styles/core.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/vendors/styles/icon-font.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/vendors/styles/style.css">
+
+	<!-- JQUERY FORM STEPS CSS -->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/src/plugins/jquery-steps/jquery.steps.css">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -106,7 +106,7 @@
 						<span class="user-icon">
 							<img src="<?php echo base_url(); ?>assets/admin/vendors/images/photo1.jpg" alt="">
 						</span>
-						<span class="user-name"><?php echo $adminData['loggedUserInfo']['email']; ?></span>
+						<span class="user-name"><?php echo isset($adminData['loggedUserInfo']['email'])?$adminData['loggedUserInfo']['email']:'User Email'; ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
@@ -142,8 +142,8 @@
 							<span class="micon dw dw-car"></span><span class="mtext">Vehicles</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="cars.html">Cars</a></li>
-							<li><a href="bikes.html">Bikes</a></li>
+							<li><a href="<?php echo base_url('admin/add-vehicle'); ?>">Add Vehicle</a></li>
+							<li><a href="<?php echo base_url('admin/add-vehicle'); ?>">View Vehicles</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -160,8 +160,7 @@
 							<span class="micon dw dw-building"></span><span class="mtext">Manage Showroom</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Main Branch</a></li>
-							<li><a href="#">Sub-Branch</a></li>
+							<li><a href="<?php echo base_url('admin/add-branch'); ?>">Add Branch</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -192,6 +191,9 @@
 
 	<?php $this->renderSection('content'); ?>
 	<!-- js -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/ajax-call.js"></script>
+	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/form-validation.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/core.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/script.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/process.js"></script>
@@ -202,6 +204,11 @@
 	<script src="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/dashboard.js"></script>
+
+	<!-- JQUERY STEPS JS -->
+<script src="<?php echo base_url(); ?>assets/admin/src/plugins/jquery-steps/jquery.steps.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/steps-setting.js"></script>
+	
 </body>
 
 </html>

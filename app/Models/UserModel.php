@@ -8,7 +8,7 @@ class UserModel extends Model {
 	protected $table                = 'users';
     protected $primaryKey           = 'id';
 	protected $returnType           = 'array';
-    protected $allowedFields        = ['name', 'email', 'contact_no'];
+    protected $allowedFields        = ['name', 'email', 'addr_residential', 'addr_permanent', 'date_of_birth', 'gender', 'profile_image', 'country_id', 'state_id', 'city_id', 'zipcode', 'contact_no', 'social_fb_link', 'social_twitter_link', 'social_linkedin_link', 'social_skype_link', 'role_id', 'is_active', 'created_at', 'updated_at'];
 
     protected $validationRules      = [];
     protected $validationMessages   = [];
