@@ -8,6 +8,8 @@ use App\Models\CustomerModel;
 use App\Models\UserModel;
 use App\Models\VehicleModel;
 use App\Models\CommonModel;
+use App\Models\CompanyModelModel;
+
 use CodeIgniter\API\ResponseTrait;
 
 use App\Libraries\JwtLibrary;
@@ -22,6 +24,7 @@ class ApiController extends BaseController
     protected $UserModel;
     protected $VehicleModel;
     protected $CommonModel;
+    protected $CompanyModelModel;
 
     public function __construct()
     {
@@ -30,6 +33,7 @@ class ApiController extends BaseController
         $this->UserModel = new UserModel();
         $this->VehicleModel = new VehicleModel();
         $this->CommonModel = new CommonModel();
+        $this->CompanyModelModel = new CompanyModelModel();
         
     }
 
@@ -386,6 +390,31 @@ class ApiController extends BaseController
                    'status'   => 200,
                    'messages' => 'Cities data retrived successfully.',
                     'data' => $cities
+                );
+            } else {    
+                $response = array(
+                   'status'   => 401,
+                   'messages' => 'No record found'
+                );
+            }
+        }else{
+            $response = array(
+              'status'   => 401,
+              'messages' => 'state id required'
+            );
+        }
+        return $this->response->setJSON($response);
+    }
+
+    public function get_cmp_models(){
+        $cmpId = $this->request->getVar('cmp_id');
+        if(isset($cmpId) &&!empty($cmpId)){
+            $models = $this->CompanyModelModel->where('cmp_id', $cmpId)->findAll();
+            if($models) {
+                $response = array(
+                   'status'   => 200,
+                   'messages' => 'Compay Model data retrived successfully.',
+                    'data' => $models
                 );
             } else {    
                 $response = array(

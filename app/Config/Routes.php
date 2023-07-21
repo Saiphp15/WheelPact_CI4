@@ -84,6 +84,8 @@ $routes->get('/api/vehicle-details/(:num)', 'ApiController::get_vehicle_details/
 $routes->post('/api/country-states', 'ApiController::get_country_state');
 $routes->post('/api/state-cities', 'ApiController::get_state_cities');
 
+$routes->post('/api/cmp-models', 'ApiController::get_cmp_models');
+
 
 // $routes->get('/api/students', 'ApiController::index');
 // $routes->post('/api/students', 'ApiController::create');

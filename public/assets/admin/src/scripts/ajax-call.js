@@ -55,4 +55,32 @@ $(document).ready(function(){
             }
         });
     });
+
+    // Update the vehicle company models options when the company selection changes
+    $('#vehicleCompany').on('change', function() {
+        var selectedCompany = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: base_url+'/api/cmp-models/',
+            data: {
+                cmp_id: selectedCompany
+            },
+            success: function(response) {
+                console.log(response.data);
+                var modelSelect = $('#vehicleCompanyModel');
+                modelSelect.empty(); // Clear existing city options
+                modelSelect.append('<option value="">Select Model</option>'); // Populate city options based on the selected state
+				if(response.data){
+					var models = response.data;
+					for (var i = 0; i < models.length; i++) {
+						modelSelect.append('<option value="' + models[i].id + '">' + models[i].model_name + '</option>');
+					}
+				}else{
+					modelSelect.append('<option value="">No Model Found</option>');
+				}
+            }
+        });
+    });
+
+
 });

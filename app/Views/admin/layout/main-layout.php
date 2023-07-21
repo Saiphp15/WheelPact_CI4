@@ -143,7 +143,9 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="<?php echo base_url('admin/add-vehicle'); ?>">Add Vehicle</a></li>
-							<li><a href="<?php echo base_url('admin/add-vehicle'); ?>">View Vehicles</a></li>
+							<li><a href="<?php echo base_url('admin/view-vehicles'); ?>">View Vehicles</a></li>
+							<li><a href="<?php echo base_url('admin/add-company'); ?>">Add Company</a></li>
+							<li><a href="<?php echo base_url('admin/view-companies'); ?>">View Companies</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -206,8 +208,8 @@
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/dashboard.js"></script>
 
 	<!-- JQUERY STEPS JS -->
-<script src="<?php echo base_url(); ?>assets/admin/src/plugins/jquery-steps/jquery.steps.js"></script>
-<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/steps-setting.js"></script>
+	<script src="<?php echo base_url(); ?>assets/admin/src/plugins/jquery-steps/jquery.steps.js"></script>
+	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/steps-setting.js"></script>
 	
 </body>
 

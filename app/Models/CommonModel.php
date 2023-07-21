@@ -82,6 +82,26 @@ class CommonModel extends Model {
         return $query->getResult();
 	}
 
+	public function get_fuel_types(){
+		$query = $this->db->query('select * from fueltypes order by name asc');
+		return $query->getResult();
+	}
+
+	public function get_fuel_variants(){
+		$query = $this->db->query('select * from fuelvariants order by id asc');
+		return $query->getResult();
+	}
+
+	public function get_vehicle_transmissions(){
+		$query = $this->db->query('select * from transmissions order by id asc');
+		return $query->getResult();
+	}
+
+	public function get_vehicle_colors(){
+		$query = $this->db->query('select * from colors order by name asc');
+		return $query->getResult();
+	}
+
 }
 
 ?>

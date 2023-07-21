@@ -8,11 +8,13 @@ use CodeIgniter\Services;
 use App\Models\UserModel;
 use App\Models\CommonModel;
 use App\Models\BranchModel;
+use App\Models\CompanyModel;
 
 class AdminController extends BaseController{
     protected $UserModel;
     protected $CommonModel;
     protected $BranchModel;
+    protected $CompanyModel;
 
     public function __construct()
     {
@@ -20,6 +22,7 @@ class AdminController extends BaseController{
         $this->UserModel    = new UserModel();
         $this->CommonModel  = new CommonModel();
         $this->BranchModel  = new BranchModel();
+        $this->CompanyModel = new CompanyModel();
     }
     
     public function index(){
@@ -139,6 +142,11 @@ class AdminController extends BaseController{
         $this->pageData['adminData'] = session()->get('adminData');
         $this->pageData['dealerList'] = $this->UserModel->where('role_id', 2)->findAll();
         $this->pageData['showroomList'] = $this->BranchModel->findAll();
+        $this->pageData['cmpList'] = $this->CompanyModel->findAll(); 
+        $this->pageData['fuelTypeList'] = $this->CommonModel->get_fuel_types();
+        $this->pageData['fuelVariantList'] = $this->CommonModel->get_fuel_variants();
+        $this->pageData['transmissionList'] = $this->CommonModel->get_vehicle_transmissions();
+        $this->pageData['colorList'] = $this->CommonModel->get_vehicle_colors();
         return view('admin/add_vehicle',$this->pageData);
     }
 }
