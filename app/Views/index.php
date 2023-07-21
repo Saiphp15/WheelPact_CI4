@@ -318,7 +318,7 @@
                             <div class="d-flex vehicle-overview">
                                 <div class="overview-badge">
                                     <h6>Year</h6>
-                                    <h5><?php echo $vehicle['year']; ?></h5>
+                                    <h5><?php echo isset($vehicle['manufacture_year'])?$vehicle['manufacture_year']:''; ?></h5>
                                 </div>
                                 <div class="overview-badge">
                                     <h6>Driven</h6>
