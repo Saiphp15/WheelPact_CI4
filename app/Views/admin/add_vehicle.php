@@ -97,7 +97,7 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label>Kilometers Driven<span class="required">*</span></label>
-                                        <input type="tel" class="form-control">
+                                        <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 
