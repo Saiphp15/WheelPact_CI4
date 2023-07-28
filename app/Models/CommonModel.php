@@ -102,6 +102,11 @@ class CommonModel extends Model {
 		return $query->getResult();
 	}
 
+	public function get_registered_state_rto($state_id){
+		$query = $this->db->query('select * from indiarto where state_id='.$state_id.' order by rto_state_code asc');
+        return $query->getResult();
+	}
+
 }
 
 ?>

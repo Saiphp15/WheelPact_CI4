@@ -629,7 +629,6 @@
     <!-- OWL CAROUSEL SCCRIPT -->
     <script src="<?php echo base_url(); ?>assets/web/owl-carousel/dist/owl.carousel.min.js"></script>
     <!--Jquery Validation js start-->
-    <script src="<?php echo base_url(); ?>assets/web/js/jquery-validate.js"></script>
     <script src="<?php echo base_url(); ?>assets/web/js/form-validation.js"></script>
     <!--sweet alert js end -->
     <script src="<?php echo base_url(); ?>assets/web/js/sweetalert.min.js"></script>

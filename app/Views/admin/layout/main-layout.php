@@ -193,8 +193,9 @@
 
 	<?php $this->renderSection('content'); ?>
 	<!-- js -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/ajax-call.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/form-validation.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/core.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/script.min.js"></script>
@@ -206,6 +207,8 @@
 	<script src="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/dashboard.js"></script>
+	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/custom.js"></script>
+	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/ajax-call.js"></script>
 
 	<!-- JQUERY STEPS JS -->
 	<script src="<?php echo base_url(); ?>assets/admin/src/plugins/jquery-steps/jquery.steps.js"></script>

@@ -56,17 +56,17 @@
 
                         <div class="app-link d-flex mt-2 mb-2">
                             <a href="#">
-                                <img src="<?php echo base_url(); ?>public/assets/web/images/google-play-store-transparent.png">
+                                <img src="<?php echo base_url(); ?>assets/web/images/google-play-store-transparent.png">
                             </a>
                             <a href="#">
-                                <img src="<?php echo base_url(); ?>public/assets/web/images/apple-store.png">
+                                <img src="<?php echo base_url(); ?>assets/web/images/apple-store.png">
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="banner-img">
-                        <img class="img-fluid" src="<?php echo base_url(); ?>public/assets/web/images/banner-image.jpg">
+                        <img class="img-fluid" src="<?php echo base_url(); ?>assets/web/images/banner-image.jpg">
                     </div>
                 </div>
             </div>
@@ -318,7 +318,7 @@
                             <div class="d-flex vehicle-overview">
                                 <div class="overview-badge">
                                     <h6>Year</h6>
-                                    <h5><?php echo isset($vehicle['year']) ? $vehicle['year'] : ""; ?></h5>
+                                    <h5><?php echo isset($vehicle['manufacture_year'])?$vehicle['manufacture_year']:''; ?></h5>
                                 </div>
                                 <div class="overview-badge">
                                     <h6>Driven</h6>
@@ -340,7 +340,7 @@
                                 </div>
                             </div>
                             <div class="vehicle-price d-flex align-items-center">
-                                <h5>₹<?php echo $vehicle['price']; ?></h5>
+                                <h5>₹<?php echo isset($vehicle['price'])?$vehicle['price']:''; ?></h5>
                                 <h6>(Negotiable)</h6>
                             </div>
                             <div class="vehicle-emi d-flex">

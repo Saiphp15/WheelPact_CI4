@@ -66,7 +66,6 @@ $(document).ready(function(){
                 cmp_id: selectedCompany
             },
             success: function(response) {
-                console.log(response.data);
                 var modelSelect = $('#vehicleCompanyModel');
                 modelSelect.empty(); // Clear existing city options
                 modelSelect.append('<option value="">Select Model</option>'); // Populate city options based on the selected state
@@ -82,5 +81,260 @@ $(document).ready(function(){
         });
     });
 
+    // Update the Registred RTO options when the state selection changes
+    $('#registeredStateRto').on('change', function() {
+        var selectedRto = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: base_url+'/api/registered-state-rto/',
+            data: {
+                state_id: selectedRto
+            },
+            success: function(response) {
+                console.log(response.data);
+                var rtoSelect = $('#registeredRto');
+                rtoSelect.empty(); // Clear existing rto options
+                rtoSelect.append('<option value="">Select RTO</option>'); // Populate RTO options based on the selected state
+				if(response.data){
+					var rtos = response.data;
+					for (var i = 0; i < rtos.length; i++) {
+						rtoSelect.append('<option value="' + rtos[i].id + '">' + rtos[i].rto_state_code + '</option>');
+					}
+				}else{
+					rtoSelect.append('<option value="">No RTO Found</option>');
+				}
+            }
+        });
+    });
+
+    $("#save_vehicle_form_step1").submit(function(e) {
+        e.preventDefault();
+        let validationStatus = save_vehicle_form_step1();
+        if(validationStatus){
+            var action_page = $("#save_vehicle_form_step1").attr('action');
+            $.ajax({
+                url: action_page,
+                type: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Validation succeeded, handle success scenario
+                        alert(response.message);
+                    } else {
+                        // Validation failed, handle errors
+                        alert(response.errors);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        }
+    });
+
+    $("#save_vehicle_form_step2").submit(function(e) {
+        e.preventDefault();
+        let validationStatus = save_vehicle_form_step2();
+        if(validationStatus){
+            var action_page = $("#save_vehicle_form_step2").attr('action');
+            $.ajax({
+                url: action_page,
+                type: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Validation succeeded, handle success scenario
+                        alert(response.message);
+                    } else {
+                        // Validation failed, handle errors
+                        alert(response.errors);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        }
+    });
+
+    $("#save_vehicle_form_step3").submit(function(e) {
+        e.preventDefault();
+        let validationStatus = save_vehicle_form_step3();
+        if(validationStatus){
+            var action_page = $("#save_vehicle_form_step3").attr('action');
+            $.ajax({
+                url: action_page,
+                type: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Validation succeeded, handle success scenario
+                        alert(response.message);
+                    } else {
+                        // Validation failed, handle errors
+                        alert(response.errors);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        }
+    });
+
+    $("#save_vehicle_form_step4").submit(function(e) {
+        e.preventDefault();
+        let validationStatus = save_vehicle_form_step4();
+        if(validationStatus){
+            var action_page = $("#save_vehicle_form_step4").attr('action');
+            $.ajax({
+                url: action_page,
+                type: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Validation succeeded, handle success scenario
+                        alert(response.message);
+                    } else {
+                        // Validation failed, handle errors
+                        alert(response.errors);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        }
+    });
+
+    
+    $("#save_car_vehicle_form_step5").submit(function(e) {
+        e.preventDefault();
+        let validationStatus = save_car_vehicle_form_step5();
+        if(validationStatus){
+            var action_page = $("#save_car_vehicle_form_step5").attr('action');
+            $.ajax({
+                url: action_page,
+                type: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Validation succeeded, handle success scenario
+                        alert(response.message);
+                    } else {
+                        // Validation failed, handle errors
+                        alert(response.errors);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        }
+    });
+
+    $("#save_bike_vehicle_form_step5").submit(function(e) {
+        e.preventDefault();
+        let validationStatus = save_bike_vehicle_form_step5();
+        if(validationStatus){
+            var action_page = $("#save_bike_vehicle_form_step5").attr('action');
+            $.ajax({
+                url: action_page,
+                type: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Validation succeeded, handle success scenario
+                        alert(response.message);
+                    } else {
+                        // Validation failed, handle errors
+                        alert(response.errors);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        }
+    });
+
+    
+    $("#save_vehicle_form_step6").submit(function(e) {
+        e.preventDefault();
+        let validationStatus = save_vehicle_form_step6();
+        if(validationStatus){
+            var action_page = $("#save_vehicle_form_step6").attr('action');
+            $.ajax({
+                url: action_page,
+                type: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Validation succeeded, handle success scenario
+                        alert(response.message);
+                        window.location.reload();
+                    } else {
+                        // Validation failed, handle errors
+                        alert(response.errors);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        }
+    });
+
+    
+
+    // $("#saveVehicleFormStep1SubmitBtn").click(function(e){
+    //     e.preventDefault();
+    //     let validationStatus = save_vehicle_form_step1();
+    //     if(validationStatus){
+
+            
+            
+    //         // var form = $('#save_vehicle_form_step1')[0]; /* Get form */
+    //         // var requestData = new FormData(form); /* Create an FormData object */
+    //         // var action_page = $("#save_vehicle_form_step1").attr('action');
+    //         // $.ajax
+    //         // ({
+    //         //     url: action_page, 		  /* Url to which the request is send */
+    //         //     type: "POST",             /* Type of request to be send, called as method */
+    //         //     enctype: 'multipart/form-data',
+    //         //     data: requestData, 		  /* Data sent to server, a set of key/value pairs (i.e. form fields and values) */
+    //         //     contentType: false,       /* The content type used when sending data to the server. */
+    //         //     cache: false,             /* To unable request pages to be cached */
+    //         //     processData:false,        /* Important! To send DOMDocument or non processed data file it is set to false */
+    //         //     timeout: 600000,
+    //         //     beforeSend: function() {
+                    
+    //         //         // swal({
+    //         //         //     title: "",
+    //         //         //     text: (lang == "en") ? "معالجة..." : "Processing...",
+    //         //         //     imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
+    //         //         //     showConfirmButton: false
+    //         //         // });
+    //         //     },
+    //         //     success: function(resp){  /* A function to be called if request succeeds */
+    //         //         respData = JSON.parse(resp);
+    //         //         if(respData.responseCode == 200){
+    //         //             alert(respData.responseMessage);
+                        
+    //         //         }else{
+    //         //             alert(respData.responseMessage);
+    //         //         }
+    //         //     }
+    //         // });
+    //     }
+        
+    // });
 
 });
