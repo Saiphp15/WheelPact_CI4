@@ -431,6 +431,31 @@ class ApiController extends BaseController
         return $this->response->setJSON($response);
     }
 
+    public function get_registered_state_rto(){
+        $stateId = $this->request->getVar('state_id');
+        if(isset($stateId) &&!empty($stateId)){
+            $rtoList = $this->CommonModel->get_registered_state_rto($stateId);
+            if($rtoList) {
+                $response = array(
+                   'status'   => 200,
+                   'messages' => 'State RTO data retrived successfully.',
+                   'data' => $rtoList
+                );
+            } else {    
+                $response = array(
+                   'status'   => 401,
+                   'messages' => 'No record found'
+                );
+            }
+        }else{
+            $response = array(
+              'status'   => 401,
+              'messages' => 'state id required'
+            );
+        }
+        return $this->response->setJSON($response);
+    }
+
     // create students
     public function create()
     {

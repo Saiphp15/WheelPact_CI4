@@ -193,6 +193,25 @@ jQuery(document).ready(function(){
 		dateFormat: 'MM yyyy',
 	});
 
+	// $('.year-picker').datepicker({
+	// 	language: 'en',
+	// 	minView: 'years',
+	// 	view: 'years',
+	// 	autoClose: true,
+	// 	dateFormat: 'yyyy',
+	// });
+
+	$('.year-picker').datepicker({
+		language: 'en',
+		minView: 'months', // Set this to months to show the month dropdown initially
+		view: 'months',    // Show the month dropdown initially
+		autoClose: true,
+		dateFormat: 'yyyy',
+	}).on('changeDate', function (e) {
+		// When a date is selected, close the datepicker and set the view back to years
+		$(this).datepicker('hide').datepicker('update', e.date).datepicker('setMinView', 'years').datepicker('setView', 'years').datepicker('show');
+	});
+
 	// only time picker
 	$( ".time-picker" ).timeDropper({
 		mousewheel: true,

@@ -64,6 +64,13 @@ $routes->post('admin/save-branch', 'AdminController::save_branch');
 $routes->get('admin/add-vehicle', 'AdminController::add_vehicle');
 $routes->post('admin/save-vehicle', 'AdminController::save_vehicle');
 
+$routes->post('admin/save-vehicle-form-step1', 'AdminController::save_vehicle_form_step1');
+$routes->post('admin/save-vehicle-form-step2', 'AdminController::save_vehicle_form_step2');
+$routes->post('admin/save-vehicle-form-step3', 'AdminController::save_vehicle_form_step3');
+$routes->post('admin/save-vehicle-form-step4', 'AdminController::save_vehicle_form_step4');
+$routes->post('admin/save-vehicle-form-step5', 'AdminController::save_vehicle_form_step5');
+$routes->post('admin/save-vehicle-form-step6', 'AdminController::save_vehicle_form_step6');
+
 /*
  * --------------------------------------------------------------------
  * API Routing
@@ -85,6 +92,7 @@ $routes->post('/api/country-states', 'ApiController::get_country_state');
 $routes->post('/api/state-cities', 'ApiController::get_state_cities');
 
 $routes->post('/api/cmp-models', 'ApiController::get_cmp_models');
+$routes->post('/api/registered-state-rto', 'ApiController::get_registered_state_rto');
 
 
 // $routes->get('/api/students', 'ApiController::index');

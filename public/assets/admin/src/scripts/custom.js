@@ -6,41 +6,50 @@ $(document).ready(function () {
         base_url;
     }
 
-    $("#saleInput").hide();
+    // $("#saleInput").hide();
 
-    $("#pricingTypeList").change(function () {
-        var regularPriceString = "regularPrice";
-        var salePriceString = "salePrice";
+    // $("#pricingTypeList").change(function () {
+    //     var regularPriceString = "regularPrice";
+    //     var salePriceString = "salePrice";
 
-        var pricingOptionSelected = $("#pricingTypeList option:selected").val();
+    //     var pricingOptionSelected = $("#pricingTypeList option:selected").val();
 
-        if (pricingOptionSelected == salePriceString) {
-            $("#saleInput").show();
+    //     if (pricingOptionSelected == salePriceString) {
+    //         $("#saleInput").show();
+    //     }
+
+    //     else {
+    //         $("#saleInput").hide();
+    //     }
+    // });
+
+    // var silverPlanChecked = $("input[name='custom-radio']:checked").val();
+    //     $('#planValue').text(silverPlanChecked);
+
+    // $(".silverPlanRadio").click(function() {
+    //     var silverPlanChecked = $("input[name='custom-radio']:checked").val();
+    //     $('#planValue').text(silverPlanChecked);
+    // });
+
+    // $(".goldPlanRadio").click(function() {
+    //     var silverPlanChecked = $("input[name='custom-radio']:checked").val();
+    //     $('#planValue').text(silverPlanChecked);
+    // });
+
+    // $(".titaniumPlanRadio").click(function() {
+    //     var silverPlanChecked = $("input[name='custom-radio']:checked").val();
+    //     $('#planValue').text(silverPlanChecked);
+    // });
+
+    $("#vehicle_type").change(function () {
+        var vehicleTypeSelected = $(this).val();
+        if(vehicleTypeSelected == 1) {
+            $("#bike_features_section").hide();
+            $("#car_features_section").show();
+        }else if(vehicleTypeSelected == 2){
+            $("#car_features_section").hide();
+            $("#bike_features_section").show();
         }
-
-        else {
-            $("#saleInput").hide();
-        }
     });
-
-    var silverPlanChecked = $("input[name='custom-radio']:checked").val();
-        $('#planValue').text(silverPlanChecked);
-
-    $(".silverPlanRadio").click(function() {
-        var silverPlanChecked = $("input[name='custom-radio']:checked").val();
-        $('#planValue').text(silverPlanChecked);
-    });
-
-    $(".goldPlanRadio").click(function() {
-        var silverPlanChecked = $("input[name='custom-radio']:checked").val();
-        $('#planValue').text(silverPlanChecked);
-    });
-
-    $(".titaniumPlanRadio").click(function() {
-        var silverPlanChecked = $("input[name='custom-radio']:checked").val();
-        $('#planValue').text(silverPlanChecked);
-    });
-
-    
 
 });
