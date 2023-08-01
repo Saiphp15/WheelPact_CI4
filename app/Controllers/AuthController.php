@@ -56,6 +56,7 @@ class AuthController extends BaseController {
             
             // Password exists, retrieve user data
             $userData = [
+                'id' => $userCredentials['id'],
                 'email' => $userCredentials['email'],
                 'role_id' => $userCredentials['role_id'],
                 'role_name' => $userCredentials['role_name'],

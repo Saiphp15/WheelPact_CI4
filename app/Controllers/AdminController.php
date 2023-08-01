@@ -213,7 +213,7 @@ class AdminController extends BaseController{
             session()->set('form_data_step1', $data);
 
             // Return a success JSON response
-            return $this->response->setJSON(['success' => true, 'message' => 'Validation succeeded.']);
+            return $this->response->setJSON(['success' => true, 'message' => 'Information Submitted.']);
         } catch (\Exception $e) {
             // Error handling and logging
             $logger = Services::logger();
@@ -262,7 +262,7 @@ class AdminController extends BaseController{
             session()->set('form_data_step2', $data);
 
             // Return a success JSON response
-            return $this->response->setJSON(['success' => true, 'message' => 'Validation succeeded.']);
+            return $this->response->setJSON(['success' => true, 'message' => 'Information Submitted.']);
         } catch (\Exception $e) {
             // Error handling and logging
             $logger = Services::logger();
@@ -298,14 +298,14 @@ class AdminController extends BaseController{
             // Prepare the data to be inserted
             $data = [
                 'insurance_type'      => $insurance_type,
-                'insurance_validity'  => $insurance_validity
+                'insurance_validity'  => date("Y-m-d",strtotime($insurance_validity))
             ];
 
             // Save the data to the session or a database (depending on your needs)
             session()->set('form_data_step3', $data);
 
             // Return a success JSON response
-            return $this->response->setJSON(['success' => true, 'message' => 'Validation succeeded.']);
+            return $this->response->setJSON(['success' => true, 'message' => 'Information Submitted.']);
         } catch (\Exception $e) {
             // Error handling and logging
             $logger = Services::logger();
@@ -347,14 +347,14 @@ class AdminController extends BaseController{
                 'accidental_status' => $accidental_status,
                 'flooded_status'    => $flooded_status,
                 'last_service_kms'  => $last_service_kms,
-                'last_service_date' => $last_service_date
+                'last_service_date' => date("Y-m-d",strtotime($last_service_date))
             ];
 
             // Save the data to the session or a database (depending on your needs)
             session()->set('form_data_step4', $data);
 
             // Return a success JSON response
-            return $this->response->setJSON(['success' => true, 'message' => 'Validation succeeded.']);
+            return $this->response->setJSON(['success' => true, 'message' => 'Information Submitted.']);
         } catch (\Exception $e) {
             // Error handling and logging
             $logger = Services::logger();
@@ -365,7 +365,7 @@ class AdminController extends BaseController{
         }
     }
 
-    public function save_vehicle_form_step5(){
+    public function save_car_vehicle_form_step5(){
         try {
             // Load the form validation library
             $validation = \Config\Services::validation();
@@ -382,7 +382,66 @@ class AdminController extends BaseController{
                 'car_power_windows'             => 'required',
                 'car_engine_start_stop'         => 'required',
                 'car_headlamps'                 => 'required',
-                'car_power_steering'            => 'required',
+                'car_power_steering'            => 'required'
+            ]);
+
+            // Run the validation
+            if (!$validation->withRequest($this->request)->run()) {
+                // Validation failed, return errors in JSON format
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['success' => false, 'errors' => $errors]);
+            }
+
+            // Get the form input values
+            $car_no_of_airbags              = $this->request->getPost('car_no_of_airbags');
+            $car_central_locking            = $this->request->getPost('car_central_locking');
+            $car_seat_upholstery            = $this->request->getPost('car_seat_upholstery');
+            $car_sunroof                    = $this->request->getPost('car_sunroof');
+            $car_integrated_music_system    = $this->request->getPost('car_integrated_music_system');
+            $car_rear_ac                    = $this->request->getPost('car_rear_ac');
+            $car_outside_rear_view_mirrors  = $this->request->getPost('car_outside_rear_view_mirrors');
+            $car_power_windows              = $this->request->getPost('car_power_windows');
+            $car_engine_start_stop          = $this->request->getPost('car_engine_start_stop');
+            $car_headlamps                  = $this->request->getPost('car_headlamps');
+            $car_power_steering             = $this->request->getPost('car_power_steering');
+            
+            // Prepare the data to be inserted
+            $data = [
+                'car_no_of_airbags'             => $car_no_of_airbags,
+                'car_central_locking'           => $car_central_locking,
+                'car_seat_upholstery'           => $car_seat_upholstery,
+                'car_sunroof'                   => $car_sunroof,
+                'car_integrated_music_system'   => $car_integrated_music_system,
+                'car_rear_ac'                   => $car_rear_ac,
+                'car_outside_rear_view_mirrors' => $car_outside_rear_view_mirrors,
+                'car_power_windows'             => $car_power_windows,
+                'car_engine_start_stop'         => $car_engine_start_stop,
+                'car_headlamps'                 => $car_headlamps,
+                'car_power_steering'            => $car_power_steering
+            ];
+
+            // Save the data to the session or a database (depending on your needs)
+            session()->set('form_data_step5', $data);
+
+            // Return a success JSON response
+            return $this->response->setJSON(['success' => true, 'message' => 'Information Submitted.']);
+        } catch (\Exception $e) {
+            // Error handling and logging
+            $logger = Services::logger();
+            $logger->error('Error occurred while inserting step 5 form: ' . $e->getMessage());
+
+            // Throw or handle the exception as needed
+            throw $e;
+        }
+    }
+
+    public function save_bike_vehicle_form_step5(){
+        try {
+            // Load the form validation library
+            $validation = \Config\Services::validation();
+
+            // Set validation rules for each form field
+            $validation->setRules([
                 'bike_headlight_type'           => 'required',
                 'bike_odometer'                 => 'required',
                 'bike_drl'                      => 'required',
@@ -409,17 +468,6 @@ class AdminController extends BaseController{
             }
 
             // Get the form input values
-            $car_no_of_airbags              = $this->request->getPost('car_no_of_airbags');
-            $car_central_locking            = $this->request->getPost('car_central_locking');
-            $car_seat_upholstery            = $this->request->getPost('car_seat_upholstery');
-            $car_sunroof                    = $this->request->getPost('car_sunroof');
-            $car_integrated_music_system    = $this->request->getPost('car_integrated_music_system');
-            $car_rear_ac                    = $this->request->getPost('car_rear_ac');
-            $car_outside_rear_view_mirrors  = $this->request->getPost('car_outside_rear_view_mirrors');
-            $car_power_windows              = $this->request->getPost('car_power_windows');
-            $car_engine_start_stop          = $this->request->getPost('car_engine_start_stop');
-            $car_headlamps                  = $this->request->getPost('car_headlamps');
-            $car_power_steering             = $this->request->getPost('car_power_steering');
             $bike_headlight_type            = $this->request->getPost('bike_headlight_type');
             $bike_odometer                  = $this->request->getPost('bike_odometer');
             $bike_drl                       = $this->request->getPost('bike_drl');
@@ -439,17 +487,6 @@ class AdminController extends BaseController{
             
             // Prepare the data to be inserted
             $data = [
-                'car_no_of_airbags'             => $car_no_of_airbags,
-                'car_central_locking'           => $car_central_locking,
-                'car_seat_upholstery'           => $car_seat_upholstery,
-                'car_sunroof'                   => $car_sunroof,
-                'car_integrated_music_system'   => $car_integrated_music_system,
-                'car_rear_ac'                   => $car_rear_ac,
-                'car_outside_rear_view_mirrors' => $car_outside_rear_view_mirrors,
-                'car_power_windows'             => $car_power_windows,
-                'car_engine_start_stop'         => $car_engine_start_stop,
-                'car_headlamps'                 => $car_headlamps,
-                'car_power_steering'            => $car_power_steering,
                 'bike_headlight_type'           => $bike_headlight_type,
                 'bike_odometer'                 => $bike_odometer,
                 'bike_drl'                      => $bike_drl,
@@ -472,7 +509,7 @@ class AdminController extends BaseController{
             session()->set('form_data_step5', $data);
 
             // Return a success JSON response
-            return $this->response->setJSON(['success' => true, 'message' => 'Validation succeeded.']);
+            return $this->response->setJSON(['success' => true, 'message' => 'Information Submitted.']);
         } catch (\Exception $e) {
             // Error handling and logging
             $logger = Services::logger();
@@ -510,12 +547,16 @@ class AdminController extends BaseController{
             $regular_price   = $this->request->getPost('regular_price');
             $selling_price   = $this->request->getPost('selling_price');
             $pricing_type    = $this->request->getPost('pricing_type');
+            $created_by      = $this->session->get('adminData.loggedUserInfo.id');
+            $created_datetime = date("Y-m-d H:i:s");
 
             // Prepare the data to be inserted
             $data = [
                 'regular_price' => $regular_price,
                 'selling_price' => $selling_price,
-                'pricing_type'  => $pricing_type
+                'pricing_type'  => $pricing_type,
+                'created_by'    => $created_by,
+                'created_datetime'=> $created_datetime
             ];
 
             // Save the data to the session or a database (depending on your needs)
@@ -525,13 +566,14 @@ class AdminController extends BaseController{
             $formData = array_merge(session('form_data_step1'), session('form_data_step2'), session('form_data_step3'), session('form_data_step4'), session('form_data_step5'), session('form_data_step6'));
             // Save $formData to the database
 
+            //echo '<pre>'; print_r($formData); exit;
+
             // Insert the data into the database table
             $result = $this->VehicleModel->insert($formData);
 
             if (!$result) {
-                // Error occurred while inserting data
-                // Return a success JSON response
-                return $this->response->setJSON(['success' => true, 'message' => 'Vehicle added successfully.']);
+                // Return a JSON response
+                return $this->response->setJSON(['errors' => true, 'message' => 'Error occurred while inserting data.']);
             }
 
             // Clear the form data from the session after saving (optional)
@@ -544,6 +586,9 @@ class AdminController extends BaseController{
 
             // Commit the transaction if all insertions were successful
             $db->transCommit();
+
+            // Return a success JSON response
+            return $this->response->setJSON(['success' => true, 'message' => 'Vehicle added successfully.']);
 
         } catch (\Exception $e) {
             // An error occurred, rollback the transaction

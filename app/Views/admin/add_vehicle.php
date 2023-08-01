@@ -1,5 +1,13 @@
 <?php $this->extend('admin/layout/main-layout'); ?>
 <?php $this->section('content'); ?>
+<style>
+    /* Style for the disabled state of the Next button */
+    .actions [href="#next"].disabled {
+        background-color: #ccc; /* Set the background color to a light gray */
+        cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+        pointer-events: none; /* Disable pointer events to prevent any interaction */
+    }
+</style>
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
@@ -140,7 +148,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 text-center">
-                                        <button id="saveVehicleFormStep1SubmitBtn" class="btn btn-success btn-md">Save Form</button>
+                                        <button class="btn btn-success btn-md">Save Form</button>
                                     </div>
                                 </div>
                             <?= form_close() ?>
@@ -273,14 +281,14 @@
                         <!-- Step 5 -->
                         <h5>Features</h5>
                         <section>
-                            <?= form_open('admin/save-vehicle-form-step5', 'id="save_car_vehicle_form_step5" class="form-step"') ?>
+                            <?= form_open('admin/save-car-vehicle-form-step5', 'id="save_car_vehicle_form_step5" class="form-step"') ?>
                                 <?= csrf_field(); ?>
                                 <div class="row" id="car_features_section" style="display:none;">
                                     <div class="col-md-6 col-lg-3">
                                         <div class="form-group">
                                             <label>Number of Airbags<span class="required">*</span></label>
                                             <select class="custom-select" name="car_no_of_airbags" id="car_no_of_airbags">
-                                                <option selected="">Choose...</option>
+                                                <option value="">Choose...</option>
                                                 <option value="1">None</option>
                                                 <option value="2">1 Airbag</option>
                                                 <option value="3">2 Airbags</option>
@@ -395,11 +403,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 text-center">
-                                        <button class="btn btn-success btn-md">Save Form</button>
+                                        <button type="submit" class="btn btn-success btn-md">Save Form</button>
                                     </div>
                                 </div>
                             <?= form_close() ?>
-                            <?= form_open('admin/save-vehicle-form-step5', 'id="save_bike_vehicle_form_step5" class="form-step"') ?>
+                            <?= form_open('admin/save-bike-vehicle-form-step5', 'id="save_bike_vehicle_form_step5" class="form-step"') ?>
                                 <?= csrf_field(); ?>
                                 <div class="row" id="bike_features_section" style="display:none;">
                                     <div class="col-md-6 col-lg-3">
@@ -565,7 +573,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 text-center">
-                                        <button class="btn btn-success btn-md">Save Form</button>
+                                        <button type="submit" class="btn btn-success btn-md">Save Form</button>
                                     </div>
                                 </div>
                             <?= form_close() ?>

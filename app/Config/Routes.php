@@ -68,7 +68,8 @@ $routes->post('admin/save-vehicle-form-step1', 'AdminController::save_vehicle_fo
 $routes->post('admin/save-vehicle-form-step2', 'AdminController::save_vehicle_form_step2');
 $routes->post('admin/save-vehicle-form-step3', 'AdminController::save_vehicle_form_step3');
 $routes->post('admin/save-vehicle-form-step4', 'AdminController::save_vehicle_form_step4');
-$routes->post('admin/save-vehicle-form-step5', 'AdminController::save_vehicle_form_step5');
+$routes->post('admin/save-car-vehicle-form-step5', 'AdminController::save_car_vehicle_form_step5');
+$routes->post('admin/save-bike-vehicle-form-step5', 'AdminController::save_bike_vehicle_form_step5');
 $routes->post('admin/save-vehicle-form-step6', 'AdminController::save_vehicle_form_step6');
 
 /*
