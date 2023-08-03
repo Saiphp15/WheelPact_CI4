@@ -402,7 +402,7 @@ $(document).ready(function() {
     $('#uploadThumbnail').click(function() {
         var vehicleId = $("#vehicleId").val();
         if (vehicleId === '') {
-            alert("vehicle id required.");
+            alert("First Add Vehicle Information and Then add Thumbnail.");
             return false;
         }
         // Get the file input element
@@ -436,6 +436,9 @@ $(document).ready(function() {
                     alert('Error: Unable to upload the thumbnail image.');
                 }
             });
+        }else{
+            alert("Choose Vehicle Thumbnail.");
+            return false;
         }
     });
 });
