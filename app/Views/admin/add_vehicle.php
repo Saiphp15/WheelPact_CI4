@@ -593,18 +593,23 @@
             </div>
 
             <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+                <input type="hidden" name="vehicleId" id="vehicleId" value="">
                 <h5 class="text-blue mb-3">Vehicle Images</h5>
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label>Thumbnail Image<span class="required">*</span></label>
                             <div class="input-group mb-3">
-                                <input type="file" class="form-control">
+                                <input type="file" class="form-control" id="thumbnailImage">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">Upload</button>
+                                    <button class="btn btn-primary" id="uploadThumbnail">Upload</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-6">
+                        <!-- Add a container to display the thumbnail preview -->
+                        <div id="thumbnailPreviewContainer"></div>
                     </div>
                 </div>
 

@@ -382,8 +382,9 @@ $(document).ready(function () {
                 success: function(response) {
                     if (response.success) {
                         // Validation succeeded, handle success scenario
-                        alert(response.message);
-                        window.location.reload();
+                        alert(response.message+"\n"+"Please Upload Vehicle Images Now.");
+                        //window.location.reload();
+                        $("#vehicleId").val(response.vehicleId);
                     } else {
                         // Validation failed, handle errors
                         alert(response.errors);
@@ -396,3 +397,46 @@ $(document).ready(function () {
 		}
 	});
 });
+
+$(document).ready(function() {
+    $('#uploadThumbnail').click(function() {
+        var vehicleId = $("#vehicleId").val();
+        if (vehicleId === '') {
+            alert("vehicle id required.");
+            return false;
+        }
+        // Get the file input element
+        var fileInput = $('#thumbnailImage')[0];
+
+        // Check if a file was selected
+        if (fileInput.files.length > 0) {
+            // Create a new FormData object to handle the file upload
+            var formData = new FormData();
+            formData.append('thumbnailImage', fileInput.files[0]);
+            formData.append('vehicleId', $("#vehicleId").val());
+
+            let base_url = window.location.origin;
+
+            // Use AJAX to send the file data to the server
+            $.ajax({
+                type: 'POST',
+                url: base_url+'/upload/upload_thumbnail', // Replace with the correct URL for your CodeIgniter route
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.status === 'success') {
+                        // Show the thumbnail image in the preview container
+                        $('#thumbnailPreviewContainer').html('<img src="' + response.thumbnail_url + '" alt="Thumbnail" />');
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function() {
+                    alert('Error: Unable to upload the thumbnail image.');
+                }
+            });
+        }
+    });
+});
+

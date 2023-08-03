@@ -22,18 +22,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/vendors/styles/style.css">
 
-	<!-- JQUERY FORM STEPS CSS -->
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/src/plugins/jquery-steps/jquery.steps.css">
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script>
 </head>
 
 <body>
@@ -193,8 +181,6 @@
 
 	<?php $this->renderSection('content'); ?>
 	<!-- js -->
-	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"></script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/form-validation.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/core.js"></script>
@@ -209,10 +195,6 @@
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/dashboard.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/custom.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/ajax-call.js"></script>
-
-	<!-- JQUERY STEPS JS -->
-	<script src="<?php echo base_url(); ?>assets/admin/src/plugins/jquery-steps/jquery.steps.js"></script>
-	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/steps-setting.js"></script>
 	
 </body>
 
