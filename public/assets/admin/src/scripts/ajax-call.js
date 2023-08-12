@@ -107,61 +107,59 @@ $(document).ready(function(){
         });
     });
 
-});
-
-$(document).ready(function () {
+    // multistep form validation start 
 	var currentStep = 0;
 	var steps = $(".step");
 	var stepIndicators = $(".step-indicators .indicator");
 
-	function showStep(step) {
-		steps.hide();
-		steps.eq(step).show();
-	}
-
-	function updateButtons() {
-		if (currentStep === 0) {
-			$(".prev").hide();
-		} else {
-			$(".prev").show();
-		}
-
-		if (currentStep === steps.length - 1) {
-			$(".next").hide();
-			$(".submit").show();
-		} else {
-			$(".next").show();
-			$(".submit").hide();
-		}
-	}
-
-	function updateStepIndicators(step) {
-		stepIndicators.removeClass("active");
-		stepIndicators.eq(step).addClass("active");
-	}
-
-	function validateStep(step) {
-		var fields = steps.eq(step).find('.formInput');
-		var emptyFields = [];
-		var allFieldsValid = fields.toArray().every(function (field) {
-			if (field.value.trim() === '') {
-				emptyFields.push(field.id);
-				return false; // Field is empty, consider it as invalid
-			}else{
-				return true;
-			}
-		});
-		
-		if (!allFieldsValid) {
-			var emptyFieldsMessage = "The following field(s) are empty:\n\n";
-			emptyFields.forEach(function (fieldId) {
-				var msg = form_validation_messages(fieldId);
-				emptyFieldsMessage += "- " + msg + "\n";
-			});
-			alert(emptyFieldsMessage);
-		}
-		return allFieldsValid;
-	}
+    function showStep(step) {
+        steps.hide();
+        steps.eq(step).show();
+    }
+    
+    function updateButtons() {
+        if (currentStep === 0) {
+            $(".prev").hide();
+        } else {
+            $(".prev").show();
+        }
+    
+        if (currentStep === steps.length - 1) {
+            $(".next").hide();
+            $(".submit").show();
+        } else {
+            $(".next").show();
+            $(".submit").hide();
+        }
+    }
+    
+    function updateStepIndicators(step) {
+        stepIndicators.removeClass("active");
+        stepIndicators.eq(step).addClass("active");
+    }
+    
+    function validateStep(step) {
+        var fields = steps.eq(step).find('.formInput');
+        var emptyFields = [];
+        var allFieldsValid = fields.toArray().every(function (field) {
+            if (field.value.trim() === '') {
+                emptyFields.push(field.id);
+                return false; // Field is empty, consider it as invalid
+            }else{
+                return true;
+            }
+        });
+        
+        if (!allFieldsValid) {
+            var emptyFieldsMessage = "The following field(s) are empty:\n\n";
+            emptyFields.forEach(function (fieldId) {
+                var msg = form_validation_messages(fieldId);
+                emptyFieldsMessage += "- " + msg + "\n";
+            });
+            alert(emptyFieldsMessage);
+        }
+        return allFieldsValid;
+    }
 
 	showStep(currentStep);
 	updateButtons();
@@ -182,7 +180,9 @@ $(document).ready(function () {
 		updateButtons();
 		updateStepIndicators(currentStep);
 	});
+    // multistep form validation end 
 
+    // multistep form submit  
 	$("#save_vehicle_form").submit(function (event) {
 		event.preventDefault();
 		if (!validateStep(currentStep)) {
@@ -215,10 +215,8 @@ $(document).ready(function () {
             });
 		}
 	});
-});
 
-$(document).ready(function() {
-
+    // allow input only image validation
     $('.onlyImageInput').on('change', function() {
         var selectedFile = $(this)[0].files[0];
         if (selectedFile && !selectedFile.type.startsWith('image/')) {
@@ -227,6 +225,7 @@ $(document).ready(function() {
         }
     });
 
+    // upload vehicle thumbnail image 
     $('#uploadThumbnail').click(function() {
         var vehicleId = $("#vehicleId").val();
         if (vehicleId === '') {
@@ -271,29 +270,7 @@ $(document).ready(function() {
         }
     });
 
-    function validateVehicleImagesFields(formId) {
-		var fields = $("#"+formId).find('.formInput');
-		var emptyFields = [];
-		var allFieldsValid = fields.toArray().every(function (field) {
-			if (field.value.trim() === '') {
-				emptyFields.push(field.id);
-				return false; // Field is empty, consider it as invalid
-			}else{
-				return true;
-			}
-		});
-		
-		if (!allFieldsValid) {
-			var emptyFieldsMessage = "The following field(s) are empty:\n\n";
-			emptyFields.forEach(function (fieldId) {
-				var msg = form_validation_messages(fieldId);
-				emptyFieldsMessage += "- " + msg + "\n";
-			});
-			alert(emptyFieldsMessage);
-		}
-		return allFieldsValid;
-	}
-
+    // upload vehicle Exterior Photo
     $("#upload_exterior_main_vehicle_images_form").submit(function (event) {
 		event.preventDefault();
         var vehicleId = $(".vehicleId").val();
@@ -340,6 +317,7 @@ $(document).ready(function() {
         }
 	});
 
+    // upload vehicle Interior Photo
     $("#upload_interior_vehicle_images_form").submit(function (event) {
 		event.preventDefault();
         var vehicleId = $(".vehicleId").val();
@@ -386,6 +364,7 @@ $(document).ready(function() {
         }
 	});
 
+    /// upload vehicle Other Photo
     $("#upload_others_vehicle_images_form").submit(function (event) {
 		event.preventDefault();
         var vehicleId = $(".vehicleId").val();
@@ -433,4 +412,5 @@ $(document).ready(function() {
 	});
 
 });
+
 

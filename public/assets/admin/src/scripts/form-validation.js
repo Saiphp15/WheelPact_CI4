@@ -68,12 +68,9 @@ $(document).ready(function () {
 
     });
 
-    
-
 });
 
 function form_validation_messages(fieldId){
-    console.log(fieldId);
     var msg = '';
     switch (fieldId) {
         // form step 1 fields validation messages
@@ -360,4 +357,28 @@ function form_validation_messages(fieldId){
     }
 
     return msg;
+}
+
+// check vehicle images fields empty or not loaded
+function validateVehicleImagesFields(formId) {
+    var fields = $("#"+formId).find('.formInput');
+    var emptyFields = [];
+    var allFieldsValid = fields.toArray().every(function (field) {
+        if (field.value.trim() === '') {
+            emptyFields.push(field.id);
+            return false; // Field is empty, consider it as invalid
+        }else{
+            return true;
+        }
+    });
+    
+    if (!allFieldsValid) {
+        var emptyFieldsMessage = "The following field(s) are empty:\n\n";
+        emptyFields.forEach(function (fieldId) {
+            var msg = form_validation_messages(fieldId);
+            emptyFieldsMessage += "- " + msg + "\n";
+        });
+        alert(emptyFieldsMessage);
+    }
+    return allFieldsValid;
 }
