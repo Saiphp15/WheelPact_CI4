@@ -13,6 +13,17 @@ class VehicleModel extends Model {
     protected $validationRules      = [];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
+
+    // Dates
+    protected $useTimestamps = false;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
+
+    public function save_vehicle_images($data){
+        return $this->insert($data);
+    }
 	
 }
 

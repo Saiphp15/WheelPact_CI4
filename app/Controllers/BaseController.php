@@ -101,4 +101,62 @@ abstract class BaseController extends Controller
         return $result;
     }
 
+    public function uploadImage($fieldId){
+        $imgUrl = '';
+
+        $file = $this->request->getFile($fieldId);
+        $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
+        $file->move(ROOTPATH . 'writable/uploads/vehicle_'.$fieldId, $newName); // Move the uploaded file to the writable/uploads directory
+        $imgUrl = base_url('writable/uploads/vehicle_'.$fieldId.'/' . $newName); // Get the image URL to display in the preview
+        /*
+        switch ($fieldId) {
+            case 'exterior_main_front_img':
+                $exterior_main_front_img = $this->request->getFile('exterior_main_front_img');
+                $newName = $exterior_main_front_img->getRandomName(); // Generate a new name for the image to prevent name conflicts
+                $exterior_main_front_img->move(ROOTPATH . 'writable/uploads/vehicle_exterior_main_front_img', $newName); // Move the uploaded file to the writable/uploads directory
+                $imgUrl = base_url('writable/uploads/vehicle_exterior_main_front_img/' . $newName); // Get the image URL to display in the preview
+                break;
+            case 'exterior_main_right_img':
+                $exterior_main_front_img = $this->request->getFile('exterior_main_right_img');
+                $newName = $exterior_main_front_img->getRandomName(); 
+                $exterior_main_front_img->move(ROOTPATH . 'writable/uploads/vehicle_exterior_main_right_img', $newName); 
+                $imgUrl = base_url('writable/uploads/vehicle_exterior_main_right_img/' . $newName); 
+                break;
+            case 'exterior_main_back_img':
+                $exterior_main_front_img = $this->request->getFile('exterior_main_back_img');
+                $newName = $exterior_main_front_img->getRandomName(); 
+                $exterior_main_front_img->move(ROOTPATH . 'writable/uploads/vehicle_exterior_main_back_img', $newName); 
+                $imgUrl = base_url('writable/uploads/vehicle_exterior_main_back_img/' . $newName); 
+                break;
+            case 'exterior_main_left_img':
+                $exterior_main_front_img = $this->request->getFile('exterior_main_left_img');
+                $newName = $exterior_main_front_img->getRandomName(); 
+                $exterior_main_front_img->move(ROOTPATH . 'writable/uploads/vehicle_exterior_main_left_img', $newName); 
+                $imgUrl = base_url('writable/uploads/vehicle_exterior_main_left_img/' . $newName); 
+                break;
+            case 'exterior_main_roof_img':
+                $exterior_main_front_img = $this->request->getFile('exterior_main_roof_img');
+                $newName = $exterior_main_front_img->getRandomName(); 
+                $exterior_main_front_img->move(ROOTPATH . 'writable/uploads/vehicle_exterior_main_roof_img', $newName); 
+                $imgUrl = base_url('writable/uploads/vehicle_exterior_main_roof_img/' . $newName); 
+                break;
+            case 'exterior_main_bonetopen_img':
+                $exterior_main_front_img = $this->request->getFile('exterior_main_bonetopen_img');
+                $newName = $exterior_main_front_img->getRandomName(); 
+                $exterior_main_front_img->move(ROOTPATH . 'writable/uploads/vehicle_exterior_main_bonetopen_img', $newName); 
+                $imgUrl = base_url('writable/uploads/vehicle_exterior_main_bonetopen_img/' . $newName); 
+                break;
+            case 'exterior_main_engine_img':
+                $exterior_main_front_img = $this->request->getFile('exterior_main_engine_img');
+                $newName = $exterior_main_front_img->getRandomName(); 
+                $exterior_main_front_img->move(ROOTPATH . 'writable/uploads/vehicle_exterior_main_engine_img', $newName); 
+                $imgUrl = base_url('writable/uploads/vehicle_exterior_main_engine_img/' . $newName); 
+                break;
+            case 'default':  
+                break;
+        }
+        */
+        return $imgUrl;
+    }
+
 }

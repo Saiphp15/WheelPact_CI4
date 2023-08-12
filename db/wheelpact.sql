@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2023 at 05:45 PM
+-- Generation Time: Aug 12, 2023 at 01:01 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -65,7 +65,8 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`id`, `dealer_id`, `name`, `branch_type`, `country_id`, `state_id`, `city_id`, `address`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 2, 'SAi Auto Main Branch', 1, 101, 22, 2763, 'kale padal, hadapsar', 1, '2023-07-14 01:24:17', '0000-00-00 00:00:00');
+(1, 2, 'SAi Auto Main Branch', 1, 101, 22, 2763, 'kale padal, hadapsar', 1, '2023-07-14 01:24:17', '0000-00-00 00:00:00'),
+(2, 2, 'Sultan Shop', 2, 101, 22, 2707, 'Mira road', 1, '2023-08-12 03:50:49', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -48744,7 +48745,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `contact_no`, `profile_image`, `address`, `country_id`, `state_id`, `city_id`, `zipcode`, `otp`, `otp_status`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Sai Atpadkar', 'sai@gmail.com', '9594244026', '', '', 0, 0, 0, 0, 427310, 0, 0, NULL, NULL),
+(1, 'Sai Atpadkar', 'sai@gmail.com', '9594244026', '', '', 0, 0, 0, 0, 466855, 0, 0, NULL, NULL),
 (2, 'gsgs', 'customer1@gmail.com', '4561237897', '', '', 0, 0, 0, 0, 940015, 0, 0, NULL, NULL),
 (3, 'abcd', 'abcd@gmail.com', '7894561111', '', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
 (4, 'fsdgsg', 'sdgsg@gmail.com', '9594244026', '', '', 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
@@ -54677,14 +54678,45 @@ INSERT INTO `vehiclecompaniesmodels` (`id`, `cmp_id`, `model_name`, `is_active`,
 
 CREATE TABLE `vehicleimages` (
   `id` int(11) NOT NULL,
-  `thumbnail_img` text NOT NULL,
+  `vehicle_id` int(11) NOT NULL,
   `exterior_main_front_img` text NOT NULL,
   `exterior_main_right_img` text NOT NULL,
   `exterior_main_back_img` text NOT NULL,
   `exterior_main_left_img` text NOT NULL,
   `exterior_main_roof_img` text NOT NULL,
   `exterior_main_bonetopen_img` text NOT NULL,
-  `exterior_main_engine_img` text NOT NULL
+  `exterior_main_engine_img` text NOT NULL,
+  `exterior_diagnoal_right_front_img` text NOT NULL,
+  `exterior_diagnoal_right_back_img` text NOT NULL,
+  `exterior_diagnoal_left_back_img` text NOT NULL,
+  `exterior_diagnoal_left_front_img` text NOT NULL,
+  `exterior_wheel_right_front_img` text NOT NULL,
+  `exterior_wheel_right_back_img` text NOT NULL,
+  `exterior_wheel_left_back_img` text NOT NULL,
+  `exterior_wheel_left_front_img` text NOT NULL,
+  `exterior_wheel_spare_img` text NOT NULL,
+  `exterior_tyrethread_right_front_img` text NOT NULL,
+  `exterior_tyrethread_right_back_img` text NOT NULL,
+  `exterior_tyrethread_left_back_img` text NOT NULL,
+  `exterior_tyrethread_left_front_img` text NOT NULL,
+  `exterior_underbody_front_img` text NOT NULL,
+  `exterior_underbody_rear_img` text NOT NULL,
+  `exterior_underbody_right_img` text NOT NULL,
+  `exterior_underbody_left_img` text NOT NULL,
+  `interior_dashboard_img` text NOT NULL,
+  `interior_infotainment_system_img` text NOT NULL,
+  `interior_steering_wheel_img` text NOT NULL,
+  `interior_odometer_img` text NOT NULL,
+  `interior_gear_lever_img` text NOT NULL,
+  `interior_pedals_img` text NOT NULL,
+  `interior_front_cabin_img` text NOT NULL,
+  `interior_mid_cabin_img` text NOT NULL,
+  `interior_rear_cabin_img` text NOT NULL,
+  `interior_driver_side_door_panel_img` text NOT NULL,
+  `interior_driver_side_adjustment_img` text NOT NULL,
+  `interior_boot_inside_img` text NOT NULL,
+  `interior_boot_door_open_img` text NOT NULL,
+  `others_keys_img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -54758,11 +54790,8 @@ CREATE TABLE `vehicles` (
 --
 
 INSERT INTO `vehicles` (`id`, `branch_id`, `vehicle_type`, `cmp_id`, `model_id`, `fuel_type`, `variant_id`, `mileage`, `kms_driven`, `owner`, `transmission_id`, `color_id`, `manufacture_year`, `registration_year`, `registered_state_id`, `rto`, `insurance_type`, `insurance_validity`, `accidental_status`, `flooded_status`, `last_service_kms`, `last_service_date`, `car_no_of_airbags`, `car_central_locking`, `car_seat_upholstery`, `car_sunroof`, `car_integrated_music_system`, `car_rear_ac`, `car_outside_rear_view_mirrors`, `car_power_windows`, `car_engine_start_stop`, `car_headlamps`, `car_power_steering`, `bike_headlight_type`, `bike_odometer`, `bike_drl`, `bike_mobile_connectivity`, `bike_gps_navigation`, `bike_usb_charging_port`, `bike_low_battery_indicator`, `bike_under_seat_storage`, `bike_speedometer`, `bike_stand_alarm`, `bike_low_fuel_indicator`, `bike_low_oil_indicator`, `bike_start_type`, `bike_kill_switch`, `bike_break_light`, `bike_turn_signal_indicator`, `regular_price`, `selling_price`, `pricing_type`, `thumbnail_url`, `created_by`, `created_datetime`, `updated_by`, `updated_datetime`) VALUES
-(1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2020, 0, 0, '', 0, NULL, 0, 0, 0, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200000, 0, 0, '', 1, '2023-07-08 10:03:12', 1, '2023-07-08 10:03:12'),
-(2, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2019, 0, 0, '', 0, NULL, 0, 0, 0, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 180000, 0, 0, '', 1, '2023-07-08 10:03:12', 1, '2023-07-08 10:03:12'),
-(3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2022, 0, 0, '', 0, NULL, 0, 0, 0, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 350000, 0, 0, '', 1, '2023-07-10 16:22:37', 1, '2023-07-10 16:22:37'),
-(10, 1, 2, 3, 22, 4, 2, 15, 8000, 2, 2, 1, 1978, 1983, 4, '55', 2, '2023-09-14', 2, 2, 15000, '2023-07-05', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1000000, 950000, 1, 'http://localhost:8080/writable/uploads/vehicle_thubnails/1690971829_ee38647fd3e920e23d11.png', 1, '2023-08-01 20:14:36', 0, '0000-00-00 00:00:00'),
-(11, 1, 2, 3, 23, 2, 1, 20, 12000, 2, 3, 1, 1979, 1978, 10, '168', 2, '2023-09-13', 1, 1, 15000, '2023-07-11', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1000000, 950000, 1, 'http://localhost:8080/writable/uploads/vehicle_thubnails/1690971476_b7cb48ada56654545e7a.png', 1, '2023-08-02 07:24:20', 0, '0000-00-00 00:00:00');
+(1, 1, 2, 3, 22, 2, 2, 20, 12000, 2, 3, 3, 1978, 1979, 4, '54', 1, '2023-09-13', 2, 2, 15000, '2023-07-05', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1000000, 950000, 2, 'http://localhost:8080/writable/uploads/vehicle_thubnails/1691832113_89eb09a5e739ee1d9ed5.png', 1, '2023-08-12 08:00:57', 0, '0000-00-00 00:00:00'),
+(2, 1, 2, 3, 23, 3, 3, 20, 12000, 2, 2, 4, 1979, 1978, 11, '183', 2, '2023-08-16', 2, 2, 15000, '2023-09-08', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1000000, 950000, 2, 'http://localhost:8080/writable/uploads/vehicle_thubnails/1691835277_824813579bb619700153.jpeg', 1, '2023-08-12 09:58:52', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -54921,7 +54950,7 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `branches`
 --
 ALTER TABLE `branches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -55029,7 +55058,7 @@ ALTER TABLE `vehicleimages`
 -- AUTO_INCREMENT for table `vehicles`
 --
 ALTER TABLE `vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `wishlistvehicles`

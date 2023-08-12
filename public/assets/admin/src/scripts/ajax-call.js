@@ -198,8 +198,12 @@ $(document).ready(function () {
                     if (response.success) {
                         // Validation succeeded, handle success scenario
                         alert(response.message+"\n"+"Please Upload Vehicle Images Now.");
-                        //window.location.reload();
-                        $("#vehicleId").val(response.vehicleId);
+                        $("#vehicleBasicInformationMultipartFormWrapper").empty();
+                        $("#vehicleBasicInformationMultipartFormWrapper").html('<div class="alert alert-success alert-dismissible fade show" role="alert">'+
+                            '<p>Vehicle Basic Information Added Successfully, Please Upload Vehicle Images Now.</p>'+
+                        '</div>');
+
+                        $(".vehicleId").val(response.vehicleId);
                     } else {
                         // Validation failed, handle errors
                         alert(response.errors);
@@ -214,6 +218,15 @@ $(document).ready(function () {
 });
 
 $(document).ready(function() {
+
+    $('.onlyImageInput').on('change', function() {
+        var selectedFile = $(this)[0].files[0];
+        if (selectedFile && !selectedFile.type.startsWith('image/')) {
+            alert('Please select an image file.');
+            $(this).val('');
+        }
+    });
+
     $('#uploadThumbnail').click(function() {
         var vehicleId = $("#vehicleId").val();
         if (vehicleId === '') {
@@ -228,19 +241,20 @@ $(document).ready(function() {
             // Create a new FormData object to handle the file upload
             var formData = new FormData();
             formData.append('thumbnailImage', fileInput.files[0]);
-            formData.append('vehicleId', $("#vehicleId").val());
+            formData.append('vehicleId', $(".vehicleId").val());
 
             let base_url = window.location.origin;
 
             // Use AJAX to send the file data to the server
             $.ajax({
                 type: 'POST',
-                url: base_url+'/upload/upload_thumbnail', // Replace with the correct URL for your CodeIgniter route
+                url: base_url+'/upload/upload-thumbnail', // Replace with the correct URL for your CodeIgniter route
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function(response) {
                     if (response.status === 'success') {
+                        alert(response.message);
                         // Show the thumbnail image in the preview container
                         $('#thumbnailPreviewContainer').html('<img src="' + response.thumbnail_url + '" alt="Thumbnail" />');
                     } else {
@@ -256,5 +270,167 @@ $(document).ready(function() {
             return false;
         }
     });
+
+    function validateVehicleImagesFields(formId) {
+		var fields = $("#"+formId).find('.formInput');
+		var emptyFields = [];
+		var allFieldsValid = fields.toArray().every(function (field) {
+			if (field.value.trim() === '') {
+				emptyFields.push(field.id);
+				return false; // Field is empty, consider it as invalid
+			}else{
+				return true;
+			}
+		});
+		
+		if (!allFieldsValid) {
+			var emptyFieldsMessage = "The following field(s) are empty:\n\n";
+			emptyFields.forEach(function (fieldId) {
+				var msg = form_validation_messages(fieldId);
+				emptyFieldsMessage += "- " + msg + "\n";
+			});
+			alert(emptyFieldsMessage);
+		}
+		return allFieldsValid;
+	}
+
+    $("#upload_exterior_main_vehicle_images_form").submit(function (event) {
+		event.preventDefault();
+        var vehicleId = $(".vehicleId").val();
+        if (vehicleId === '') {
+            alert("First Add Vehicle Information and Then Add Vehicle Images.");
+            return false;
+        }else{
+            if (!validateVehicleImagesFields("upload_exterior_main_vehicle_images_form")) {
+                return false;
+            }else{
+                var formData = new FormData(this);
+                var action_page = $("#upload_exterior_main_vehicle_images_form").attr('action');
+                $.ajax({
+                    url: action_page,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        
+                        // Track upload progress
+                        xhr.upload.addEventListener('progress', function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = (evt.loaded / evt.total) * 100;
+                            console.log(percentComplete + '%');
+                        }
+                        }, false);
+                    
+                        return xhr;
+                    },
+                    success: function(response) {
+                        if (response.status=='success') {
+                            alert(response.message);
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("An error occurred:", error);
+                    }
+                });
+            }
+        }
+	});
+
+    $("#upload_interior_vehicle_images_form").submit(function (event) {
+		event.preventDefault();
+        var vehicleId = $(".vehicleId").val();
+        if (vehicleId === '') {
+            alert("First Add Vehicle Information and Then Add Vehicle Images.");
+            return false;
+        }else{
+            if (!validateVehicleImagesFields("upload_interior_vehicle_images_form")) {
+                return false;
+            }else{
+                var formData = new FormData(this);
+                var action_page = $("#upload_interior_vehicle_images_form").attr('action');
+                $.ajax({
+                    url: action_page,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        
+                        // Track upload progress
+                        xhr.upload.addEventListener('progress', function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = (evt.loaded / evt.total) * 100;
+                            console.log(percentComplete + '%');
+                        }
+                        }, false);
+                    
+                        return xhr;
+                    },
+                    success: function(response) {
+                        if (response.status=='success') {
+                            alert(response.message);
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("An error occurred:", error);
+                    }
+                });
+            }
+        }
+	});
+
+    $("#upload_others_vehicle_images_form").submit(function (event) {
+		event.preventDefault();
+        var vehicleId = $(".vehicleId").val();
+        if (vehicleId === '') {
+            alert("First Add Vehicle Information and Then Add Vehicle Images.");
+            return false;
+        }else{
+            if (!validateVehicleImagesFields("upload_others_vehicle_images_form")) {
+                return false;
+            }else{
+                var formData = new FormData(this);
+                var action_page = $("#upload_others_vehicle_images_form").attr('action');
+                $.ajax({
+                    url: action_page,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        
+                        // Track upload progress
+                        xhr.upload.addEventListener('progress', function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = (evt.loaded / evt.total) * 100;
+                            console.log(percentComplete + '%');
+                        }
+                        }, false);
+                    
+                        return xhr;
+                    },
+                    success: function(response) {
+                        if (response.status=='success') {
+                            alert(response.message);
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("An error occurred:", error);
+                    }
+                });
+            }
+        }
+	});
+
 });
 

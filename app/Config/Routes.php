@@ -64,7 +64,12 @@ $routes->post('admin/save-branch', 'AdminController::save_branch');
 
 $routes->get('admin/add-vehicle', 'AdminController::add_vehicle');
 $routes->post('admin/save-vehicle', 'AdminController::save_vehicle');
-$routes->post('upload/upload_thumbnail', 'UploadController::uploadThumbnail');
+$routes->post('upload/upload-thumbnail', 'UploadController::upload_thumbnail');
+
+$routes->post('upload/upload-exterior-main-vehicle-images', 'UploadController::upload_exterior_main_vehicle_images');
+$routes->post('upload/upload-interior-vehicle-images', 'UploadController::upload_interior_vehicle_images');
+$routes->post('upload/upload-others-vehicle-images', 'UploadController::upload_others_vehicle_images');
+
 
 
 // $routes->post('admin/save-vehicle-form-step1', 'AdminController::save_vehicle_form_step1');

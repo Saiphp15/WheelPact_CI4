@@ -622,6 +622,7 @@
     </footer>
     <!-- JQUERY SCRIPT -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"></script> 
     <!-- LOCAL SCRIPT -->
     <script src="<?php echo base_url(); ?>assets/web/js/main.js"></script>
     <!-- BOOTSTRAP SCRIPT -->
@@ -629,6 +630,7 @@
     <!-- OWL CAROUSEL SCCRIPT -->
     <script src="<?php echo base_url(); ?>assets/web/owl-carousel/dist/owl.carousel.min.js"></script>
     <!--Jquery Validation js start-->
+    <script src="<?php echo base_url(); ?>assets/web/js/jquery-validate.js"></script>
     <script src="<?php echo base_url(); ?>assets/web/js/form-validation.js"></script>
     <!--sweet alert js end -->
     <script src="<?php echo base_url(); ?>assets/web/js/sweetalert.min.js"></script>

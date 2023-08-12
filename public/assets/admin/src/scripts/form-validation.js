@@ -68,6 +68,8 @@ $(document).ready(function () {
 
     });
 
+    
+
 });
 
 function form_validation_messages(fieldId){
@@ -232,8 +234,128 @@ function form_validation_messages(fieldId){
         case 'pricing_type':
             msg = 'Please choose Vehicle pricing type.';
             break;
+
+        case 'exterior_main_front_img':
+            msg = 'Please choose Vehicle Exterior Main Front Image.';
+            break;
+        case 'exterior_main_right_img':
+            msg = 'Please choose Vehicle Exterior Main Right Image.';
+            break;
+        case 'exterior_main_back_img':
+            msg = 'Please choose Vehicle Exterior Main Back Image.';
+            break;
+        case 'exterior_main_left_img':
+            msg = 'Please choose Vehicle Exterior Main Left Image.';
+            break;
+        case 'exterior_main_roof_img':
+            msg = 'Please choose Vehicle Exterior Main Roof Image.';
+            break;
+        case 'exterior_main_bonetopen_img':
+            msg = 'Please choose Vehicle Exterior Main bonet open Image.';
+            break;
+        case 'exterior_main_engine_img':
+            msg = 'Please choose Vehicle Exterior Main engine Image.';
+            break; 
+
+        case 'exterior_diagnoal_right_front_img':
+            msg = 'Please choose Vehicle Exterior Diagnoal Right Front Image.';
+            break;
+        case 'exterior_diagnoal_right_back_img':
+            msg = 'Please choose Vehicle Exterior Diagnoal Right Back Image.';
+            break;
+        case 'exterior_diagnoal_left_back_img':
+            msg = 'Please choose Vehicle Exterior Diagnoal Left Back Image.';
+            break;
+        case 'exterior_diagnoal_left_front_img':
+            msg = 'Please choose Vehicle Exterior Diagnoal Left Front Image.';
+            break;
+
+        case 'exterior_wheel_right_front_img':
+            msg = 'Please choose Vehicle Exterior Wheel Right Front Image.';
+            break;
+        case 'exterior_wheel_right_back_img':
+            msg = 'Please choose Vehicle Exterior Wheel Right Back Image.';
+            break;
+        case 'exterior_wheel_left_back_img':
+            msg = 'Please choose Vehicle Exterior Wheel Left Back Image.';
+            break;
+        case 'exterior_wheel_left_front_img':
+            msg = 'Please choose Vehicle Exterior Wheel Left Front Image.';
+            break;
+        case 'exterior_wheel_spare_img':
+            msg = 'Please choose Vehicle Exterior Wheel Spare Image.';
+            break;
+
+        case 'exterior_tyrethread_right_front_img':
+            msg = 'Please choose Vehicle Exterior Tyrethread Right Front Image.';
+            break;
+        case 'exterior_tyrethread_right_back_img':
+            msg = 'Please choose Vehicle Exterior Tyrethread Right Back Image.';
+            break;
+        case 'exterior_tyrethread_left_back_img':
+            msg = 'Please choose Vehicle Exterior Tyrethread Left Back Image.';
+            break;
+        case 'exterior_tyrethread_left_front_img':
+            msg = 'Please choose Vehicle Exterior Tyrethread Left Front Image.';
+            break;
+
+        case 'exterior_underbody_front_img':
+            msg = 'Please choose Vehicle Exterior Underbody Front Image.';
+            break;
+        case 'exterior_underbody_rear_img':
+            msg = 'Please choose Vehicle Exterior Underbody Rear Image.';
+            break;
+        case 'exterior_underbody_right_img':
+            msg = 'Please choose Vehicle Exterior Underbody Right Image.';
+            break;
+        case 'exterior_underbody_left_img':
+            msg = 'Please choose Vehicle Exterior Underbody Left Image.';
+            break;
+        
+        case 'interior_dashboard_img':
+            msg = 'Please choose Vehicle Interior Dashboard Image.';
+            break;
+        case 'interior_infotainment_system_img':
+            msg = 'Please choose Vehicle Interior Infotainment System Image.';
+            break;
+        case 'interior_steering_wheel_img':
+            msg = 'Please choose Vehicle Interior Steering Wheel Image.';
+            break;
+        case 'interior_odometer_img':
+            msg = 'Please choose Vehicle Interior Odometer Image.';
+            break;
+
+        case 'interior_gear_lever_img':
+            msg = 'Please choose Vehicle Interior Gear Lever Image.';
+            break;
+        case 'interior_pedals_img':
+            msg = 'Please choose Vehicle Interior Pedals Image.';
+            break;
+        case 'interior_front_cabin_img':
+            msg = 'Please choose Vehicle Interior Front Cabin Image.';
+            break;
+        case 'interior_rear_cabin_img':
+            msg = 'Please choose Vehicle Interior Rear Cabin Image.';
+            break;
+
+        case 'interior_driver_side_door_panel_img':
+            msg = 'Please choose Vehicle Interior Driver Side Door Panel Image.';
+            break;
+        case 'interior_driver_side_adjustment_img':
+            msg = 'Please choose Vehicle Interior Driver Side Adjustment Image.';
+            break;
+        case 'interior_boot_inside_img':
+            msg = 'Please choose Vehicle Interior Boot Inside Image.';
+            break;
+        case 'interior_boot_door_open_img':
+            msg = 'Please choose Vehicle Interior Boot Door Open Image.';
+            break;
+        case 'others_keys_img':
+            msg = 'Please choose Vehicle Interior Others Image.';
+            break;
         default:
             // Default case if none of the above cases match
+            msg = 'Form Field ID not found.';
             break;
     }
 

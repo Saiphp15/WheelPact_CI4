@@ -338,14 +338,14 @@ class AdminController extends BaseController{
 
             if (!$result) {
                 // Return a JSON response
-                return $this->response->setJSON(['errors' => true, 'message' => 'Error occurred while inserting data.','vehicleId'=>$lastInsertedId]);
+                return $this->response->setJSON(['errors' => true, 'message' => 'Error occurred while inserting data.']);
             }
 
             // Commit the transaction if all insertions were successful
             $db->transCommit();
 
             // Return a success JSON response
-            return $this->response->setJSON(['success' => true, 'message' => 'Vehicle added successfully.']);
+            return $this->response->setJSON(['success' => true, 'message' => 'Vehicle added successfully.','vehicleId'=>$lastInsertedId]);
 
         } catch (\Exception $e) {
             // An error occurred, rollback the transaction
