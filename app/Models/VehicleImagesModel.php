@@ -37,6 +37,11 @@ class VehicleImagesModel extends Model
         ));
         return $this->db->affectedRows();
     }
+
+    public function getVehicleImagesDetails($vehicleId){
+        $query = $this->db->table('vehicleimages')->select('*')->where('vehicle_id', $vehicleId);
+        return $query->get()->getRowArray();
+    }
     
 }
 

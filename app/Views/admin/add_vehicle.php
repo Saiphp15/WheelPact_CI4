@@ -256,7 +256,7 @@
                                     <div class="col-md-6 col-lg-3">
                                         <div class="form-group">
                                             <label>Last Service Date<span class="required">*</span></label>
-                                            <input type="tel" class="form-control formInput date-picker" name="last_service_date" id="last_service_date">
+                                            <input type="text" class="form-control formInput date-picker" name="last_service_date" id="last_service_date">
                                         </div>
                                     </div>
                                 </div>

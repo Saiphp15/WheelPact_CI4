@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2023 at 01:01 PM
+-- Generation Time: Aug 25, 2023 at 09:32 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -54719,6 +54719,13 @@ CREATE TABLE `vehicleimages` (
   `others_keys_img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `vehicleimages`
+--
+
+INSERT INTO `vehicleimages` (`id`, `vehicle_id`, `exterior_main_front_img`, `exterior_main_right_img`, `exterior_main_back_img`, `exterior_main_left_img`, `exterior_main_roof_img`, `exterior_main_bonetopen_img`, `exterior_main_engine_img`, `exterior_diagnoal_right_front_img`, `exterior_diagnoal_right_back_img`, `exterior_diagnoal_left_back_img`, `exterior_diagnoal_left_front_img`, `exterior_wheel_right_front_img`, `exterior_wheel_right_back_img`, `exterior_wheel_left_back_img`, `exterior_wheel_left_front_img`, `exterior_wheel_spare_img`, `exterior_tyrethread_right_front_img`, `exterior_tyrethread_right_back_img`, `exterior_tyrethread_left_back_img`, `exterior_tyrethread_left_front_img`, `exterior_underbody_front_img`, `exterior_underbody_rear_img`, `exterior_underbody_right_img`, `exterior_underbody_left_img`, `interior_dashboard_img`, `interior_infotainment_system_img`, `interior_steering_wheel_img`, `interior_odometer_img`, `interior_gear_lever_img`, `interior_pedals_img`, `interior_front_cabin_img`, `interior_mid_cabin_img`, `interior_rear_cabin_img`, `interior_driver_side_door_panel_img`, `interior_driver_side_adjustment_img`, `interior_boot_inside_img`, `interior_boot_door_open_img`, `others_keys_img`) VALUES
+(1, 3, 'http://localhost:8080/uploads/vehicle_exterior_main_front_img/1692768844_249517f4134d5f8f6d24.jpeg', 'http://localhost:8080/uploads/vehicle_exterior_main_right_img/1692607705_2acde5b46d5748d7cede.jpg', 'http://localhost:8080/uploads/vehicle_exterior_main_back_img/1692607705_3b5561d2843db0fbefa9.jpg', 'http://localhost:8080/uploads/vehicle_exterior_main_left_img/1692607705_b76a9558cf3ea7ca7832.jpg', 'http://localhost:8080/uploads/vehicle_exterior_main_roof_img/1692607705_6eef4c90a0add1c07ca8.jpg', 'http://localhost:8080/uploads/vehicle_exterior_main_bonetopen_img/1692607705_42aa1bb4d713c86a24cf.jpeg', 'http://localhost:8080/uploads/vehicle_exterior_main_engine_img/1692607705_04bf7f33755e2557da97.jpeg', 'http://localhost:8080/uploads/vehicle_exterior_diagnoal_right_front_img/1692768844_2f819b4d99b55df0380b.jpg', 'http://localhost:8080/uploads/vehicle_exterior_diagnoal_right_back_img/1692768844_8522e29837cdbdeef25b.jpg', 'http://localhost:8080/uploads/vehicle_exterior_diagnoal_left_back_img/1692768844_5fcd7cb3caa0f113e0e2.jpeg', 'http://localhost:8080/uploads/vehicle_exterior_diagnoal_left_front_img/1692768844_3e38b5d4aa3c4c00e3ae.jpg', 'http://localhost:8080/uploads/vehicle_exterior_wheel_right_front_img/1692768844_f647f0e1bcc95d06386b.jpg', 'http://localhost:8080/uploads/vehicle_exterior_wheel_right_back_img/1692768844_26e6581b47e13e82dee9.jpg', 'http://localhost:8080/uploads/vehicle_exterior_wheel_left_back_img/1692768844_36ba0038f59ead872a38.jpg', 'http://localhost:8080/uploads/vehicle_exterior_wheel_left_front_img/1692768844_0558f321403843f958bb.jpg', 'http://localhost:8080/uploads/vehicle_exterior_wheel_spare_img/1692768844_f5449234c82a38a47052.jpg', 'http://localhost:8080/uploads/vehicle_exterior_tyrethread_right_front_img/1692768844_5ce15da05e7794f86f4c.jpg', 'http://localhost:8080/uploads/vehicle_exterior_tyrethread_right_back_img/1692768844_5a95c8cf3ea02ec57efb.jpg', 'http://localhost:8080/uploads/vehicle_exterior_tyrethread_left_back_img/1692768844_e4fc2029f89d4f30b140.jpeg', 'http://localhost:8080/uploads/vehicle_exterior_tyrethread_left_front_img/1692768844_70f6f5eb0f8bdf7178af.jpg', 'http://localhost:8080/uploads/vehicle_exterior_underbody_front_img/1692768844_94299b8ee1599d80ce31.jpg', 'http://localhost:8080/uploads/vehicle_exterior_underbody_rear_img/1692768844_8da8d7db0bb3c52a3fb9.webp', 'http://localhost:8080/uploads/vehicle_exterior_underbody_right_img/1692768844_921cfd806db9a1bd0a7a.jpeg', 'http://localhost:8080/uploads/vehicle_exterior_underbody_left_img/1692768844_e0c749eea286298e9f34.jpg', 'http://localhost:8080/uploads/vehicle_interior_dashboard_img/1692769489_79cdbaa1191a678cc002.jpeg', 'http://localhost:8080/uploads/vehicle_interior_infotainment_system_img/1692769489_5a77a19d3bac9cb9c1dc.jpg', 'http://localhost:8080/uploads/vehicle_interior_steering_wheel_img/1692769489_8cead0f7f80f8caa2610.jpg', 'http://localhost:8080/uploads/vehicle_interior_odometer_img/1692769489_ad20ca65d1b10b3505d5.jpg', 'http://localhost:8080/uploads/vehicle_interior_gear_lever_img/1692771118_3701fcfb7ab427d9c604.jpeg', 'http://localhost:8080/uploads/vehicle_interior_pedals_img/1692769489_14e668f3ddb6c2884b16.jpg', 'http://localhost:8080/uploads/vehicle_interior_front_cabin_img/1692769489_79d5d47ff828e60324fe.jpeg', 'http://localhost:8080/uploads/vehicle_interior_mid_cabin_img/1692769489_4b5d019a520c7a622773.jpeg', 'http://localhost:8080/uploads/vehicle_interior_rear_cabin_img/1692769489_6483030f86922ea22c70.jpg', 'http://localhost:8080/uploads/vehicle_interior_driver_side_door_panel_img/1692769489_b640b5088842112b2b16.jpg', 'http://localhost:8080/uploads/vehicle_interior_driver_side_adjustment_img/1692769489_62501094af1af3f86bf3.jpg', 'http://localhost:8080/uploads/vehicle_interior_boot_inside_img/1692769489_9c9d1b12ee144690ed7a.webp', 'http://localhost:8080/uploads/vehicle_interior_boot_door_open_img/1692769489_19438cba8b0dc20bffda.jpeg', 'http://localhost:8080/uploads/vehicle_others_keys_img/1692771225_7b0e0300583c57b29a46.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -54779,6 +54786,7 @@ CREATE TABLE `vehicles` (
   `selling_price` float NOT NULL,
   `pricing_type` tinyint(2) NOT NULL COMMENT '1=Fixed, 2=Negotiable',
   `thumbnail_url` text NOT NULL,
+  `is_active` int(11) NOT NULL COMMENT '1=active,2=inactive,3=deleted',
   `created_by` int(11) NOT NULL,
   `created_datetime` datetime NOT NULL,
   `updated_by` int(11) NOT NULL,
@@ -54789,9 +54797,10 @@ CREATE TABLE `vehicles` (
 -- Dumping data for table `vehicles`
 --
 
-INSERT INTO `vehicles` (`id`, `branch_id`, `vehicle_type`, `cmp_id`, `model_id`, `fuel_type`, `variant_id`, `mileage`, `kms_driven`, `owner`, `transmission_id`, `color_id`, `manufacture_year`, `registration_year`, `registered_state_id`, `rto`, `insurance_type`, `insurance_validity`, `accidental_status`, `flooded_status`, `last_service_kms`, `last_service_date`, `car_no_of_airbags`, `car_central_locking`, `car_seat_upholstery`, `car_sunroof`, `car_integrated_music_system`, `car_rear_ac`, `car_outside_rear_view_mirrors`, `car_power_windows`, `car_engine_start_stop`, `car_headlamps`, `car_power_steering`, `bike_headlight_type`, `bike_odometer`, `bike_drl`, `bike_mobile_connectivity`, `bike_gps_navigation`, `bike_usb_charging_port`, `bike_low_battery_indicator`, `bike_under_seat_storage`, `bike_speedometer`, `bike_stand_alarm`, `bike_low_fuel_indicator`, `bike_low_oil_indicator`, `bike_start_type`, `bike_kill_switch`, `bike_break_light`, `bike_turn_signal_indicator`, `regular_price`, `selling_price`, `pricing_type`, `thumbnail_url`, `created_by`, `created_datetime`, `updated_by`, `updated_datetime`) VALUES
-(1, 1, 2, 3, 22, 2, 2, 20, 12000, 2, 3, 3, 1978, 1979, 4, '54', 1, '2023-09-13', 2, 2, 15000, '2023-07-05', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1000000, 950000, 2, 'http://localhost:8080/writable/uploads/vehicle_thubnails/1691832113_89eb09a5e739ee1d9ed5.png', 1, '2023-08-12 08:00:57', 0, '0000-00-00 00:00:00'),
-(2, 1, 2, 3, 23, 3, 3, 20, 12000, 2, 2, 4, 1979, 1978, 11, '183', 2, '2023-08-16', 2, 2, 15000, '2023-09-08', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1000000, 950000, 2, 'http://localhost:8080/writable/uploads/vehicle_thubnails/1691835277_824813579bb619700153.jpeg', 1, '2023-08-12 09:58:52', 0, '0000-00-00 00:00:00');
+INSERT INTO `vehicles` (`id`, `branch_id`, `vehicle_type`, `cmp_id`, `model_id`, `fuel_type`, `variant_id`, `mileage`, `kms_driven`, `owner`, `transmission_id`, `color_id`, `manufacture_year`, `registration_year`, `registered_state_id`, `rto`, `insurance_type`, `insurance_validity`, `accidental_status`, `flooded_status`, `last_service_kms`, `last_service_date`, `car_no_of_airbags`, `car_central_locking`, `car_seat_upholstery`, `car_sunroof`, `car_integrated_music_system`, `car_rear_ac`, `car_outside_rear_view_mirrors`, `car_power_windows`, `car_engine_start_stop`, `car_headlamps`, `car_power_steering`, `bike_headlight_type`, `bike_odometer`, `bike_drl`, `bike_mobile_connectivity`, `bike_gps_navigation`, `bike_usb_charging_port`, `bike_low_battery_indicator`, `bike_under_seat_storage`, `bike_speedometer`, `bike_stand_alarm`, `bike_low_fuel_indicator`, `bike_low_oil_indicator`, `bike_start_type`, `bike_kill_switch`, `bike_break_light`, `bike_turn_signal_indicator`, `regular_price`, `selling_price`, `pricing_type`, `thumbnail_url`, `is_active`, `created_by`, `created_datetime`, `updated_by`, `updated_datetime`) VALUES
+(1, 1, 2, 3, 22, 2, 2, 20, 12000, 2, 3, 3, 1978, 1979, 4, '54', 1, '2023-09-13', 2, 2, 15000, '2023-07-05', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 2, 1, 2, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1000000, 950000, 2, 'http://localhost:8080/writable/uploads/vehicle_thubnails/1691832113_89eb09a5e739ee1d9ed5.png', 0, 1, '2023-08-12 08:00:57', 0, '0000-00-00 00:00:00'),
+(2, 1, 2, 3, 23, 3, 3, 20, 12000, 2, 2, 4, 1979, 1978, 11, '183', 2, '2023-08-16', 2, 2, 15000, '2023-09-08', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1000000, 950000, 2, 'http://localhost:8080/writable/uploads/vehicle_thubnails/1691835277_824813579bb619700153.jpeg', 3, 1, '2023-08-12 09:58:52', 1, '2023-08-24 07:33:20'),
+(3, 1, 1, 4, 35, 1, 3, 15, 12000, 1, 2, 6, 2017, 2018, 22, '549', 1, '2023-09-14', 2, 2, 15000, '2023-08-09', 5, 3, 2, 1, 1, 1, 1, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2500000, 2200020, 2, 'http://localhost:8080/uploads/vehicle_thubnails/1692894758_a8857cdce195def7c1f7.jpg', 0, 1, '2023-08-17 08:12:27', 1, '2023-08-19 10:04:56');
 
 -- --------------------------------------------------------
 
@@ -55052,13 +55061,13 @@ ALTER TABLE `vehiclecompaniesmodels`
 -- AUTO_INCREMENT for table `vehicleimages`
 --
 ALTER TABLE `vehicleimages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `vehicles`
 --
 ALTER TABLE `vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `wishlistvehicles`

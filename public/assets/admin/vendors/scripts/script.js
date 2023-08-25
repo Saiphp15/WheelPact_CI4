@@ -175,6 +175,17 @@ jQuery(document).ready(function(){
 		autoClose: true,
 		dateFormat: 'dd MM yyyy',
 	});
+
+	// $('#last_service_date').datepicker({
+	// 	language: 'en',
+	// 	autoClose: true,
+	// 	dateFormat: 'dd MM yyyy',
+	// 	maxDate: new Date() // Set the maximum date to today
+	// });
+
+	const currentDate = new Date().toISOString().split('T')[0];
+    document.getElementById('last_service_date').min = currentDate;
+
 	$('.datetimepicker').datepicker({
 		timepicker: true,
 		language: 'en',

@@ -62,10 +62,16 @@ $routes->get('admin/dashboard', 'AdminController::dashboard');
 $routes->get('admin/add-branch', 'AdminController::add_branch');
 $routes->post('admin/save-branch', 'AdminController::save_branch');
 
+$routes->get('admin/view-vehicles', 'AdminController::view_vehicles');
 $routes->get('admin/add-vehicle', 'AdminController::add_vehicle');
 $routes->post('admin/save-vehicle', 'AdminController::save_vehicle');
-$routes->post('upload/upload-thumbnail', 'UploadController::upload_thumbnail');
+$routes->post('admin/update-vehicle', 'AdminController::update_vehicle');
+$routes->get('admin/edit-vehicle/(:num)', 'AdminController::edit_vehicle/$1');
+$routes->get('admin/single-vehicle-info/(:num)', 'AdminController::single_vehicle_info/$1');
 
+$routes->post('admin/remove-vehicle', 'AdminController::remove_vehicle');
+
+$routes->post('upload/upload-thumbnail', 'UploadController::upload_thumbnail');
 $routes->post('upload/upload-exterior-main-vehicle-images', 'UploadController::upload_exterior_main_vehicle_images');
 $routes->post('upload/upload-interior-vehicle-images', 'UploadController::upload_interior_vehicle_images');
 $routes->post('upload/upload-others-vehicle-images', 'UploadController::upload_others_vehicle_images');

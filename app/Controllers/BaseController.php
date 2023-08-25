@@ -106,8 +106,8 @@ abstract class BaseController extends Controller
 
         $file = $this->request->getFile($fieldId);
         $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
-        $file->move(ROOTPATH . 'writable/uploads/vehicle_'.$fieldId, $newName); // Move the uploaded file to the writable/uploads directory
-        $imgUrl = base_url('writable/uploads/vehicle_'.$fieldId.'/' . $newName); // Get the image URL to display in the preview
+        $file->move(ROOTPATH . 'public/uploads/vehicle_'.$fieldId, $newName); // Move the uploaded file to the public/uploads directory
+        $imgUrl = base_url('uploads/vehicle_'.$fieldId.'/' . $newName); // Get the image URL to display in the preview
         /*
         switch ($fieldId) {
             case 'exterior_main_front_img':

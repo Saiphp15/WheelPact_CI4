@@ -216,6 +216,37 @@ $(document).ready(function(){
 		}
 	});
 
+    $("#update_vehicle_form").submit(function (event) {
+		event.preventDefault();
+		if (!validateStep(currentStep)) {
+			return false;
+		}else{
+			var action_page = $("#update_vehicle_form").attr('action');
+            $.ajax({
+                url: action_page,
+                type: "POST",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // Validation succeeded, handle success scenario
+                        alert(response.message);
+                        $("#vehicleBasicInformationMultipartFormWrapper").empty();
+                        $("#vehicleBasicInformationMultipartFormWrapper").html('<div class="alert alert-success alert-dismissible fade show" role="alert">'+
+                            '<p>Vehicle Basic Information Updated Successfully</p>'+
+                        '</div>');
+                    } else {
+                        // Validation failed, handle errors
+                        alert(response.errors);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+		}
+	});
+
     // allow input only image validation
     $('.onlyImageInput').on('change', function() {
         var selectedFile = $(this)[0].files[0];
@@ -410,6 +441,199 @@ $(document).ready(function(){
             }
         }
 	});
+
+    /* Product Action Common js for delete.activate,deactivate operations start */
+    $(".actionBtn").click(function(){
+        let action_page = $(this).data('actionurl');
+        let operation = $(this).data('operation');
+        let id = $(this).data('id');
+        if(operation=='delete'){
+            $.ajax({
+                url: action_page,
+                type: 'POST',
+                data: {"id":id},
+                success: function(response) {
+                    if (response.status=='success') {
+                        alert(response.message);
+                        window.location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log("An error occurred:", error);
+                }
+            });
+        }else if(operation=='activate'){
+            let id = $(this).data('id');
+            swal({
+                title: ActivateRecord,
+                text: ThisRecordwillActivate,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: YesActivate,
+                showLoaderOnConfirm: true,
+                cancelButtonText: Nocancelplease,
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    $.ajax
+                    ({
+                        type: "POST",
+                        data: {"id":id},
+                        url: action_page,
+                        beforeSend: function() {
+                            swal({
+                            title: "",
+                            text: (lang == "en") ? "معالجة..." : "Processing...",
+                            imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
+                            showConfirmButton: false
+                        });
+                        },
+                        success: function(resp) 
+                        {
+                            resp = JSON.parse(resp);
+                            resp_statuscode = resp.responseCode;
+                            if(resp_statuscode==200){
+                                $("#preloader").hide();
+                                resp_msg = resp.responseMessage;
+                                swal({title: Activated , text: resp_msg, type: "success"},
+                                    function(){ 
+                                       window.location.reload();
+                                    }
+                                );
+                            }else{
+                                $("#preloader").hide();
+                                resp_error = resp.responseMessage;
+                                swal("Error", resp_error, "error");
+                            }
+                        }
+                    });
+        
+                } else {
+                    swal(Cancelled, RecordIsSafe, "error");
+                }
+            });
+        }else if(operation=='deactivate'){
+            let id = $(this).data('id');
+            swal({
+                title: confirm,
+                text: " ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: confirmBtnText,
+                showLoaderOnConfirm: true,
+                cancelButtonText: cancelBtnText,
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    $.ajax
+                    ({
+                        type: "POST",
+                        data: {"id":id},
+                        url: action_page,
+                        beforeSend: function() {
+                            swal({
+                            title: "",
+                            text: (lang == "en") ? "معالجة..." : "Processing...",
+                            imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
+                            showConfirmButton: false
+                        });
+                        },
+                        success: function(resp) 
+                        {
+                            resp = JSON.parse(resp);
+                            resp_statuscode = resp.responseCode;
+                            if(resp_statuscode==200){
+                                $("#preloader").hide();
+                                resp_msg = resp.responseMessage;
+                                swal({title: Deactivated, text: resp_msg, type: "success"},
+                                    function(){ 
+                                       window.location.reload();
+                                    }
+                                );
+                            }else{
+                                $("#preloader").hide();
+                                resp_error = resp.responseMessage;
+                                swal("Error", resp_error, "error");
+                            }
+                        }
+                    });
+        
+                } else {
+                    swal(Cancelled, RecordIsSafe, "error");
+                }
+            });
+        }
+    });
+
+    $(".removeImg").click(function(){
+        let action_page = $(this).data('actionurl');
+        let imgname = $(this).data('imgname');
+        let id = $(this).data('id');
+        let tablename = $(this).data('tablename');
+        let tablecolumn = $(this).data('tablecolumn');
+        swal(
+            {
+                title: (lang == "en") ?"هل أنت متأكد أنك تريد إزالة هذه الصورة؟":"Are you sure You Want to Remove this image ?",
+                text: (lang == "en") ?"ستتم إزالة هذه الصورة":"This Image will Remove ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: (lang == "en") ?"نعم ، قم بإزالة!":"Yes, Remove !",
+                showLoaderOnConfirm: true,
+                cancelButtonText: (lang == "en") ?"لا ، إلغاء من فضلك!":"No, cancel please!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    $.ajax
+                    ({
+                        type: "POST",
+                        data: {"imgname":imgname,"id":id,"tablename":tablename,"tablecolumn":tablecolumn},
+                        url: action_page,
+                        beforeSend: function() {
+                            swal({
+                            title: "",
+                            text: (lang == "en") ? "معالجة..." : "Processing...",
+                            imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
+                            showConfirmButton: false
+                        });
+                        },
+                        success: function(resp) 
+                        {
+                            resp = JSON.parse(resp);
+                            resp_statuscode = resp.responseCode;
+                            if(resp_statuscode==200){
+                                $("#preloader").hide();
+                                resp_msg = resp.responseMessage; 
+                                swal({title: Removed, text: resp_msg, type: "success"},
+                                    function(){ 
+                                        window.location.reload();
+                                    }
+                                );
+                            }else{
+                                $("#preloader").hide();
+                                resp_error = resp.responseMessage;
+                                swal("Error", resp_error, "error");
+                            }
+                        }
+                    });
+        
+                } else {
+                    swal(Cancelled, (lang == "en") ?"الصورة آمنة.":"Image is safe .", "error");
+                }
+            }
+        );
+    });
+    /* Product Action Common js for delete.activate,deactivate operations end */
 
 });
 
