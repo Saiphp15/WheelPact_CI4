@@ -339,5 +339,34 @@ $(document).ready(function () {
         $("#vehicleFeaturesWrapper").html(htmlContent);
     });
 
+    $('#vehicleList').DataTable({
+		scrollCollapse: true,
+		autoWidth: true,
+		responsive: true,
+		columnDefs: [{
+			targets: "datatable-nosort",
+			orderable: false,
+		}],
+		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+		"language": {
+			"info": "_START_-_END_ of _TOTAL_ entries",
+			searchPlaceholder: "Search",
+			paginate: {
+				next: '<i class="ion-chevron-right"></i>',
+				previous: '<i class="ion-chevron-left"></i>'  
+			}
+		},
+        "columns": [
+            { "width": "5%" }, 
+            { "width": "10%" }, 
+            { "width": "20%" },
+            { "width": "10%" }, 
+            { "width": "15%" }, 
+            { "width": "15%" },
+            { "width": "10%" }, 
+            { "width": "15%" }
+        ]
+	});
+
 
 });

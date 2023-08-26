@@ -73,12 +73,12 @@ class CommonModel extends Model {
     }
 
     public function get_country_states($country_id){
-		$query = $this->db->query('select * from States where country_id='.$country_id.' order by name asc');
+		$query = $this->db->query('select * from states where country_id='.$country_id.' order by name asc');
         return $query->getResult();
 	}
 
 	public function get_state_cities($state_id){
-		$query = $this->db->query('select * from Cities where state_id='.$state_id.' order by name asc');
+		$query = $this->db->query('select * from cities where state_id='.$state_id.' order by name asc');
         return $query->getResult();
 	}
 

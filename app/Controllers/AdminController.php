@@ -35,29 +35,23 @@ class AdminController extends BaseController{
     }
     
     public function index(){
-        // Check if the admin is logged in
-        if (!$this->session->get('adminData.isLoggedIn')) {
-            // Admin is not logged in, redirect to the login page or show an error message
-            return redirect()->to('admin/login');
+        if (!$this->session->get('adminData.isLoggedIn')) { /* Check if the admin is logged in */
+            return redirect()->to('admin/login'); /* Admin is not logged in, redirect to the login page or show an error message */
         }
         return view('admin/dashboard');
     }
 
     public function dashboard(){
-        // Check if the admin is logged in
-        if (!$this->session->get('adminData.isLoggedIn')) {
-            // Admin is not logged in, redirect to the login page or show an error message
-            return redirect()->to('admin/login');
+        if (!$this->session->get('adminData.isLoggedIn')) { /* Check if the admin is logged in */
+            return redirect()->to('admin/login'); /* Admin is not logged in, redirect to the login page or show an error message */
         }
         $this->pageData['adminData'] = session()->get('adminData');
         return view('admin/dashboard',$this->pageData);
     }
 
     public function add_branch(){
-        // Check if the admin is logged in
-        if (!$this->session->get('adminData.isLoggedIn')) {
-            // Admin is not logged in, redirect to the login page or show an error message
-            return redirect()->to('admin/login');
+        if (!$this->session->get('adminData.isLoggedIn')) { /* Check if the admin is logged in */
+            return redirect()->to('admin/login'); /* Admin is not logged in, redirect to the login page or show an error message */
         }
         $this->pageData['adminData'] = session()->get('adminData');
         $this->pageData['dealerList'] = $this->UserModel->where('role_id', 2)->findAll();
@@ -143,21 +137,28 @@ class AdminController extends BaseController{
     }
 
     public function view_vehicles(){
-        // Check if the admin is logged in
-        if (!$this->session->get('adminData.isLoggedIn')) {
-            // Admin is not logged in, redirect to the login page or show an error message
-            return redirect()->to('admin/login');
+        if (!$this->session->get('adminData.isLoggedIn')) { /* Check if the admin is logged in */
+            return redirect()->to('admin/login'); /* Admin is not logged in, redirect to the login page or show an error message */
         }
         $this->pageData['adminData'] = session()->get('adminData');
         $this->pageData['vehicleList'] = $this->VehicleModel->getVehicleList();
+
+        if(isset($this->pageData['vehicleList']) && !empty($this->pageData['vehicleList'])){
+            foreach($this->pageData['vehicleList'] as $vehicle){
+                $encryptedId = $this->encryptId($vehicle['id']);
+                $array1 = $vehicle;
+                $array2 = array("encrypted_id"=>$encryptedId);
+                $temp[] = array_merge($array1,$array2); 
+            }
+            $this->pageData['vehicleList'] = $temp;
+        }
+        
         return view('admin/view_vehicles',$this->pageData);
     }
 
     public function add_vehicle(){
-        // Check if the admin is logged in
-        if (!$this->session->get('adminData.isLoggedIn')) {
-            // Admin is not logged in, redirect to the login page or show an error message
-            return redirect()->to('admin/login');
+        if (!$this->session->get('adminData.isLoggedIn')) { /* Check if the admin is logged in */
+            return redirect()->to('admin/login'); /* Admin is not logged in, redirect to the login page or show an error message */
         }
         $this->pageData['adminData'] = session()->get('adminData');
         $this->pageData['dealerList'] = $this->UserModel->where('role_id', 2)->findAll();
@@ -378,25 +379,29 @@ class AdminController extends BaseController{
     }
 
     public function edit_vehicle($vehicleId){
-        // Check if the admin is logged in
-        if (!$this->session->get('adminData.isLoggedIn')) {
-            // Admin is not logged in, redirect to the login page or show an error message
-            return redirect()->to('admin/login');
+        if (!$this->session->get('adminData.isLoggedIn')) { /* Check if the admin is logged in */
+            return redirect()->to('admin/login'); /* Admin is not logged in, redirect to the login page or show an error message */
         }
         $this->pageData['adminData'] = session()->get('adminData');
+        $vehicleId = $this->decryptId($vehicleId);
+        if($vehicleId==false){
+            echo 'Access Denied'; exit;
+        }
         $this->pageData['vehicleDetails'] = $this->VehicleModel->getVehicleDetails($vehicleId);
         $this->pageData['vehicleImagesDetails'] = $this->VehicleImagesModel->getVehicleImagesDetails($vehicleId);
         $this->pageData['showroomList'] = $this->BranchModel->findAll();
         $this->pageData['cmpList'] = $this->CompanyModel->findAll(); 
-        $this->pageData['cmpModelList'] = $this->CompanyModelModel->where('cmp_id', $this->pageData['vehicleDetails']['cmp_id'])->findAll();
+        if(isset($this->pageData['vehicleDetails']['cmp_id']) && !empty($this->pageData['vehicleDetails']['cmp_id'])){
+            $this->pageData['cmpModelList'] = $this->CompanyModelModel->where('cmp_id', $this->pageData['vehicleDetails']['cmp_id'])->findAll();
+        }
         $this->pageData['fuelTypeList'] = $this->CommonModel->get_fuel_types();
         $this->pageData['fuelVariantList'] = $this->CommonModel->get_fuel_variants();
         $this->pageData['transmissionList'] = $this->CommonModel->get_vehicle_transmissions();
         $this->pageData['colorList'] = $this->CommonModel->get_vehicle_colors();
         $this->pageData['stateList'] = $this->CommonModel->get_country_states(101);
-        $this->pageData['vehicleRegRtoList'] = $this->CommonModel->get_registered_state_rto($this->pageData['vehicleDetails']['registered_state_id']);
-        //echo '<pre>'; print_r($this->pageData['vehicleDetails']); exit;
-        //$this->pageData['thumbnail'] = ROOTPATH.'public/uploads/vehicle_thubnails/1692605132_e833e8d2ad91acf06afc.jpg';
+        if(isset($this->pageData['vehicleDetails']['cmp_id']) && !empty($this->pageData['vehicleDetails']['cmp_id'])){
+            $this->pageData['vehicleRegRtoList'] = $this->CommonModel->get_registered_state_rto($this->pageData['vehicleDetails']['registered_state_id']);
+        }
         return view('admin/edit_vehicle',$this->pageData);
     }
 
@@ -606,25 +611,29 @@ class AdminController extends BaseController{
     }
 
     public function single_vehicle_info($vehicleId){
-        // Check if the admin is logged in
-        if (!$this->session->get('adminData.isLoggedIn')) {
-            // Admin is not logged in, redirect to the login page or show an error message
-            return redirect()->to('admin/login');
+        if (!$this->session->get('adminData.isLoggedIn')) { /* Check if the admin is logged in */
+            return redirect()->to('admin/login'); /* Admin is not logged in, redirect to the login page or show an error message */
         }
         $this->pageData['adminData'] = session()->get('adminData');
+        $vehicleId = $this->decryptId($vehicleId);
+        if($vehicleId==false){
+            echo 'Access Denied'; exit;
+        }
         $this->pageData['vehicleDetails'] = $this->VehicleModel->getVehicleDetails($vehicleId);
         $this->pageData['vehicleImagesDetails'] = $this->VehicleImagesModel->getVehicleImagesDetails($vehicleId);
         $this->pageData['showroomList'] = $this->BranchModel->findAll();
         $this->pageData['cmpList'] = $this->CompanyModel->findAll(); 
-        $this->pageData['cmpModelList'] = $this->CompanyModelModel->where('cmp_id', $this->pageData['vehicleDetails']['cmp_id'])->findAll();
+        if(isset($this->pageData['vehicleDetails']['cmp_id']) && !empty($this->pageData['vehicleDetails']['cmp_id'])){
+            $this->pageData['cmpModelList'] = $this->CompanyModelModel->where('cmp_id', $this->pageData['vehicleDetails']['cmp_id'])->findAll();
+        }
         $this->pageData['fuelTypeList'] = $this->CommonModel->get_fuel_types();
         $this->pageData['fuelVariantList'] = $this->CommonModel->get_fuel_variants();
         $this->pageData['transmissionList'] = $this->CommonModel->get_vehicle_transmissions();
         $this->pageData['colorList'] = $this->CommonModel->get_vehicle_colors();
         $this->pageData['stateList'] = $this->CommonModel->get_country_states(101);
-        $this->pageData['vehicleRegRtoList'] = $this->CommonModel->get_registered_state_rto($this->pageData['vehicleDetails']['registered_state_id']);
-        //echo '<pre>'; print_r($this->pageData['vehicleDetails']); exit;
-        $this->pageData['thumbnail'] = base_url('writable/uploads/vehicle_thubnails/1692604287_2f145e58b502ac74ab8f.jpg');
+        if(isset($this->pageData['vehicleDetails']['cmp_id']) && !empty($this->pageData['vehicleDetails']['cmp_id'])){
+            $this->pageData['vehicleRegRtoList'] = $this->CommonModel->get_registered_state_rto($this->pageData['vehicleDetails']['registered_state_id']);
+        }
         return view('admin/single_vehicle_info',$this->pageData);
     }
 

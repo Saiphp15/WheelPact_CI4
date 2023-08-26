@@ -9,6 +9,8 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
+use Config\Services;
+
 /**
  * Class BaseController
  *
@@ -57,6 +59,9 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         $this->session = \Config\Services::session();
+        
+        
+
 
         $this->pageData['locale'] = $request->getLocale();
         $this->pageData['supportedLocales'] = $request->config->supportedLocales;
@@ -157,6 +162,23 @@ abstract class BaseController extends Controller
         }
         */
         return $imgUrl;
+    }
+
+    public function encryptId($id){
+        $data = array(
+            "vehicle_id" => $id
+        );
+        $token = base64_encode(json_encode($data));
+        return $token;
+    }
+
+    public function decryptId($encryptedId){
+        $decodedToken = json_decode(base64_decode($encryptedId), true);
+        if ($decodedToken) {
+            return $decodedToken["vehicle_id"];
+        } else {
+            return false;
+        }
     }
 
 }

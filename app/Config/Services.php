@@ -1,7 +1,7 @@
 <?php
 
 namespace Config;
-
+use Config\Services;
 use CodeIgniter\Config\BaseService;
 
 /**

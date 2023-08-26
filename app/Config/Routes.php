@@ -66,8 +66,8 @@ $routes->get('admin/view-vehicles', 'AdminController::view_vehicles');
 $routes->get('admin/add-vehicle', 'AdminController::add_vehicle');
 $routes->post('admin/save-vehicle', 'AdminController::save_vehicle');
 $routes->post('admin/update-vehicle', 'AdminController::update_vehicle');
-$routes->get('admin/edit-vehicle/(:num)', 'AdminController::edit_vehicle/$1');
-$routes->get('admin/single-vehicle-info/(:num)', 'AdminController::single_vehicle_info/$1');
+$routes->get('admin/edit-vehicle/(:any)', 'AdminController::edit_vehicle/$1');
+$routes->get('admin/single-vehicle-info/(:any)', 'AdminController::single_vehicle_info/$1');
 
 $routes->post('admin/remove-vehicle', 'AdminController::remove_vehicle');
 
