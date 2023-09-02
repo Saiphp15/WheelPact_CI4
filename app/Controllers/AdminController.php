@@ -88,6 +88,13 @@ class AdminController extends BaseController{
             // Get the form input values
             $dealerId = $this->request->getPost('selectDealer');
             $branchName = $this->request->getPost('branchName',FILTER_SANITIZE_STRING);
+            $branchThumbnailUrl = '';
+            if(isset($_FILES['branchThumbnail']['name']) && !empty($_FILES['branchThumbnail']['name'])){
+                $file = $this->request->getFile('branchThumbnail');
+                $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
+                $file->move(ROOTPATH . 'public/uploads/branch_thumbnails', $newName); // Move the uploaded file to the public/uploads directory
+                $branchThumbnailUrl = base_url('uploads/branch_thumbnails/' . $newName); // Get the image URL to display in the preview
+            }
             $branchType = $this->request->getPost('branchType');
             $countryId = $this->request->getPost('chooseCountry');
             $stateId = $this->request->getPost('chooseState');
@@ -98,6 +105,7 @@ class AdminController extends BaseController{
             $data = [
                 'dealer_id' => $dealerId,
                 'name' => $branchName,
+                'branch_thumbnail' => $branchThumbnailUrl,
                 'branch_type' => $branchType,
                 'country_id' => $countryId,
                 'state_id' => $stateId,
@@ -220,6 +228,7 @@ class AdminController extends BaseController{
             }
 
             // Get the form input values
+            $unique_id      = uniqid();
             $branch_id      = $this->request->getPost('branch_id');
             $vehicle_type   = $this->request->getPost('vehicle_type');
             $cmp_id         = $this->request->getPost('cmp_id');
@@ -288,6 +297,7 @@ class AdminController extends BaseController{
 
             // Prepare the data to be inserted
             $formData = [
+                'unique_id'         => $uniqueId,   
                 'branch_id'         => $branch_id,
                 'vehicle_type'      => $vehicle_type,
                 'cmp_id'            => $cmp_id,
@@ -405,7 +415,6 @@ class AdminController extends BaseController{
         return view('admin/edit_vehicle',$this->pageData);
     }
 
-    
     public function update_vehicle(){
         $db = db_connect();
         $db->transBegin();

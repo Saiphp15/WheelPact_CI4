@@ -4,54 +4,57 @@ $(document).ready(function(){
     if(base_url == "http://localhost:8080"){
         base_url = 'http://localhost:8080';        
     }else{
-        base_url = 'http://localhost:8080';
+        base_url = 'https://wheelpact.com';
     }
 
-    var token = localStorage.getItem('token');
-    if (token) {
-        let requestData = {"token": token}
-        $.ajax({
-            url: base_url+'/api/customer/customer-is-already-logined',
-            type: 'POST',                           
-            enctype: 'multipart/form-data',
-            data: requestData,
-            contentType: false,
-            cache: false,             /* To unable request pages to be cached */
-            processData:false,        /* Important! To send DOMDocument or non processed data file it is set to false */
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-            },
-            success: function(response) {
-                //resp = JSON.parse(response);
-                console.log(response);
-                if(response.responseCode==200){
-                    $("span#loggedInCstmrNameSpan").empty();
-                    $("span#loggedInCstmrNameSpan").html('<strong>Hello, '+response.responseData.name+'</strong>');
+    // var token = localStorage.getItem('token');
+    // if (token) {
+    //     let requestData = {"token": token}
+    //     $.ajax({
+    //         url: base_url+'/api/customer/customer-is-already-logined',
+    //         type: 'POST',                           
+    //         enctype: 'multipart/form-data',
+    //         data: requestData,
+    //         contentType: false,
+    //         cache: false,             /* To unable request pages to be cached */
+    //         processData:false,        /* Important! To send DOMDocument or non processed data file it is set to false */
+    //         headers: {
+    //             'Access-Control-Allow-Origin': '*'
+    //         },
+    //         beforeSend: function(xhr) {
+    //             xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+    //         },
+    //         success: function(response) {
+    //             //resp = JSON.parse(response);
+    //             console.log(response);
+    //             if(response.responseCode==200){
+    //                 $("span#loggedInCstmrNameSpan").empty();
+    //                 $("span#loggedInCstmrNameSpan").html('<strong>Hello, '+response.responseData.name+'</strong>');
 
-                    $("ul#cstmrDropdown").empty();
-                    $("ul#cstmrDropdown").html(
-                        '<a href="'+base_url+'/my-account">'+
-                            '<li class="login-list-item">My Account</li>'+
-                        '</a>'+
-                        '<a href="'+base_url+'/my-wishlist">'+
-                            '<li class="login-list-item">My Wishlist</li>'+
-                        '</a>'+
-                        '<a href="javascript:void(0);" id="logoutButton">'+
-                            '<li class="login-list-item">Logout</li>'+
-                        '</a>'
-                    );
-                }
-            }
-        });
-    }
+    //                 $("ul#cstmrDropdown").empty();
+    //                 $("ul#cstmrDropdown").html(
+    //                     '<a href="'+base_url+'/my-account">'+
+    //                         '<li class="login-list-item">My Account</li>'+
+    //                     '</a>'+
+    //                     '<a href="'+base_url+'/my-wishlist">'+
+    //                         '<li class="login-list-item">My Wishlist</li>'+
+    //                     '</a>'+
+    //                     '<a href="javascript:void(0);" id="logoutButton">'+
+    //                         '<li class="login-list-item">Logout</li>'+
+    //                     '</a>'
+    //                 );
+    //             }
+    //         }
+    //     });
+    // }
     
     $("ul#cstmrDropdown").on('click', '#logoutButton', function() {
         localStorage.removeItem('token');
         var token = localStorage.getItem('token');
         if (!token) {
+            // Delete the cookie
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
             //window.location.reload();
             window.location.href = base_url+'/home';
         }
@@ -166,7 +169,7 @@ $(document).ready(function(){
     }));  
 
     $("#otpModal").on('click', '#generateOTP', function() {
-        $('.resend-otp-btn').hide();
+        $('#resend-otp-btn').hide();
         $("#verifyOTPBtn").show();
 
         var contact_no = $("#otpModal").find("#contact_no").val();
@@ -255,8 +258,9 @@ $(document).ready(function(){
                         swal({title: "", text: response.responseMessage, type: "success"},
 		                    function(){ 
                                 $("#customer_login_verify_otp_form")[0].reset();
+                                //$.cookie('token', response.token, { expires: 7 }); // Set cookie to expire in 7 days
+                                setCookie('token', response.token, 7); // Set cookie to expire in 7 days
                                 window.location.reload();
-                                //window.location.href = base_url+'/home';
 		                    }
 		                );
                     }else{
@@ -273,6 +277,16 @@ $(document).ready(function(){
     
 
 });
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
 
 
 

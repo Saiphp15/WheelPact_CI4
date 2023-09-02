@@ -136,149 +136,39 @@
                     </div>
                 </div>
             </div>
-
             <div class="carousel-wrapper mt-3">
                 <div id="popular-carWrapper-carousel" class="owl-carousel owl-theme">
+                    <?php 
+                    if(isset($popularStores) && !empty($popularStores)){ 
+                        foreach($popularStores as $store){
+                    ?>
                     <div class="item">
-                        <a href="<?php echo base_url('vehicle-details/'); ?>">
+                        <a href="<?php echo base_url('vehicle-details/'.$store['encrypted_id']); ?>">
                             <div class="store-wrapper">
-                                <img
-                                    src="https://content.jdmagicbox.com/comp/mumbai/d1/022pxx22.xx22.140728162311.i1d1/catalogue/car-galaxy-thane-west-thane-car-dealers-p3q87.jpg?clr=">
-
+                                <img src="<?php echo isset($store['branch_thumbnail'])?$store['branch_thumbnail']:base_url('assets/admin/src/images/default-img.png'); ?>">
                                 <div class="store-details-box">
                                     <div class="store-wrapper-title">
-                                        <h5>Premium Car Dealers</h5>
+                                        <h5><?php echo isset($store['name'])?$store['name']:'Store Name'; ?></h5>
                                     </div>
                                     <div class="store-car-count">
-                                        <h6>141 Vehicles Available</h6>
+                                        <h6><?php echo isset($store['vehicle_count'])?$store['vehicle_count']:0; ?> Vehicles Available</h6>
                                     </div>
                                     <div class="d-flex store-location">
                                         <i class="icofont-pin"></i>
-                                        <h6>Mumbai</h6>
+                                        <h6><?php echo isset($store['address'])?$store['address']:'address'; ?></h6>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="store-rating-icon">
                                             <i class="icofont-star"></i>
                                         </div>
-                                        <div class="store-rating-count">5.0</div>
-                                        <div class="store-reviews">(12 Reviews)</div>
+                                        <div class="store-rating-count"><?php echo isset($store['avg_rating'])?number_format($store['avg_rating'], 2):'0.0'; ?></div>
+                                        <div class="store-reviews">(<?php echo isset($store['review_count'])?$store['review_count']:0; ?> Reviews)</div>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                    <div class="item">
-                    <a href="<?php echo base_url('vehicle-details'); ?>">
-                            <div class="store-wrapper">
-                                <img
-                                    src="https://content.jdmagicbox.com/comp/mumbai/n7/022pxx22.xx22.180328045415.k9n7/catalogue/s-m-carz-borivali-west-mumbai-second-hand-car-dealers-yqx9eilx8l.jpg?clr=523314">
-                                <div class="store-details-box">
-                                    <div class="store-wrapper-title">
-                                        <h5>Heritage Cars</h5>
-                                    </div>
-                                    <div class="store-car-count">
-                                        <h6>141 Vehicles Available</h6>
-                                    </div>
-                                    <div class="d-flex store-location">
-                                        <i class="icofont-pin"></i>
-                                        <h6>Mumbai</h6>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="store-rating-icon">
-                                            <i class="icofont-star"></i>
-                                        </div>
-                                        <div class="store-rating-count">5.0</div>
-                                        <div class="store-reviews">(48 Reviews)</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                    <a href="<?php echo base_url('vehicle-details'); ?>">
-                            <div class="store-wrapper">
-                                <img
-                                    src="https://content.jdmagicbox.com/comp/mumbai/d1/022pxx22.xx22.140728162311.i1d1/catalogue/car-galaxy-thane-west-thane-car-dealers-p3q87.jpg?clr=">
-                                <div class="store-details-box">
-                                    <div class="store-wrapper-title">
-                                        <h5>Premium Car Dealers</h5>
-                                    </div>
-                                    <div class="store-car-count">
-                                        <h6>141 Vehicles Available</h6>
-                                    </div>
-                                    <div class="d-flex store-location">
-                                        <i class="icofont-pin"></i>
-                                        <h6>Mumbai</h6>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="store-rating-icon">
-                                            <i class="icofont-star"></i>
-                                        </div>
-                                        <div class="store-rating-count">5.0</div>
-                                        <div class="store-reviews">(12 Reviews)</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                    <a href="<?php echo base_url('vehicle-details'); ?>">
-                            <div class="store-wrapper">
-                                <img
-                                    src="https://content.jdmagicbox.com/comp/mumbai/d1/022pxx22.xx22.140728162311.i1d1/catalogue/car-galaxy-thane-west-thane-car-dealers-p3q87.jpg?clr=">
-                                <div class="store-details-box">
-                                    <div class="store-wrapper-title">
-                                        <h5>Premium Car Dealers</h5>
-                                    </div>
-                                    <div class="store-car-count">
-                                        <h6>141 Vehicles Available</h6>
-                                    </div>
-                                    <div class="d-flex store-location">
-                                        <i class="icofont-pin"></i>
-                                        <h6>Mumbai</h6>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="store-rating-icon">
-                                            <i class="icofont-star"></i>
-                                        </div>
-                                        <div class="store-rating-count">5.0</div>
-                                        <div class="store-reviews">(12 Reviews)</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                    <a href="<?php echo base_url('vehicle-details'); ?>">
-                            <div class="store-wrapper">
-                                <img
-                                    src="https://content.jdmagicbox.com/comp/mumbai/n7/022pxx22.xx22.180328045415.k9n7/catalogue/s-m-carz-borivali-west-mumbai-second-hand-car-dealers-yqx9eilx8l.jpg?clr=523314">
-                                <div class="store-details-box">
-                                    <div class="store-wrapper-title">
-                                        <h5>Heritage Cars</h5>
-                                    </div>
-                                    <div class="store-car-count">
-                                        <h6>141 Vehicles Available</h6>
-                                    </div>
-                                    <div class="d-flex store-location">
-                                        <i class="icofont-pin"></i>
-                                        <h6>Mumbai</h6>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="store-rating-icon">
-                                            <i class="icofont-star"></i>
-                                        </div>
-                                        <div class="store-rating-count">5.0</div>
-                                        <div class="store-reviews">(48 Reviews)</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    <?php } } ?>
                 </div>
             </div>
         </div>
@@ -304,15 +194,15 @@
 
             <div class="carousel-wrapper mt-3">
                 <div id="featured-carWrapper-carousel" class="owl-carousel owl-theme">
-                    <?php foreach ($vehicles as $vehicle) : ?>
+                    <?php foreach ($featuredVehicles as $vehicle) : ?>
                     <div class="item">
                         <div class="vehicle-wrapper">
-                            <a href="<?php echo base_url('vehicle-details/'.$vehicle['id']); ?>">
-                                <img src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
+                            <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
+                                <img src="<?php echo isset($store['thumbnail_url'])?$store['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
                             </a>
                             <div class="vehicle-wrapper-title">
-                                <a href="<?php echo base_url('vehicle-details/'.$vehicle['id']); ?>">
-                                    <h5><?php echo $vehicle['cmp_id']; ?>, <?php echo $vehicle['model_id']; ?></h5>
+                                <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
+                                    <h5><?php echo isset($vehicle['makeName'])?$vehicle['makeName']:'Brand Name'; ?>, <?php echo isset($vehicle['makeModelName'])?$vehicle['makeModelName']:'Model Name'; ?></h5>
                                 </a>
                             </div>
                             <div class="d-flex vehicle-overview">
@@ -322,15 +212,27 @@
                                 </div>
                                 <div class="overview-badge">
                                     <h6>Driven</h6>
-                                    <h5>50,000km</h5>
+                                    <h5><?php echo isset($vehicle['kms_driven'])?$vehicle['kms_driven']:''; ?>km</h5>
                                 </div>
                                 <div class="overview-badge">
                                     <h6>Fuel Type</h6>
-                                    <h5>Diesel</h5>
+                                    <?php echo isset($vehicle['fuelTypeName'])?$vehicle['fuelTypeName']:'NA'; ?>
                                 </div>
                                 <div class="overview-badge">
                                     <h6>Owner</h6>
-                                    <h5>1st</h5>
+                                    <?php 
+                                    if(isset($vehicle['owner']) && !empty($vehicle['owner'])){
+                                        if($vehicle['owner']==1){
+                                            echo '<h6>1st</h6>';
+                                        }elseif($vehicle['owner']==2){
+                                            echo '<h6>2nd</h6>';
+                                        }elseif($vehicle['owner']==3){
+                                            echo '<h6>3rd</h6>';
+                                        }elseif($vehicle['owner']==4){
+                                            echo '<h6>3+ Owner</h6>';
+                                        }
+                                    }
+                                    ?>
                                 </div>
                                 <div class="wishlist">
                                     <i class="icofont-heart"></i>
@@ -341,7 +243,7 @@
                             </div>
                             <div class="vehicle-price d-flex align-items-center">
                                 <h5>₹<?php echo isset($vehicle['price'])?$vehicle['price']:''; ?></h5>
-                                <h6>(Negotiable)</h6>
+                                <h6>(<?php if(isset($vehicle['pricing_type']) && !empty($vehicle['pricing_type'])){ if($vehicle['pricing_type']==1){echo'Fixed';}elseif($vehicle['pricing_type']==2){echo'Negotiable';} }else{echo 'NA';} ?>)</h6>
                             </div>
                             <div class="vehicle-emi d-flex">
                                 <h6>EMI from</h6>
@@ -377,51 +279,57 @@
 
             <div class="carousel-wrapper mt-3">
                 <div id="latest-carWrapper-carousel" class="owl-carousel owl-theme">
+                    
+                <?php foreach ($latestVehicleAdditions as $vehicle) : ?>
                     <div class="item">
                         <div class="vehicle-wrapper">
-                            <a href="#">
-                                <img
-                                    src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
+                            <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
+                                <img src="<?php echo isset($store['thumbnail_url'])?$store['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
                             </a>
-
                             <div class="vehicle-wrapper-title">
-                                <a href="#">
-                                    <h5>Mercedes-Benz GLE</h5>
+                                <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
+                                    <h5><?php echo isset($vehicle['makeName'])?$vehicle['makeName']:'Brand Name'; ?>, <?php echo isset($vehicle['makeModelName'])?$vehicle['makeModelName']:'Model Name'; ?></h5>
                                 </a>
                             </div>
                             <div class="d-flex vehicle-overview">
                                 <div class="overview-badge">
                                     <h6>Year</h6>
-                                    <h5>2021</h5>
+                                    <h5><?php echo isset($vehicle['manufacture_year'])?$vehicle['manufacture_year']:''; ?></h5>
                                 </div>
-
                                 <div class="overview-badge">
                                     <h6>Driven</h6>
-                                    <h5>50,000km</h5>
+                                    <h5><?php echo isset($vehicle['kms_driven'])?$vehicle['kms_driven']:''; ?>km</h5>
                                 </div>
-
                                 <div class="overview-badge">
                                     <h6>Fuel Type</h6>
-                                    <h5>Diesel</h5>
+                                    <?php echo isset($vehicle['fuelTypeName'])?$vehicle['fuelTypeName']:'NA'; ?>
                                 </div>
-
                                 <div class="overview-badge">
                                     <h6>Owner</h6>
-                                    <h5>1st</h5>
+                                    <?php 
+                                    if(isset($vehicle['owner']) && !empty($vehicle['owner'])){
+                                        if($vehicle['owner']==1){
+                                            echo '<h6>1st</h6>';
+                                        }elseif($vehicle['owner']==2){
+                                            echo '<h6>2nd</h6>';
+                                        }elseif($vehicle['owner']==3){
+                                            echo '<h6>3rd</h6>';
+                                        }elseif($vehicle['owner']==4){
+                                            echo '<h6>3+ Owner</h6>';
+                                        }
+                                    }
+                                    ?>
                                 </div>
-
                                 <div class="wishlist">
                                     <i class="icofont-heart"></i>
                                 </div>
-
                                 <div class="verified-tag">
-                                    <span class="verification-badge"><i class="icofont-check-circled"></i> Verified
-                                        Seller</span>
+                                    <span class="verification-badge"><i class="icofont-check-circled"></i> Verified Seller</span>
                                 </div>
                             </div>
                             <div class="vehicle-price d-flex align-items-center">
-                                <h5>₹56,00,0000</h5>
-                                <h6>(Negotiable)</h6>
+                                <h5>₹<?php echo isset($vehicle['price'])?$vehicle['price']:''; ?></h5>
+                                <h6>(<?php if(isset($vehicle['pricing_type']) && !empty($vehicle['pricing_type'])){ if($vehicle['pricing_type']==1){echo'Fixed';}elseif($vehicle['pricing_type']==2){echo'Negotiable';} }else{echo 'NA';} ?>)</h6>
                             </div>
                             <div class="vehicle-emi d-flex">
                                 <h6>EMI from</h6>
@@ -429,163 +337,8 @@
                             </div>
                         </div>
                     </div>
+                    <?php endforeach; ?>
 
-                    <div class="item">
-                        <a href="#">
-                            <div class="vehicle-wrapper">
-                                <a href="#">
-                                    <img
-                                        src="https://cdn.bigboytoyz.com/new-version/products/porsche718boxsteryellow-1.jpg">
-                                </a>
-                                <div class="vehicle-wrapper-title">
-                                    <a href="#">
-                                        <h5>Porsche Panamera</h5>
-                                    </a>
-                                </div>
-                                <div class="d-flex vehicle-overview">
-                                    <div class="overview-badge">
-                                        <h6>Year</h6>
-                                        <h5>2021</h5>
-                                    </div>
-
-                                    <div class="overview-badge">
-                                        <h6>Driven</h6>
-                                        <h5>20,000km</h5>
-                                    </div>
-
-                                    <div class="overview-badge">
-                                        <h6>Fuel Type</h6>
-                                        <h5>Petrol</h5>
-                                    </div>
-
-                                    <div class="overview-badge">
-                                        <h6>Owner</h6>
-                                        <h5>1st</h5>
-                                    </div>
-                                </div>
-
-                                <div class="wishlist">
-                                    <i class="icofont-heart"></i>
-                                </div>
-
-                                <div class="vehicle-price d-flex align-items-center">
-                                    <h5>₹32,00,0000</h5>
-                                    <h6>(Fixed Price)</h6>
-                                </div>
-                                <div class="vehicle-emi d-flex">
-                                    <h6>EMI from</h6>
-                                    <h6>23,000/month</h6>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="item">
-                        <div class="vehicle-wrapper">
-                            <a href="#">
-                                <img
-                                    src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
-                            </a>
-                            <div class="vehicle-wrapper-title">
-                                <a href="#">
-                                    <h5>Mercedes-Benz GLE</h5>
-                                </a>
-                            </div>
-                            <div class="d-flex vehicle-overview">
-                                <div class="overview-badge">
-                                    <h6>Year</h6>
-                                    <h5>2021</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Driven</h6>
-                                    <h5>50,000km</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Fuel Type</h6>
-                                    <h5>Diesel</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Owner</h6>
-                                    <h5>1st</h5>
-                                </div>
-                            </div>
-
-                            <div class="wishlist">
-                                <i class="icofont-heart"></i>
-                            </div>
-
-                            <div class="verified-tag">
-                                <span class="verification-badge"><i class="icofont-check-circled"></i> Verified
-                                    Seller</span>
-                            </div>
-
-                            <div class="vehicle-price d-flex align-items-center">
-                                <h5>₹56,00,0000</h5>
-                                <h6>(Negotiable)</h6>
-                            </div>
-                            <div class="vehicle-emi d-flex">
-                                <h6>EMI from</h6>
-                                <h6>40,000/month</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="vehicle-wrapper">
-                            <a href="#">
-                                <img
-                                    src="https://cdn.bigboytoyz.com/new-version/products/porsche718boxsteryellow-1.jpg">
-                            </a>
-
-                            <div class="vehicle-wrapper-title">
-                                <a href="#">
-                                    <h5>Porsche Panamera</h5>
-                                </a>
-                            </div>
-                            <div class="d-flex vehicle-overview">
-                                <div class="overview-badge">
-                                    <h6>Year</h6>
-                                    <h5>2021</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Driven</h6>
-                                    <h5>20,000km</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Fuel Type</h6>
-                                    <h5>Petrol</h5>
-                                </div>
-
-                                <div class="overview-badge">
-                                    <h6>Owner</h6>
-                                    <h5>1st</h5>
-                                </div>
-                            </div>
-
-                            <div class="wishlist">
-                                <i class="icofont-heart"></i>
-                            </div>
-
-                            <div class="verified-tag">
-                                <span class="verification-badge"><i class="icofont-check-circled"></i> Verified
-                                    Seller</span>
-                            </div>
-
-                            <div class="vehicle-price d-flex align-items-center">
-                                <h5>₹32,00,0000</h5>
-                                <h6>(Fixed Price)</h6>
-                            </div>
-                            <div class="vehicle-emi d-flex">
-                                <h6>EMI from</h6>
-                                <h6>23,000/month</h6>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

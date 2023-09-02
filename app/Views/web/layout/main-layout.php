@@ -185,7 +185,7 @@
                             <div class="modal-otp-notify">
                                 <p>Resend OTP in <span id="countdownTimer">30</span> seconds</p>
                             </div>
-                            <div class="text-center mt-4 resend-otp-btn">
+                            <div class="text-center mt-4 " id="resend-otp-btn" style="display:none;">
                                 <a href="javascript:void(0);" class="dg-brand-btn" id="generateOTP">Resend</a>
                             </div>
                             <div class="text-center mt-4" id="verifyOTPBtn">
@@ -396,23 +396,28 @@
                 <nav class="nav-content">
                     <!-- nav -->
                     <ul class="nav-content-list">
-                        <li class="nav-content-item"><a class="nav-content-link" href="#"
-                                data-bs-target="#locationModal" data-bs-toggle="modal"><i
-                                    class="icofont-map"></i>Location</a></li>
+                        <li class="nav-content-item"><a class="nav-content-link" href="#" data-bs-target="#locationModal" data-bs-toggle="modal"><i class="icofont-map"></i>Location</a></li>
                         <li class="nav-content-item account-login">
                             <label class="open-menu-login-account" for="open-menu-login-account">
                                 <input class="input-menu" id="open-menu-login-account" type="checkbox" name="menu" />
-                                <i class="icofont-ui-user"></i><span class="login-text" id="loggedInCstmrNameSpan"><strong>Create Account</strong></span> <span class="item-arrow"></span>
-                                <!-- submenu -->
-                                <ul class="login-list" id="cstmrDropdown">
-                                    <a href="#" data-bs-target="#registerModal" data-bs-toggle="modal">
-                                        <li class="login-list-item">Register</li>
-                                    </a>
-                                    <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal">
-                                        <li class="login-list-item">Login</li>
-                                    </a>
-                                    
-                                </ul>
+                                <i class="icofont-ui-user"></i><span class="login-text" id="loggedInCstmrNameSpan">
+                                    <?php if(isset($customerData) && !empty($customerData)){ ?>
+                                        <strong><?php echo isset($customerData['name'])?$customerData['name']:'NA'; ?></strong></span> <span class="item-arrow"></span>
+                                        <!-- submenu -->
+                                        <ul class="login-list" id="cstmrDropdown">
+                                            <a href="<?php echo base_url('my-account'); ?>"><li class="login-list-item">My Account</li></a>
+                                            <a href="<?php echo base_url('my-wishlist'); ?>"><li class="login-list-item">My Wishlist</li></a>
+                                            <a href="javascript:void(0);" id="logoutButton"><li class="login-list-item">Logout</li></a>
+                                        </ul>
+                                    <?php }else{ ?>
+                                        <strong>Create Account</strong></span> <span class="item-arrow"></span>
+                                        <!-- submenu -->
+                                        <ul class="login-list" id="cstmrDropdown">
+                                            <a href="#" data-bs-target="#registerModal" data-bs-toggle="modal"><li class="login-list-item">Register</li></a>
+                                            <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal"><li class="login-list-item">Login</li></a>
+                                        </ul>
+                                    <?php } ?>
+                                
                             </label>
                         </li>
                     </ul>
@@ -622,7 +627,7 @@
     </footer>
     <!-- JQUERY SCRIPT -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"></script> 
+	<!-- <script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"></script>  -->
     <!-- LOCAL SCRIPT -->
     <script src="<?php echo base_url(); ?>assets/web/js/main.js"></script>
     <!-- BOOTSTRAP SCRIPT -->

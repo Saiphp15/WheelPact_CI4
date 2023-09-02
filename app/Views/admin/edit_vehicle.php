@@ -139,14 +139,10 @@
                                         <label>Owner<span class="required">*</span></label>
                                         <select class="custom-select formInput" name="owner" id="owner">
                                             <option value="">Choose...</option>
-                                            <option value="1" <?php if($vehicleDetails['owner']==1){echo'selected';} ?>>
-                                                1st</option>
-                                            <option value="2" <?php if($vehicleDetails['owner']==2){echo'selected';} ?>>
-                                                2nd</option>
-                                            <option value="3" <?php if($vehicleDetails['owner']==3){echo'selected';} ?>>
-                                                3rd</option>
-                                            <option value="4" <?php if($vehicleDetails['owner']==4){echo'selected';} ?>>
-                                                3+ Owner</option>
+                                            <option value="1" <?php if($vehicleDetails['owner']==1){echo'selected';} ?>>1st</option>
+                                            <option value="2" <?php if($vehicleDetails['owner']==2){echo'selected';} ?>>2nd</option>
+                                            <option value="3" <?php if($vehicleDetails['owner']==3){echo'selected';} ?>>3rd</option>
+                                            <option value="4" <?php if($vehicleDetails['owner']==4){echo'selected';} ?>>3+ Owner</option>
                                         </select>
                                     </div>
                                 </div>
@@ -174,6 +170,16 @@
                                                 <?php if($vehicleDetails['color_id']==$value->id){echo'selected';} ?>>
                                                 <?php echo isset($value->name)?$value->name:''; ?></option>
                                             <?php } } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label>Featured Status<span class="required">*</span></label>
+                                        <select class="custom-select formInput" name="featured_status" id="featured_status">
+                                            <option value="">Choose...</option>
+                                            <option value="1" <?php if($vehicleDetails['featured_status']==1){echo'selected';} ?>>Yes</option>
+                                            <option value="2" <?php if($vehicleDetails['featured_status']==2){echo'selected';} ?>>No</option>
                                         </select>
                                     </div>
                                 </div>

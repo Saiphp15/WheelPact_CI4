@@ -2184,12 +2184,12 @@ let base_url = window.location.origin;
 
 // OTP COUNTDOWN JS STARTS
 
-$('.resend-otp-btn').hide();
+//$('.resend-otp-btn').hide();
 function OTPMessage() {
     let loginNumber = document.getElementById('loginNumber').value;
     $('#loginNumberShow').text(loginNumber);
 
-    var counter = 30;
+    var counter = 60;
     var interval = setInterval(function () {
         counter--;
         // Display 'counter' wherever you want to display it.
@@ -2205,11 +2205,10 @@ function OTPMessage() {
                 type: "POST",
                 data: { contact_no: contact_no },
                 success: function(response) {
-                    respData = JSON.parse(response);
-                    if(respData.responseCode == 200){
-                        $('.resend-otp-btn').show();
+                    if(response.responseCode == 200){
+                        $("#otpModal").find('#resend-otp-btn').show();
                     }else{
-                        swal({title: "", text: respData.responseMessage, type: "error"});
+                        swal({title: "", text: response.responseMessage, type: "error"});
                     }
                 },
                 error: function(xhr) {

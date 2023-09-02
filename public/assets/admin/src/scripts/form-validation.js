@@ -12,6 +12,7 @@ $(document).ready(function () {
         const selectDealer = document.getElementById('selectDealer').value.trim();
         const branchType = document.getElementById('branchType').value.trim();
         const branchName = document.getElementById('branchName').value.trim();
+        const branchThumbnail = document.getElementById('branchThumbnail').value.trim();
         const chooseCountry = document.getElementById('chooseCountry').value.trim();
         const chooseState = document.getElementById('chooseState').value.trim();
         const chooseCity = document.getElementById('chooseCity').value.trim();
@@ -31,9 +32,16 @@ $(document).ready(function () {
             return;
         }
 
-        // Check if Head Mobile No is filled
+        // Check if branch is filled
         if (branchName === '') {
             alert('Please enter the branch name.');
+            e.preventDefault();
+            return;
+        }
+
+        // Check if branch thumbnail is filled
+        if (branchThumbnail === '') {
+            alert('Please choose the branch thumbnail.');
             e.preventDefault();
             return;
         }

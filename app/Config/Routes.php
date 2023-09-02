@@ -42,7 +42,8 @@ $routes->get('/', 'HomeController::index');
  */
 
  $routes->get('/home', 'HomeController::index');
- $routes->get('/vehicle-details/(:num)', 'VehicleController::vehicle_details/$1');
+ $routes->get('/vehicle-details/(:any)', 'WebController::vehicle_details/$1');
+ 
  $routes->get("/my-account", "CustomerController::my_account");
  $routes->get("/my-wishlist", "CustomerController::my_wishlist");
  $routes->get("/verify-otp/(:any)", "CustomerController::verify_otp/$1");

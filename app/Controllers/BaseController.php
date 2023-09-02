@@ -11,6 +11,12 @@ use Psr\Log\LoggerInterface;
 
 use Config\Services;
 
+use App\Libraries\JwtLibrary;
+use CodeIgniter\HTTP\Response;
+use CodeIgniter\API\ResponseTrait;
+
+use App\Models\CustomerModel;
+
 /**
  * Class BaseController
  *
@@ -23,6 +29,11 @@ use Config\Services;
  */
 abstract class BaseController extends Controller
 {
+    use ResponseTrait;
+
+    private $jwtLib;
+    protected $CustomerModel;
+
     /**
      * Instance of the main Request object.
      *
@@ -40,7 +51,7 @@ abstract class BaseController extends Controller
     protected $helpers = ['url','html','form','text','security','file','language','cookie'];
 
     /* "global" veriable */
-    var $pageData;
+    var $pageData = array();
 
     /**
      * Be sure to declare properties for any property fetch you initialized.
@@ -60,13 +71,25 @@ abstract class BaseController extends Controller
 
         $this->session = \Config\Services::session();
         
-        
-
-
         $this->pageData['locale'] = $request->getLocale();
         $this->pageData['supportedLocales'] = $request->config->supportedLocales;
-
-        $this->pageData['token'] = $this->request->getVar('token');
+        
+        $cookieToken = $request->getCookie('token');
+        if ($cookieToken !== null) {
+            $this->pageData['token'] = $cookieToken;
+            $this->jwtLib = new JwtLibrary();
+            if(isset($cookieToken) && !empty($cookieToken)){
+                $decoded = $this->jwtLib->decode_jwt($cookieToken);
+                $customerData = json_decode($decoded,true); 
+                $this->CustomerModel = new CustomerModel();
+                $customer = $this->CustomerModel->where('id', $customerData['id'])->first();
+                if($customer) {
+                    $this->pageData['customerData'] = $customer;
+                }
+            }
+        } else {
+            $this->pageData['token'] = "";
+        }
 
     }
 

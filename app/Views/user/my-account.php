@@ -20,17 +20,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
-                <div class="nav flex-column nav-pills me-3 profile-filt-wrap" id="v-pills-tab" role="tablist"
-                    aria-orientation="vertical">
-                    <button class="nav-link profile-link active" id="v-pills-pinfo-tab" data-bs-toggle="pill"
-                        data-bs-target="#v-pills-pinfo" type="button" role="tab" aria-controls="v-pills-pinfo"
-                        aria-selected="true">Personal Information</button>
-                    <button class="nav-link profile-link" id="v-pills-reservation-tab" data-bs-toggle="pill"
-                        data-bs-target="#v-pills-reservation" type="button" role="tab"
-                        aria-controls="v-pills-reservation" aria-selected="false">Your Reservations</button>
-                    <button class="nav-link profile-link" id="v-pills-refer-earn-tab" data-bs-toggle="pill"
-                        data-bs-target="#v-pills-refer-earn" type="button" role="tab" aria-controls="v-pills-refer-earn"
-                        aria-selected="false">Refer & Earn</button>
+                <div class="nav flex-column nav-pills me-3 profile-filt-wrap" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link profile-link active" id="v-pills-pinfo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-pinfo" type="button" role="tab" aria-controls="v-pills-pinfo" aria-selected="true">Personal Information</button>
+                    <button class="nav-link profile-link" id="v-pills-reservation-tab" data-bs-toggle="pill" data-bs-target="#v-pills-reservation" type="button" role="tab" aria-controls="v-pills-reservation" aria-selected="false">Your Reservations</button>
+                    <button class="nav-link profile-link" id="v-pills-refer-earn-tab" data-bs-toggle="pill" data-bs-target="#v-pills-refer-earn" type="button" role="tab" aria-controls="v-pills-refer-earn" aria-selected="false">Refer & Earn</button>
                 </div>
             </div>
             <div class="col-md-9">
@@ -40,33 +33,28 @@
                         <div class="tab-title mb-4">
                             <h4>Personal Information</h4>
                         </div>
-
                         <div class="tab-content-wrap">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="brand-label mb-1">Full Name<span class="required">*</span></label>
-                                        <input type="text" class="brand-input" value="Sultan Ahmed Siddiqui">
+                                        <input type="text" class="brand-input" value="<?php echo isset($customerData['name'])?$customerData['name']:'Customer Full Name'; ?>">
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="brand-label mb-1">Mobile Number<span
                                                 class="required">*</span></label>
-                                        <input type="tel" class="brand-input" value="9594127932" disabled>
+                                        <input type="tel" class="brand-input" value="<?php echo isset($customerData['contact_no'])?$customerData['contact_no']:'0'; ?>" disabled>
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="mb-3">
                                 <label class="brand-label mb-1">Email Address<span class="required">*</span></label>
-                                <input type="email" class="brand-input" value="sultansiddiqui33@gmail.com">
+                                <input type="email" class="brand-input" value="<?php echo isset($customerData['email'])?$customerData['email']:'customer@domain.com'; ?>">
                             </div>
-
                             <div class="text-end">
-                                <button class="dg-brand-btn">Save Changes</button>
+                                <button class="dg-brand-btn" type="submit">Save Changes</button>
                             </div>
                         </div>
                     </div>

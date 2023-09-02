@@ -196,13 +196,13 @@ class ApiController extends BaseController
                     $response = array(
                         'responseCode'   => 200,
                         'responseMessage' => 'OTP verified, Customer logged in successfully.',
-                        'responseData' => $customer,
+                        //'responseData' => $customer,
                         'token' => $jwt
                     );
                 } else {
                     $response = array(
                       'responseCode'   => 404,
-                      'responseMessage' => 'OTP not verified'
+                      'responseMessage' => 'Invalid OTP.'
                     );
                 }
             }else{

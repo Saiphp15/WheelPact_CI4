@@ -581,14 +581,14 @@ $(document).ready(function(){
         let tablecolumn = $(this).data('tablecolumn');
         swal(
             {
-                title: (lang == "en") ?"هل أنت متأكد أنك تريد إزالة هذه الصورة؟":"Are you sure You Want to Remove this image ?",
-                text: (lang == "en") ?"ستتم إزالة هذه الصورة":"This Image will Remove ",
+                title: "Are you sure You Want to Remove this image ?",
+                text: "This Image will Remove ",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: (lang == "en") ?"نعم ، قم بإزالة!":"Yes, Remove !",
+                confirmButtonText: "Yes, Remove !",
                 showLoaderOnConfirm: true,
-                cancelButtonText: (lang == "en") ?"لا ، إلغاء من فضلك!":"No, cancel please!",
+                cancelButtonText: "No, cancel please!",
                 closeOnConfirm: false,
                 closeOnCancel: false
             },
@@ -602,7 +602,7 @@ $(document).ready(function(){
                         beforeSend: function() {
                             swal({
                             title: "",
-                            text: (lang == "en") ? "معالجة..." : "Processing...",
+                            text: "Processing...",
                             imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
                             showConfirmButton: false
                         });
@@ -612,15 +612,13 @@ $(document).ready(function(){
                             resp = JSON.parse(resp);
                             resp_statuscode = resp.responseCode;
                             if(resp_statuscode==200){
-                                $("#preloader").hide();
                                 resp_msg = resp.responseMessage; 
-                                swal({title: Removed, text: resp_msg, type: "success"},
+                                swal({title: "Removed", text: resp_msg, type: "success"},
                                     function(){ 
                                         window.location.reload();
                                     }
                                 );
                             }else{
-                                $("#preloader").hide();
                                 resp_error = resp.responseMessage;
                                 swal("Error", resp_error, "error");
                             }
@@ -628,7 +626,7 @@ $(document).ready(function(){
                     });
         
                 } else {
-                    swal(Cancelled, (lang == "en") ?"الصورة آمنة.":"Image is safe .", "error");
+                    swal("Cancelled", "Image is safe .", "error");
                 }
             }
         );
