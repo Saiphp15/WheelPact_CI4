@@ -157,6 +157,22 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="form-group">
+                                            <label>On Sale Status<span class="required">*</span></label>
+                                            <select class="custom-select formInput" name="onsale_status" id="onsale_status">
+                                                <option value="">Choose...</option>
+                                                <option value="1">Yes</option>
+                                                <option value="2">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4" id="onsale_percentage_div" style="display:none;">
+                                        <div class="form-group">
+                                            <label>On Sale Percentage<span class="required">*</span></label>
+                                            <input type="text" class="form-control formInput" name="onsale_percentage" id="onsale_percentage">
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- Add more fields for Step 1 here -->
                                 <button type="button" class="btn btn-primary next">Next</button>

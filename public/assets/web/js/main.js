@@ -61,6 +61,42 @@ $(document).ready(function () {
         }
     })
 
+    $('#onsale-carWrapper-carousel').owlCarousel({
+        autoplay: false,
+        loop: false,
+        margin: 10,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            }
+        }
+    })
+
+    $('#onpromotion-carWrapper-carousel').owlCarousel({
+        autoplay: false,
+        loop: false,
+        margin: 10,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            }
+        }
+    })
+
     $('#similar-vehicle-carousel').owlCarousel({
         autoplay: false,
         loop: false,
@@ -195,12 +231,6 @@ $(document).ready(function () {
     });
 
     /* PLAN SWITCH ENDS */
-
-    /* SHORTLIST ICON STARTS*/
-    $(".wishlist i").click(function () {
-        $(".wishlist i,span").toggleClass("press", 1000);
-    });
-    /* SHORTLIST ICON ENDS */
 
     /* SLIDER PRICE RANGE STARTS */
 

@@ -100,6 +100,9 @@ $routes->post('/api/state-cities', 'ApiController::get_state_cities');
 $routes->post('/api/cmp-models', 'ApiController::get_cmp_models');
 $routes->post('/api/registered-state-rto', 'ApiController::get_registered_state_rto');
 
+$routes->post('/api/add-vehicle-wishlist', 'ApiController::add_vehicle_wishlist');
+$routes->post('/api/remove-vehicle-wishlist', 'ApiController::remove_vehicle_wishlist');
+
 
 // $routes->get('/api/students', 'ApiController::index');
 // $routes->post('/api/students', 'ApiController::create');

@@ -339,6 +339,18 @@ $(document).ready(function () {
         $("#vehicleFeaturesWrapper").html(htmlContent);
     });
 
+    
+    $("#onsale_status").change(function () {
+        var onsaleStatusSelected = $(this).val();
+        if(onsaleStatusSelected==1){
+            $("#onsale_percentage_div").show();
+        }else if(onsaleStatusSelected==2){
+            $("#onsale_percentage").val('');
+            $("#onsale_percentage_div").hide();
+        }
+    });
+    
+
     $('#vehicleList').DataTable({
 		scrollCollapse: true,
 		autoWidth: true,

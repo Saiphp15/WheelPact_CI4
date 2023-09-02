@@ -235,7 +235,17 @@
                                     ?>
                                 </div>
                                 <div class="wishlist">
-                                    <i class="icofont-heart"></i>
+                                    <span class="addRemoveVehicleWhishlistSpan_<?php echo $vehicle['id']; ?>">
+                                        <?php if(isset($vehicle['wishlist_status']) && !empty($vehicle['wishlist_status'])){ ?>
+                                            <?php if($vehicle['wishlist_status']==1){ ?>
+                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/remove-vehicle-wishlist'); ?>"></i>
+                                            <?php }else{ ?>
+                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                            <?php } ?>
+                                        <?php }else{ ?>
+                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                        <?php } ?>
+                                    </span>
                                 </div>
                                 <div class="verified-tag">
                                     <span class="verification-badge"><i class="icofont-check-circled"></i> Verified Seller</span>
@@ -321,7 +331,17 @@
                                     ?>
                                 </div>
                                 <div class="wishlist">
-                                    <i class="icofont-heart"></i>
+                                    <span class="addRemoveVehicleWhishlistSpan_<?php echo $vehicle['id']; ?>">
+                                        <?php if(isset($vehicle['wishlist_status']) && !empty($vehicle['wishlist_status'])){ ?>
+                                            <?php if($vehicle['wishlist_status']==1){ ?>
+                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/remove-vehicle-wishlist'); ?>"></i>
+                                            <?php }else{ ?>
+                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                            <?php } ?>
+                                        <?php }else{ ?>
+                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                        <?php } ?>
+                                    </span>
                                 </div>
                                 <div class="verified-tag">
                                     <span class="verification-badge"><i class="icofont-check-circled"></i> Verified Seller</span>
@@ -345,6 +365,188 @@
     </section>
 
     <!-- LATEST SECTION ENDS -->
+
+    <!-- On Sale SECTION STARTS -->
+
+    <section class="section-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="section-title mb-4">
+                        <h3>On Sale</h3>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="text-end">
+                        <button class="dg-brand-btn">View All</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-wrapper mt-3">
+                <div id="onsale-carWrapper-carousel" class="owl-carousel owl-theme">
+                    
+                <?php foreach ($onSaleVehicles as $vehicle) : ?>
+                    <div class="item">
+                        <div class="vehicle-wrapper">
+                            <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
+                                <img src="<?php echo isset($store['thumbnail_url'])?$store['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
+                            </a>
+                            <div class="vehicle-wrapper-title">
+                                <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
+                                    <h5><?php echo isset($vehicle['makeName'])?$vehicle['makeName']:'Brand Name'; ?>, <?php echo isset($vehicle['makeModelName'])?$vehicle['makeModelName']:'Model Name'; ?></h5>
+                                </a>
+                            </div>
+                            <div class="d-flex vehicle-overview">
+                                <div class="overview-badge">
+                                    <h6>Year</h6>
+                                    <h5><?php echo isset($vehicle['manufacture_year'])?$vehicle['manufacture_year']:''; ?></h5>
+                                </div>
+                                <div class="overview-badge">
+                                    <h6>Driven</h6>
+                                    <h5><?php echo isset($vehicle['kms_driven'])?$vehicle['kms_driven']:''; ?>km</h5>
+                                </div>
+                                <div class="overview-badge">
+                                    <h6>Fuel Type</h6>
+                                    <?php echo isset($vehicle['fuelTypeName'])?$vehicle['fuelTypeName']:'NA'; ?>
+                                </div>
+                                <div class="overview-badge">
+                                    <h6>Owner</h6>
+                                    <?php 
+                                    if(isset($vehicle['owner']) && !empty($vehicle['owner'])){
+                                        if($vehicle['owner']==1){
+                                            echo '<h6>1st</h6>';
+                                        }elseif($vehicle['owner']==2){
+                                            echo '<h6>2nd</h6>';
+                                        }elseif($vehicle['owner']==3){
+                                            echo '<h6>3rd</h6>';
+                                        }elseif($vehicle['owner']==4){
+                                            echo '<h6>3+ Owner</h6>';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                                <div class="wishlist">
+                                    <span class="addRemoveVehicleWhishlistSpan_<?php echo $vehicle['id']; ?>">
+                                        <?php if(isset($vehicle['wishlist_status']) && !empty($vehicle['wishlist_status'])){ ?>
+                                            <?php if($vehicle['wishlist_status']==1){ ?>
+                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/remove-vehicle-wishlist'); ?>"></i>
+                                            <?php }else{ ?>
+                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                            <?php } ?>
+                                        <?php }else{ ?>
+                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                        <?php } ?>
+                                    </span>
+                                </div>
+                                <div class="verified-tag">
+                                    <span class="verification-badge"><i class="icofont-check-circled"></i> Verified Seller</span>
+                                </div>
+                            </div>
+                            <div class="vehicle-price d-flex align-items-center">
+                                <h5>₹<?php echo isset($vehicle['price'])?$vehicle['price']:''; ?></h5>
+                                <h6>(<?php if(isset($vehicle['pricing_type']) && !empty($vehicle['pricing_type'])){ if($vehicle['pricing_type']==1){echo'Fixed';}elseif($vehicle['pricing_type']==2){echo'Negotiable';} }else{echo 'NA';} ?>)</h6>
+                            </div>
+                            <div class="vehicle-emi d-flex">
+                                <h6>EMI from</h6>
+                                <h6>40,000/month</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- On Sale SECTION ENDS -->
+
+    <!-- On promotion SECTION STARTS -->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="section-title mb-4">
+                        <h3>On Promotion</h3>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="text-end">
+                        <button class="dg-brand-btn">View All</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-wrapper mt-3">
+                <div id="onpromotion-carWrapper-carousel" class="owl-carousel owl-theme">
+                    
+                <?php foreach ($onSaleVehicles as $vehicle) : ?>
+                    <div class="item">
+                        <div class="vehicle-wrapper">
+                            <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
+                                <img src="<?php echo isset($store['thumbnail_url'])?$store['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
+                            </a>
+                            <div class="vehicle-wrapper-title">
+                                <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
+                                    <h5><?php echo isset($vehicle['makeName'])?$vehicle['makeName']:'Brand Name'; ?>, <?php echo isset($vehicle['makeModelName'])?$vehicle['makeModelName']:'Model Name'; ?></h5>
+                                </a>
+                            </div>
+                            <div class="d-flex vehicle-overview">
+                                <div class="overview-badge">
+                                    <h6>Year</h6>
+                                    <h5><?php echo isset($vehicle['manufacture_year'])?$vehicle['manufacture_year']:''; ?></h5>
+                                </div>
+                                <div class="overview-badge">
+                                    <h6>Driven</h6>
+                                    <h5><?php echo isset($vehicle['kms_driven'])?$vehicle['kms_driven']:''; ?>km</h5>
+                                </div>
+                                <div class="overview-badge">
+                                    <h6>Fuel Type</h6>
+                                    <?php echo isset($vehicle['fuelTypeName'])?$vehicle['fuelTypeName']:'NA'; ?>
+                                </div>
+                                <div class="overview-badge">
+                                    <h6>Owner</h6>
+                                    <?php 
+                                    if(isset($vehicle['owner']) && !empty($vehicle['owner'])){
+                                        if($vehicle['owner']==1){
+                                            echo '<h6>1st</h6>';
+                                        }elseif($vehicle['owner']==2){
+                                            echo '<h6>2nd</h6>';
+                                        }elseif($vehicle['owner']==3){
+                                            echo '<h6>3rd</h6>';
+                                        }elseif($vehicle['owner']==4){
+                                            echo '<h6>3+ Owner</h6>';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                                <div class="wishlist">
+                                    <i class="icofont-heart"></i>
+                                </div>
+                                <div class="verified-tag">
+                                    <span class="verification-badge"><i class="icofont-check-circled"></i> Verified Seller</span>
+                                </div>
+                            </div>
+                            <div class="vehicle-price d-flex align-items-center">
+                                <h5>₹<?php echo isset($vehicle['price'])?$vehicle['price']:''; ?></h5>
+                                <h6>(<?php if(isset($vehicle['pricing_type']) && !empty($vehicle['pricing_type'])){ if($vehicle['pricing_type']==1){echo'Fixed';}elseif($vehicle['pricing_type']==2){echo'Negotiable';} }else{echo 'NA';} ?>)</h6>
+                            </div>
+                            <div class="vehicle-emi d-flex">
+                                <h6>EMI from</h6>
+                                <h6>40,000/month</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- On Sale SECTION ENDS -->
 
     <!-- BRAND SECTION STARTS -->
 

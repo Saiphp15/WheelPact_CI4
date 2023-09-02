@@ -74,6 +74,7 @@ abstract class BaseController extends Controller
         $this->pageData['locale'] = $request->getLocale();
         $this->pageData['supportedLocales'] = $request->config->supportedLocales;
         
+        $this->pageData['customerData'] = '';
         $cookieToken = $request->getCookie('token');
         if ($cookieToken !== null) {
             $this->pageData['token'] = $cookieToken;

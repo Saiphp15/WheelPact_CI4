@@ -274,6 +274,57 @@ $(document).ready(function(){
             });
         }
     }));  
+
+    /* vehicle wishlist STARTS*/
+    $('.wishlist').on('click', 'i.icofont-heart', function(e) {
+        e.preventDefault();
+        var self = $(this);
+        var customerId = $(this).data("customerid");
+        var vehicleId = $(this).data("vehicleid");
+        var operation = $(this).data("operation");
+        var action_page = $(this).data("actionurl");
+        if(customerId){
+            $.ajax({
+                url: action_page, 
+                type: "POST",
+                data: { customer_id: customerId, vehicle_id: vehicleId },
+                beforeSend: function() {
+                    swal({
+                        title: "",
+                        text: "Processing...",
+                        imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
+                        showConfirmButton: false
+                    });
+                },
+                success: function(response) { 
+                    if(response.responseCode == 200){
+                        swal({title: "", text: response.responseMessage, type: "success"},
+                            function(){ 
+                                if(operation=='add'){
+                                    $(".addRemoveVehicleWhishlistSpan_"+vehicleId).html('<i class="icofont-heart press" data-customerid="'+customerId+'" data-vehicleid="'+vehicleId+'" data-operation="remove" data-actionurl="'+base_url+'/api/remove-vehicle-wishlist"></i>');
+                                }else if(operation=='remove'){
+                                    $(".addRemoveVehicleWhishlistSpan_"+vehicleId).html('<i class="icofont-heart" data-customerid="'+customerId+'" data-vehicleid="'+vehicleId+'" data-operation="add" data-actionurl="'+base_url+'/api/add-vehicle-wishlist"></i>');
+                                }
+                            }
+                        );
+                    }else{
+                        swal({title: "", text: response.responseMessage, type: "error"});
+                    }
+                },
+                error: function(xhr, status, error) { 
+                    console.log(xhr.responseText);
+                }
+            });
+        }else{
+            swal({title: "", text: "Login Required.", type: "error"},
+                function(){
+                    $("#loginModal").modal('show');
+                }
+            );
+        }
+        
+    });
+    /* vehicle wishlist ENDS */
     
 
 });

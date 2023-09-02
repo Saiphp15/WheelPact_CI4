@@ -107,6 +107,41 @@ class CommonModel extends Model {
         return $query->getResult();
 	}
 
+	public function add_vehicle_wishlist($data){
+		// Insert the data into a table
+		$status = $this->db->table('wishlistvehicles')->insert($data);
+		if($status==true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function remove_vehicle_wishlist($condition){
+		// Use the delete method to remove the record
+		$this->db->table('wishlistvehicles')->where($condition)->delete();
+
+		// Get the number of affected rows
+		$affectedRows = $this->db->affectedRows();
+	
+		// Optionally, you can check if the delete operation was successful
+		if ($affectedRows > 0) {
+			return true; // Record(s) deleted successfully
+		} else {
+			return false; // No records were deleted or an error occurred
+		}
+	}
+
+	public function getWishlistStatus($customerId,$vehicleId){
+		$query = $this->db->query('select * from wishlistvehicles where customer_id='.$customerId.' and vehicle_id='.$vehicleId.' ');
+        $result = $query->getResult();
+		if (!empty($result)) {
+			return true; // Records were found
+		} else {
+			return false; // No records were found
+		}
+	}
+
 }
 
 ?>

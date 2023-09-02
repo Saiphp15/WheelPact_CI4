@@ -228,18 +228,22 @@ class AdminController extends BaseController{
             }
 
             // Get the form input values
-            $unique_id      = uniqid();
-            $branch_id      = $this->request->getPost('branch_id');
-            $vehicle_type   = $this->request->getPost('vehicle_type');
-            $cmp_id         = $this->request->getPost('cmp_id');
-            $model_id       = $this->request->getPost('model_id');
-            $fuel_type      = $this->request->getPost('fuel_type');
-            $variant_id     = $this->request->getPost('variant_id');
-            $mileage        = $this->request->getPost('mileage',FILTER_SANITIZE_STRING);
-            $kms_driven     = $this->request->getPost('kms_driven',FILTER_SANITIZE_STRING);
-            $owner          = $this->request->getPost('owner');
-            $transmission_id = $this->request->getPost('transmission_id');
-            $color_id       = $this->request->getPost('color_id');
+            $unique_id          = uniqid();
+            $branch_id          = $this->request->getPost('branch_id');
+            $vehicle_type       = $this->request->getPost('vehicle_type');
+            $cmp_id             = $this->request->getPost('cmp_id');
+            $model_id           = $this->request->getPost('model_id');
+            $fuel_type          = $this->request->getPost('fuel_type');
+            $variant_id         = $this->request->getPost('variant_id');
+            $mileage            = $this->request->getPost('mileage',FILTER_SANITIZE_STRING);
+            $kms_driven         = $this->request->getPost('kms_driven',FILTER_SANITIZE_STRING);
+            $owner              = $this->request->getPost('owner');
+            $transmission_id    = $this->request->getPost('transmission_id');
+            $color_id           = $this->request->getPost('color_id');
+            $featured_status    = $this->request->getPost('featured_status');
+            $onsale_status      = $this->request->getPost('onsale_status');
+            $onsale_percentage  = $this->request->getPost('onsale_percentage');
+
 
             // Get the form input values
             $manufacture_year       = $this->request->getPost('manufacture_year');
@@ -309,6 +313,9 @@ class AdminController extends BaseController{
                 'owner'             => $owner,
                 'transmission_id'   => $transmission_id,
                 'color_id'          => $color_id,
+                'featured_status'   => $featured_status,
+                'onsale_status'     => $onsale_status,
+                'onsale_percentage' => $onsale_percentage,
 
                 'manufacture_year'      => $manufacture_year,
                 'registration_year'     => $registration_year,
@@ -474,6 +481,9 @@ class AdminController extends BaseController{
             $owner          = $this->request->getPost('owner');
             $transmission_id = $this->request->getPost('transmission_id');
             $color_id       = $this->request->getPost('color_id');
+            $featured_status    = $this->request->getPost('featured_status');
+            $onsale_status      = $this->request->getPost('onsale_status');
+            $onsale_percentage  = $this->request->getPost('onsale_percentage');
 
             // Get the form input values
             $manufacture_year       = $this->request->getPost('manufacture_year');
@@ -542,6 +552,9 @@ class AdminController extends BaseController{
                 'owner'             => $owner,
                 'transmission_id'   => $transmission_id,
                 'color_id'          => $color_id,
+                'featured_status'   => $featured_status,
+                'onsale_status'     => $onsale_status,
+                'onsale_percentage' => $onsale_percentage,
 
                 'manufacture_year'      => $manufacture_year,
                 'registration_year'     => $registration_year,

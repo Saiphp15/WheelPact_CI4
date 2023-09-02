@@ -456,7 +456,84 @@ class ApiController extends BaseController
         return $this->response->setJSON($response);
     }
 
-    // create students
+    public function add_vehicle_wishlist(){
+        $customer_id = $this->request->getPost('customer_id');
+        $vehicle_id = $this->request->getPost('vehicle_id');
+
+        if(isset($customer_id) && !empty($customer_id)){
+            if(isset($vehicle_id) && !empty($vehicle_id)){
+                $data = array(
+                    'customer_id' => $customer_id,
+                    'vehicle_id' => $vehicle_id,
+                    'created_by' => $customer_id,
+                    'created_datetime' => DATETIME
+                );
+                $insertStatus = $this->CommonModel->add_vehicle_wishlist($data);
+                if($insertStatus) {
+                    
+                    $response = array(
+                        'responseCode'   => 200,
+                        'responseMessage' => 'Vehicle Added into Wishlist Successfully'
+                    );
+                } else {
+                    $response = array(
+                        'responseCode'   => 404,
+                        'responseMessage' => 'Error while inserting vehicle into wishlist'
+                    );
+                }
+            }else{
+                $response = array(
+                    'responseCode'   => 409,
+                    'responseMessage' => 'Required vehicle Id.'
+                );
+            }
+        }else{
+            $response = array(
+               'responseCode'   => 409,
+               'responseMessage' => 'Required customer Id.'
+            );
+        }
+        return $this->response->setJSON($response);
+    }
+
+    public function remove_vehicle_wishlist(){
+        $customer_id = $this->request->getPost('customer_id');
+        $vehicle_id = $this->request->getPost('vehicle_id');
+
+        if(isset($customer_id) && !empty($customer_id)){
+            if(isset($vehicle_id) && !empty($vehicle_id)){
+                $data = array(
+                    'customer_id' => $customer_id,
+                    'vehicle_id' => $vehicle_id
+                );
+                $removeStatus = $this->CommonModel->remove_vehicle_wishlist($data);
+                if($removeStatus) {
+                    $response = array(
+                        'responseCode'   => 200,
+                        'responseMessage' => 'Vehicle Removed from Wishlist Successfully'
+                    );
+                } else {
+                    $response = array(
+                        'responseCode'   => 404,
+                        'responseMessage' => 'Error while removing vehicle from wishlist'
+                    );
+                }
+            }else{
+                $response = array(
+                    'responseCode'   => 409,
+                    'responseMessage' => 'Required vehicle Id.'
+                );
+            }
+        }else{
+            $response = array(
+               'responseCode'   => 409,
+               'responseMessage' => 'Required customer Id.'
+            );
+        }
+        return $this->response->setJSON($response);
+    }
+
+    /* CRUD Operations
     public function create()
     {
         $data = [
@@ -544,4 +621,5 @@ class ApiController extends BaseController
             return $this->failUnauthorized('Unauthorized Access');
         }
     }
+    */
 }
