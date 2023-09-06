@@ -81,7 +81,26 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="branchBanner">Banner 1:</label>
+                                <input type="file" class="form-control" id="branchBanner1" name="branchBanner1" >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="branchBanner">Banner 2:</label>
+                                <input type="file" class="form-control" id="branchBanner2" name="branchBanner2" >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="branchBanner">Banner 3:</label>
+                                <input type="file" class="form-control" id="branchBanner3" name="branchBanner3" >
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -115,8 +134,27 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <textarea class="form-control" id="address" name="address" rows="2" ></textarea>
+                        <textarea class="form-control" id="address" name="address" ></textarea>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="contactNumber">Contact Number:</label>
+                                <input type="file" class="form-control" id="contactNumber" name="contactNumber" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="file" class="form-control" id="email" name="email" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="shortDescription">Short Description:</label>
+                        <textarea class="form-control" id="shortDescription" name="shortDescription" ></textarea>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 <?= form_close(); ?>
             </div>

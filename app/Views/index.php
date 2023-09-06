@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-6">
                     <div class="text-end">
-                        <button class="dg-brand-btn">Browse All Stores</button>
+                        <a href="<?php echo base_url('view-all-stores'); ?>" class="dg-brand-btn">Browse All Stores</a>
                     </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@
                         foreach($popularStores as $store){
                     ?>
                     <div class="item">
-                        <a href="<?php echo base_url('vehicle-details/'.$store['encrypted_id']); ?>">
+                        <a href="<?php echo base_url('store-details/'.$store['encrypted_id']); ?>">
                             <div class="store-wrapper">
                                 <img src="<?php echo isset($store['branch_thumbnail'])?$store['branch_thumbnail']:base_url('assets/admin/src/images/default-img.png'); ?>">
                                 <div class="store-details-box">
@@ -257,7 +257,7 @@
                             </div>
                             <div class="vehicle-emi d-flex">
                                 <h6>EMI from</h6>
-                                <h6>40,000/month</h6>
+                                <h6><?php echo isset($vehicle['monthly_emi'])?$vehicle['monthly_emi']:'0.0'; ?>/month</h6>
                             </div>
                         </div>
                     </div>
@@ -353,7 +353,7 @@
                             </div>
                             <div class="vehicle-emi d-flex">
                                 <h6>EMI from</h6>
-                                <h6>40,000/month</h6>
+                                <h6><?php echo isset($vehicle['monthly_emi'])?$vehicle['monthly_emi']:'0.0'; ?>/month</h6>
                             </div>
                         </div>
                     </div>
@@ -386,7 +386,7 @@
             <div class="carousel-wrapper mt-3">
                 <div id="onsale-carWrapper-carousel" class="owl-carousel owl-theme">
                     
-                <?php foreach ($onSaleVehicles as $vehicle) : ?>
+                    <?php foreach ($onSaleVehicles as $vehicle) : ?>
                     <div class="item">
                         <div class="vehicle-wrapper">
                             <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
@@ -449,7 +449,7 @@
                             </div>
                             <div class="vehicle-emi d-flex">
                                 <h6>EMI from</h6>
-                                <h6>40,000/month</h6>
+                                <h6><?php echo isset($vehicle['monthly_emi'])?$vehicle['monthly_emi']:'0.0'; ?>/month</h6>
                             </div>
                         </div>
                     </div>

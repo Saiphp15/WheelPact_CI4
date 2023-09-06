@@ -8,7 +8,7 @@ class VehicleModel extends Model {
 	protected $table                = 'vehicles';
     protected $primaryKey           = 'id';
 	protected $returnType           = 'array';
-    protected $allowedFields        = ['branch_id', 'vehicle_type','cmp_id', 'model_id', 'fuel_type', 'variant_id', 'mileage', 'kms_driven', 'owner', 'transmission_id', 'color_id', 'featured_status', 'onsale_status', 'onsale_percentage', 'manufacture_year', 'registration_year', 'registered_state_id', 'rto', 'insurance_type', 'insurance_validity', 'accidental_status', 'flooded_status', 'last_service_kms', 'last_service_date', 'car_no_of_airbags', 'car_central_locking', 'car_seat_upholstery', 'car_sunroof', 'car_integrated_music_system', 'car_rear_ac', 'car_outside_rear_view_mirrors', 'car_power_windows', 'car_engine_start_stop', 'car_headlamps', 'car_power_steering', 'bike_headlight_type', 'bike_odometer', 'bike_drl', 'bike_mobile_connectivity', 'bike_gps_navigation', 'bike_usb_charging_port', 'bike_low_battery_indicator', 'bike_under_seat_storage', 'bike_speedometer', 'bike_stand_alarm', 'bike_low_fuel_indicator', 'bike_low_oil_indicator', 'bike_start_type', 'bike_kill_switch', 'bike_break_light', 'bike_turn_signal_indicator', 'regular_price', 'selling_price', 'pricing_type','thumbnail_url','is_active','created_by','created_datetime','updated_by','updated_datetime'];
+    protected $allowedFields        = ['branch_id', 'vehicle_type','cmp_id', 'model_id', 'fuel_type', 'variant_id', 'mileage', 'kms_driven', 'owner', 'transmission_id', 'color_id', 'featured_status', 'onsale_status', 'onsale_percentage', 'manufacture_year', 'registration_year', 'registered_state_id', 'rto', 'insurance_type', 'insurance_validity', 'accidental_status', 'flooded_status', 'last_service_kms', 'last_service_date', 'car_no_of_airbags', 'car_central_locking', 'car_seat_upholstery', 'car_sunroof', 'car_integrated_music_system', 'car_rear_ac', 'car_outside_rear_view_mirrors', 'car_power_windows', 'car_engine_start_stop', 'car_headlamps', 'car_power_steering', 'bike_headlight_type', 'bike_odometer', 'bike_drl', 'bike_mobile_connectivity', 'bike_gps_navigation', 'bike_usb_charging_port', 'bike_low_battery_indicator', 'bike_under_seat_storage', 'bike_speedometer', 'bike_stand_alarm', 'bike_low_fuel_indicator', 'bike_low_oil_indicator', 'bike_start_type', 'bike_kill_switch', 'bike_break_light', 'bike_turn_signal_indicator', 'regular_price', 'selling_price', 'pricing_type','emi_option','avg_interest_rate','tenure_months','thumbnail_url','is_active','created_by','created_datetime','updated_by','updated_datetime'];
 
     protected $validationRules      = [];
     protected $validationMessages   = [];
@@ -49,6 +49,56 @@ class VehicleModel extends Model {
 
     public function updateData($id, $data){
         return $this->update($id, $data);
+    }
+
+    public function getFeaturedVehicles(){
+        $builder = $this->db->table('vehicles');
+        $builder->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName');
+        $builder->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left');
+        $builder->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left');
+        $builder->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left');
+        $builder->where('vehicles.featured_status', 1);
+        $builder->where('vehicles.is_active', 1);
+        $builder->orderBy('vehicles.id', 'desc');
+        return $builder->get()->getResultArray();
+    }
+
+    public function getLatestVehicleAdditions(){
+        $builder = $this->db->table('vehicles');
+        $builder->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName');
+        $builder->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left');
+        $builder->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left');
+        $builder->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left');
+        $builder->where('vehicles.featured_status', 1);
+        $builder->where('vehicles.is_active', 1);
+        $builder->orderBy('vehicles.id', 'desc');
+        $builder->limit(10);
+        return $builder->get()->getResultArray();
+    }
+
+    public function getOnSaleVehicles(){
+        $builder = $this->db->table('vehicles');
+        $builder->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName');
+        $builder->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left');
+        $builder->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left');
+        $builder->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left');
+        $builder->where('vehicles.onsale_status', 1);
+        $builder->where('vehicles.is_active', 1);
+        $builder->orderBy('vehicles.id', 'desc');
+        return $builder->get()->getResultArray();
+    }
+
+    public function getStoreOnSaleVehicles($storeId){
+        $builder = $this->db->table('vehicles');
+        $builder->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName');
+        $builder->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left');
+        $builder->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left');
+        $builder->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left');
+        $builder->where('vehicles.branch_id', $storeId);
+        $builder->where('vehicles.onsale_status', 1);
+        $builder->where('vehicles.is_active', 1);
+        $builder->orderBy('vehicles.id', 'desc');
+        return $builder->get()->getResultArray();
     }
 	
 }

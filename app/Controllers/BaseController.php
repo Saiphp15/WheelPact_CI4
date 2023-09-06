@@ -205,4 +205,17 @@ abstract class BaseController extends Controller
         }
     }
 
+    public function calculateEMI($loanAmount, $annualInterestRate, $loanTenureMonths) {
+        // Convert annual interest rate to monthly interest rate
+        $monthlyInterestRate = ($annualInterestRate / 12) / 100;
+    
+        // Calculate the number of monthly installments
+        $numOfMonths = $loanTenureMonths;
+    
+        // Calculate EMI using the formula
+        $emi = ($loanAmount * $monthlyInterestRate * pow((1 + $monthlyInterestRate), $numOfMonths)) / (pow((1 + $monthlyInterestRate), $numOfMonths) - 1);
+    
+        return $emi;
+    }
+
 }

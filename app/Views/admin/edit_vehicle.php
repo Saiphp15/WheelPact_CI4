@@ -191,7 +191,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4" id="onsale_percentage_div" style="display:none;">
+                                <div class="col-md-6 col-lg-4" id="onsale_percentage_div" style="<?php if($vehicleDetails['onsale_status']<>1){echo'display:none;';} ?>">
                                     <div class="form-group">
                                         <label>On Sale Percentage<span class="required">*</span></label>
                                         <input type="text" value="<?php echo isset($vehicleDetails['onsale_percentage'])?$vehicleDetails['onsale_percentage']:''; ?>" class="form-control formInput" name="onsale_percentage" id="onsale_percentage">
@@ -648,6 +648,28 @@
                                             <option value="1" <?php if($vehicleDetails['pricing_type']==1){echo'selected';} ?>>Fixed Price</option>
                                             <option value="2" <?php if($vehicleDetails['pricing_type']==2){echo'selected';} ?>>Negotiable</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>EMI Option<span class="required">*</span></label>
+                                        <select class="custom-select formInput" name="emi_option" id="emi_option">
+                                            <option value="">Choose...</option>
+                                            <option value="1" <?php if($vehicleDetails['emi_option']==1){echo'selected';} ?>>Yes</option>
+                                            <option value="2" <?php if($vehicleDetails['emi_option']==2){echo'selected';} ?>>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>Average Interest Rate<span class="required">*</span></label>
+                                        <input type="tel" value="<?php echo isset($vehicleDetails['avg_interest_rate'])?$vehicleDetails['avg_interest_rate']:''; ?>" class="form-control formInput" name="avg_interest_rate" id="avg_interest_rate">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="form-group">
+                                        <label>Tenure in Months<span class="required">*</span></label>
+                                        <input type="tel" value="<?php echo isset($vehicleDetails['tenure_months'])?$vehicleDetails['tenure_months']:''; ?>" class="form-control formInput" name="tenure_months" id="tenure_months">
                                     </div>
                                 </div>
                             </div>

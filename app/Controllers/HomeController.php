@@ -11,22 +11,18 @@ class HomeController extends BaseController
     protected $BranchModel;
     protected $CommonModel;
 
-    public function index()
+    public function __construct()
     {
         // create instances of models
         $this->VehicleModel = new VehicleModel();
         $this->BranchModel = new BranchModel();
         $this->CommonModel = new CommonModel();
+    }
 
+    public function index()
+    {
         // Fetch stores ordered by average ratings and reviews
-        $popularStores = $this->BranchModel
-            ->select('branches.*, AVG(branch_ratings.rating) AS avg_rating, COUNT(branch_ratings.branch_id) AS review_count, COUNT(vehicles.branch_id) AS vehicle_count')
-            ->join('branch_ratings', 'branches.id = branch_ratings.branch_id', 'left')
-            ->join('vehicles', 'vehicles.branch_id = branches.id', 'left')
-            ->where('branches.is_active', 1)
-            ->groupBy('branches.id')
-            ->orderBy('avg_rating', 'desc')
-            ->findAll();
+        $popularStores = $this->BranchModel->getPopularStores();
         $this->pageData['popularStores'] = [];
         if(isset($popularStores) && !empty($popularStores)){
             foreach($popularStores as $store){
@@ -38,15 +34,7 @@ class HomeController extends BaseController
             $this->pageData['popularStores'] = $temp;
         }
 
-        $featuredVehicles = $this->VehicleModel
-        ->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName')
-        ->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left')
-        ->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left')
-        ->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left')
-        ->where('vehicles.featured_status', 1)
-        ->where('vehicles.is_active', 1)
-        ->orderBy('vehicles.id', 'desc')
-        ->findAll();
+        $featuredVehicles = $this->VehicleModel->getFeaturedVehicles();
         $this->pageData['featuredVehicles'] = [];
         if(isset($featuredVehicles) && !empty($featuredVehicles)){
             foreach($featuredVehicles as $vehicle){
@@ -56,49 +44,42 @@ class HomeController extends BaseController
                     $vehicle['wishlist_status'] = $wishlistStatus; // Merge wishlist status with vehicle data
                 }
 
+                // Calculate the EMI
+                $emi = $this->calculateEMI($vehicle['selling_price'], $vehicle['avg_interest_rate'], $vehicle['tenure_months']);
+                $monthly_emi = round($emi, 2);
+                
                 $encryptedId = $this->encryptId($vehicle['id']);
                 $array1 = $vehicle;
-                $array2 = array("encrypted_id"=>$encryptedId);
+                $array2 = array("encrypted_id"=>$encryptedId, "monthly_emi"=>$monthly_emi);
                 $temp1[] = array_merge($array1,$array2); 
             }
             $this->pageData['featuredVehicles'] = $temp1;
         }
 
-        $latestVehicleAdditions = $this->VehicleModel
-        ->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName')
-        ->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left')
-        ->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left')
-        ->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left')
-        ->where('vehicles.is_active', 1)
-        ->orderBy('vehicles.id', 'desc')
-        ->limit(10) 
-        ->findAll();
+        $latestVehicleAdditions = $this->VehicleModel->getLatestVehicleAdditions();
         $this->pageData['latestVehicleAdditions'] = [];
         if(isset($latestVehicleAdditions) && !empty($latestVehicleAdditions)){
             foreach($latestVehicleAdditions as $vehicle){
+                $vehicle['monthly_emi'] = 0.0;
                 $vehicle['wishlist_status'] = 0;
                 if(isset($this->pageData['customerData']) && !empty($this->pageData['customerData'])){
                     $wishlistStatus = $this->CommonModel->getWishlistStatus($this->pageData['customerData']['id'],$vehicle['id']); // Fetch wishlist status for the current vehicle
                     $vehicle['wishlist_status'] = $wishlistStatus; // Merge wishlist status with vehicle data
                 }
+
+                // Calculate the EMI
+                $emi = $this->calculateEMI($vehicle['selling_price'], $vehicle['avg_interest_rate'], $vehicle['tenure_months']);
+                $monthly_emi = round($emi, 2);
                 
                 $encryptedId = $this->encryptId($vehicle['id']);
                 $array1 = $vehicle;
-                $array2 = array("encrypted_id"=>$encryptedId);
+                $array2 = array("encrypted_id"=>$encryptedId, "monthly_emi"=>$monthly_emi);
                 $temp2[] = array_merge($array1,$array2); 
             }
             $this->pageData['latestVehicleAdditions'] = $temp2;
         }
 
-        $onSaleVehicles = $this->VehicleModel
-        ->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName')
-        ->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left')
-        ->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left')
-        ->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left')
-        ->where('vehicles.onsale_status', 1)
-        ->where('vehicles.is_active', 1)
-        ->orderBy('vehicles.id', 'desc')
-        ->findAll();
+        $onSaleVehicles = $this->VehicleModel->getOnSaleVehicles();
         $this->pageData['onSaleVehicles'] = [];
         if(isset($onSaleVehicles) && !empty($onSaleVehicles)){
             foreach($onSaleVehicles as $vehicle){
@@ -108,15 +89,19 @@ class HomeController extends BaseController
                     $vehicle['wishlist_status'] = $wishlistStatus; // Merge wishlist status with vehicle data
                 }
 
+                // Calculate the EMI
+                $emi = $this->calculateEMI($vehicle['selling_price'], $vehicle['avg_interest_rate'], $vehicle['tenure_months']);
+                $monthly_emi = round($emi, 2);
+                
                 $encryptedId = $this->encryptId($vehicle['id']);
                 $array1 = $vehicle;
-                $array2 = array("encrypted_id"=>$encryptedId);
+                $array2 = array("encrypted_id"=>$encryptedId, "monthly_emi"=>$monthly_emi);
                 $temp3[] = array_merge($array1,$array2); 
             }
             $this->pageData['onSaleVehicles'] = $temp3;
         }
         
-        //echo '<pre>'; print_r($this->pageData['latestVehicleAdditions']); exit;
+        //echo '<pre>'; print_r($this->pageData['featuredVehicles']); exit;
         return view('index', $this->pageData);
     }
 }

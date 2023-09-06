@@ -76,7 +76,10 @@ class AdminController extends BaseController{
                 'chooseCountry' => 'required',
                 'chooseState' => 'required',
                 'chooseCity' => 'required',
-                'address' => 'required'
+                'address' => 'required',
+                'contactNumber' => 'required',
+                'email' => 'required',
+                'shortDescription' => 'required'
             ]);
 
             // Run the validation
@@ -88,6 +91,29 @@ class AdminController extends BaseController{
             // Get the form input values
             $dealerId = $this->request->getPost('selectDealer');
             $branchName = $this->request->getPost('branchName',FILTER_SANITIZE_STRING);
+
+            $branchBanner1Url = '';
+            if(isset($_FILES['branchBanner1']['name']) && !empty($_FILES['branchBanner1']['name'])){
+                $file = $this->request->getFile('branchBanner1');
+                $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
+                $file->move(ROOTPATH . 'public/uploads/branch_banners', $newName); // Move the uploaded file to the public/uploads directory
+                $branchBanner1Url = base_url('uploads/branch_banners/' . $newName); // Get the image URL to display in the preview
+            }
+            $branchBanner2Url = '';
+            if(isset($_FILES['branchBanner2']['name']) && !empty($_FILES['branchBanner2']['name'])){
+                $file = $this->request->getFile('branchBanner2');
+                $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
+                $file->move(ROOTPATH . 'public/uploads/branch_banners', $newName); // Move the uploaded file to the public/uploads directory
+                $branchBanner2Url = base_url('uploads/branch_banners/' . $newName); // Get the image URL to display in the preview
+            }
+            $branchBanner3Url = '';
+            if(isset($_FILES['branchBanner3']['name']) && !empty($_FILES['branchBanner3']['name'])){
+                $file = $this->request->getFile('branchBanner3');
+                $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
+                $file->move(ROOTPATH . 'public/uploads/branch_banners', $newName); // Move the uploaded file to the public/uploads directory
+                $branchBanner3Url = base_url('uploads/branch_banners/' . $newName); // Get the image URL to display in the preview
+            }
+
             $branchThumbnailUrl = '';
             if(isset($_FILES['branchThumbnail']['name']) && !empty($_FILES['branchThumbnail']['name'])){
                 $file = $this->request->getFile('branchThumbnail');
@@ -100,17 +126,26 @@ class AdminController extends BaseController{
             $stateId = $this->request->getPost('chooseState');
             $cityId = $this->request->getPost('chooseCity');
             $address = $this->request->getPost('address',FILTER_SANITIZE_STRING);
+            $contactNumber = $this->request->getPost('contactNumber');
+            $email = $this->request->getPost('email');
+            $shortDescription = $this->request->getPost('shortDescription',FILTER_SANITIZE_STRING);
 
             // Prepare the data to be inserted
             $data = [
                 'dealer_id' => $dealerId,
                 'name' => $branchName,
+                'branch_banner1' => $branchBanner1Url,
+                'branch_banner2' => $branchBanner2Url,
+                'branch_banner3' => $branchBanner3Url,
                 'branch_thumbnail' => $branchThumbnailUrl,
                 'branch_type' => $branchType,
                 'country_id' => $countryId,
                 'state_id' => $stateId,
                 'city_id' => $cityId,
                 'address' => $address,
+                'contact_number' => $contactNumber,
+                'email' => $email,
+                'short_description' => $shortDescription,
                 'is_active' => 1,
                 'created_at' => DATETIME
             ];
@@ -131,7 +166,7 @@ class AdminController extends BaseController{
             $db->transRollback();
 
             // Error handling and logging
-            $logger = Services::logger();
+            $logger = \Config\Services::logger();
             $logger->error('Error occurred while adding dealer branch: ' . $e->getMessage());
 
             // Throw or handle the exception as needed

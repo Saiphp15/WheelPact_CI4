@@ -42,6 +42,8 @@ $routes->get('/', 'HomeController::index');
  */
 
  $routes->get('/home', 'HomeController::index');
+ $routes->get('/view-all-stores', 'WebController::view_all_stores');
+ $routes->get('/store-details/(:any)', 'WebController::store_details/$1');
  $routes->get('/vehicle-details/(:any)', 'WebController::vehicle_details/$1');
  
  $routes->get("/my-account", "CustomerController::my_account");

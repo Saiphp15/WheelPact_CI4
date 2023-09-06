@@ -608,6 +608,28 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label>EMI Option<span class="required">*</span></label>
+                                            <select class="custom-select formInput" name="emi_option" id="emi_option">
+                                                <option value="">Choose...</option>
+                                                <option value="1" >Yes</option>
+                                                <option value="2" >No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label>Average Interest Rate<span class="required">*</span></label>
+                                            <input type="tel" class="form-control formInput" name="avg_interest_rate" id="avg_interest_rate">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label>Tenure in Months<span class="required">*</span></label>
+                                            <input type="tel" class="form-control formInput" name="tenure_months" id="tenure_months">
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- Add more fields for Step 3 here -->
                                 <button type="button" class="btn btn-primary prev">Previous</button>
