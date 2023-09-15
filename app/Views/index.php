@@ -238,12 +238,12 @@
                                     <span class="addRemoveVehicleWhishlistSpan_<?php echo $vehicle['id']; ?>">
                                         <?php if(isset($vehicle['wishlist_status']) && !empty($vehicle['wishlist_status'])){ ?>
                                             <?php if($vehicle['wishlist_status']==1){ ?>
-                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/remove-vehicle-wishlist'); ?>"></i>
+                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/customer/remove-vehicle-wishlist'); ?>"></i>
                                             <?php }else{ ?>
-                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/customer/add-vehicle-wishlist'); ?>"></i>
                                             <?php } ?>
                                         <?php }else{ ?>
-                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/customer/add-vehicle-wishlist'); ?>"></i>
                                         <?php } ?>
                                     </span>
                                 </div>
@@ -334,12 +334,12 @@
                                     <span class="addRemoveVehicleWhishlistSpan_<?php echo $vehicle['id']; ?>">
                                         <?php if(isset($vehicle['wishlist_status']) && !empty($vehicle['wishlist_status'])){ ?>
                                             <?php if($vehicle['wishlist_status']==1){ ?>
-                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/remove-vehicle-wishlist'); ?>"></i>
+                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/customer/remove-vehicle-wishlist'); ?>"></i>
                                             <?php }else{ ?>
-                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/customer/add-vehicle-wishlist'); ?>"></i>
                                             <?php } ?>
                                         <?php }else{ ?>
-                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/customer/add-vehicle-wishlist'); ?>"></i>
                                         <?php } ?>
                                     </span>
                                 </div>
@@ -394,7 +394,7 @@
                             </a>
                             <div class="vehicle-wrapper-title">
                                 <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
-                                    <h5><?php echo isset($vehicle['makeName'])?$vehicle['makeName']:'Brand Name'; ?>, <?php echo isset($vehicle['makeModelName'])?$vehicle['makeModelName']:'Model Name'; ?></h5>
+                                    <h5><?php echo isset($vehicle['makeName'])?$vehicle['makeName']:'Brand Name'; ?> <?php echo isset($vehicle['makeModelName'])?$vehicle['makeModelName']:'Model Name'; ?></h5>
                                 </a>
                             </div>
                             <div class="d-flex vehicle-overview">
@@ -430,12 +430,12 @@
                                     <span class="addRemoveVehicleWhishlistSpan_<?php echo $vehicle['id']; ?>">
                                         <?php if(isset($vehicle['wishlist_status']) && !empty($vehicle['wishlist_status'])){ ?>
                                             <?php if($vehicle['wishlist_status']==1){ ?>
-                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/remove-vehicle-wishlist'); ?>"></i>
+                                                <i class="icofont-heart press" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="remove" data-actionurl="<?php echo base_url('/api/customer/remove-vehicle-wishlist'); ?>"></i>
                                             <?php }else{ ?>
-                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                                <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/customer/add-vehicle-wishlist'); ?>"></i>
                                             <?php } ?>
                                         <?php }else{ ?>
-                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/add-vehicle-wishlist'); ?>"></i>
+                                            <i class="icofont-heart" data-customerid="<?php echo isset($customerData['id'])?$customerData['id']:0; ?>" data-vehicleid="<?php echo isset($vehicle['id'])?$vehicle['id']:0; ?>" data-operation="add" data-actionurl="<?php echo base_url('/api/customer/add-vehicle-wishlist'); ?>"></i>
                                         <?php } ?>
                                     </span>
                                 </div>

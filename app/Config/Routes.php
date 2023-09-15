@@ -78,6 +78,18 @@ $routes->post('upload/upload-thumbnail', 'UploadController::upload_thumbnail');
 $routes->post('upload/upload-exterior-main-vehicle-images', 'UploadController::upload_exterior_main_vehicle_images');
 $routes->post('upload/upload-interior-vehicle-images', 'UploadController::upload_interior_vehicle_images');
 $routes->post('upload/upload-others-vehicle-images', 'UploadController::upload_others_vehicle_images');
+/* Santosh Routing start */
+$routes->get('admin/add-company', 'AdminController::add_company');
+$routes->get('admin/view-companies', 'AdminController::view_companies');
+$routes->get('admin/edit-vehicle-company/(:num)', 'AdminController::edit_vehicle_company/$1');
+$routes->get('admin/single-vehicle-company-info/(:num)', 'AdminController::single_vehicle_company_info/$1');
+$routes->post('admin/save-vehicle-company-models', 'AdminController::save_vehicle_company_models');
+$routes->post('admin/edit-update-vehicle-company', 'AdminController::edit_update_vehicle_company');
+$routes->post('admin/edit-update-vehicle-company-models', 'AdminController::edit_update_vehicle_company_models');
+$routes->post('admin/remove-company', 'AdminController::remove_company');
+
+$routes->post('admin/change-company-status/(:any)', 'AdminController::change_company_status/$1');
+/* Santosh Routing End */
 
 /*
  * --------------------------------------------------------------------
@@ -102,8 +114,10 @@ $routes->post('/api/state-cities', 'ApiController::get_state_cities');
 $routes->post('/api/cmp-models', 'ApiController::get_cmp_models');
 $routes->post('/api/registered-state-rto', 'ApiController::get_registered_state_rto');
 
-$routes->post('/api/add-vehicle-wishlist', 'ApiController::add_vehicle_wishlist');
-$routes->post('/api/remove-vehicle-wishlist', 'ApiController::remove_vehicle_wishlist');
+$routes->post('/api/customer/add-vehicle-wishlist', 'ApiController::add_vehicle_wishlist');
+$routes->post('/api/customer/remove-vehicle-wishlist', 'ApiController::remove_vehicle_wishlist');
+
+$routes->post('/api/customer/write-store-review', 'ApiController::write_store_review');
 
 
 // $routes->get('/api/students', 'ApiController::index');

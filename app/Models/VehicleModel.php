@@ -76,6 +76,18 @@ class VehicleModel extends Model {
         return $builder->get()->getResultArray();
     }
 
+    public function getOurCollections($storeId){
+        $builder = $this->db->table('vehicles');
+        $builder->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName');
+        $builder->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left');
+        $builder->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left');
+        $builder->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left');
+        $builder->where('vehicles.featured_status', 1);
+        $builder->where('vehicles.is_active', 1);
+        $builder->orderBy('vehicles.id', 'desc');
+        return $builder->get()->getResultArray();
+    }
+
     public function getOnSaleVehicles(){
         $builder = $this->db->table('vehicles');
         $builder->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName');
@@ -96,6 +108,18 @@ class VehicleModel extends Model {
         $builder->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left');
         $builder->where('vehicles.branch_id', $storeId);
         $builder->where('vehicles.onsale_status', 1);
+        $builder->where('vehicles.is_active', 1);
+        $builder->orderBy('vehicles.id', 'desc');
+        return $builder->get()->getResultArray();
+    }
+
+    public function getStoreOnFeaturedVehicles($storeId){
+        $builder = $this->db->table('vehicles');
+        $builder->select('vehicles.*, vehiclecompanies.cmp_name as makeName, vehiclecompaniesmodels.model_name as makeModelName, fueltypes.name as fuelTypeName');
+        $builder->join('vehiclecompanies', 'vehiclecompanies.id = vehicles.cmp_id', 'left');
+        $builder->join('vehiclecompaniesmodels', 'vehiclecompaniesmodels.id = vehicles.model_id', 'left');
+        $builder->join('fueltypes', 'fueltypes.id = vehicles.fuel_type', 'left');
+        $builder->where('vehicles.featured_status', 1);
         $builder->where('vehicles.is_active', 1);
         $builder->orderBy('vehicles.id', 'desc');
         return $builder->get()->getResultArray();

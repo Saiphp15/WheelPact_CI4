@@ -65,6 +65,53 @@ class WebController extends BaseController
             $this->pageData['onSaleVehicles'] = $temp3;
         }
 
+        
+        $featuredVehicles = $this->VehicleModel->getStoreOnFeaturedVehicles($storeId);
+        $this->pageData['featuredVehicles'] = [];
+        if(isset($featuredVehicles) && !empty($featuredVehicles)){
+            foreach($featuredVehicles as $vehicle){
+                $vehicle['wishlist_status'] = 0;
+                if(isset($this->pageData['customerData']) && !empty($this->pageData['customerData'])){
+                    $wishlistStatus = $this->CommonModel->getWishlistStatus($this->pageData['customerData']['id'],$vehicle['id']); // Fetch wishlist status for the current vehicle
+                    $vehicle['wishlist_status'] = $wishlistStatus; // Merge wishlist status with vehicle data
+                }
+
+                // Calculate the EMI
+                $emi = $this->calculateEMI($vehicle['selling_price'], $vehicle['avg_interest_rate'], $vehicle['tenure_months']);
+                $monthly_emi = round($emi, 2);
+                
+                $encryptedId = $this->encryptId($vehicle['id']);
+                $array1 = $vehicle;
+                $array2 = array("encrypted_id"=>$encryptedId, "monthly_emi"=>$monthly_emi);
+                $temp1[] = array_merge($array1,$array2); 
+            }
+            $this->pageData['featuredVehicles'] = $temp1;
+        }
+
+        $ourCollections = $this->VehicleModel->getOurCollections($storeId);
+        $this->pageData['ourCollections'] = [];
+        if(isset($ourCollections) && !empty($ourCollections)){
+            foreach($ourCollections as $vehicle){
+                $vehicle['monthly_emi'] = 0.0;
+                $vehicle['wishlist_status'] = 0;
+                if(isset($this->pageData['customerData']) && !empty($this->pageData['customerData'])){
+                    $wishlistStatus = $this->CommonModel->getWishlistStatus($this->pageData['customerData']['id'],$vehicle['id']); // Fetch wishlist status for the current vehicle
+                    $vehicle['wishlist_status'] = $wishlistStatus; // Merge wishlist status with vehicle data
+                }
+
+                // Calculate the EMI
+                $emi = $this->calculateEMI($vehicle['selling_price'], $vehicle['avg_interest_rate'], $vehicle['tenure_months']);
+                $monthly_emi = round($emi, 2);
+                
+                $encryptedId = $this->encryptId($vehicle['id']);
+                $array1 = $vehicle;
+                $array2 = array("encrypted_id"=>$encryptedId, "monthly_emi"=>$monthly_emi);
+                $temp2[] = array_merge($array1,$array2); 
+            }
+            $this->pageData['ourCollections'] = $temp2;
+        }
+
+        //echo '<pre>'; print_r($this->pageData['storeDetails']); exit;
         return view('web/pages/store-details', $this->pageData);
     }
 

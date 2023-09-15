@@ -32,7 +32,15 @@ class BranchModel extends Model
 	}
 
     public function getStoreDetails($storeId){
-        return $this->where('id', $storeId)->first();
+        $builder = $this->db->table('branches');
+        $builder->select('branches.*, AVG(branch_ratings.rating) AS avg_rating, COUNT(branch_ratings.branch_id) AS review_count, COUNT(vehicles.branch_id) AS vehicle_count, users.name as owner_name, users.email as owner_email, users.contact_no as owner_contact_no');
+        $builder->join('branch_ratings', 'branches.id = branch_ratings.branch_id', 'left');
+        $builder->join('vehicles', 'vehicles.branch_id = branches.id', 'left');
+        $builder->join('users', 'users.id = branches.dealer_id', 'left');
+        $builder->where('branches.is_active', 1);
+        $builder->where('branches.id', $storeId);
+        $builder->groupBy('branches.id');
+        return $builder->get()->getRowArray();
     }
 
 

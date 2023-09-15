@@ -736,6 +736,287 @@ class AdminController extends BaseController{
         }
     }
     
-}
+    /* Santosh code start */
 
-?>
+    public function add_company()
+    {
+        // Check if the admin is logged in
+        if (!$this->session->get('adminData.isLoggedIn')) {
+            // Admin is not logged in, redirect to the login page or show an error message
+            return redirect()->to('admin/login');
+        }
+        $this->pageData['adminData'] = session()->get('adminData');
+        return view('admin/add_company', $this->pageData);
+    }
+
+    public function save_vehicle_company_models()
+    {
+        $db = db_connect();
+        $db->transBegin();
+
+        try {
+
+            /* upload company logo */
+            $CmpImage = $this->request->getFile('cmp_logo');
+            $CmpImageName = $CmpImage->getRandomName();
+            $CmpImage->move(ROOTPATH . 'public/uploads/vehicle_company_logo', $CmpImageName);
+            //$CmpImageUrl = 'uploads/vehicle_company_logo/' . $newName;
+
+            // Load the form validation library
+            $validation = \Config\Services::validation();
+
+            // Set validation rules for each form field
+            $validation->setRules([
+                'cmp_name' => 'required',
+                'cmp_status' => 'required',
+                'VehicleModel' => 'required'
+            ]);
+
+            // Run the validation
+            if (!$validation->withRequest($this->request)->run()) {
+                // Validation failed, return errors in JSON format
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['success' => false, 'errors' => $errors]);
+            }
+
+            // Prepare the data to be inserted
+            $formData = [
+                'cmp_name' => $this->request->getPost('cmp_name'),
+                'cmp_logo' => $CmpImageName,
+                'is_active' => $this->request->getPost('cmp_status')
+            ];
+
+            // Insert the data into the database table
+            $result = $this->CompanyModel->insert_company_details($formData);
+
+            // Get the last inserted ID
+            $lastInsertedId = $table1Id = $db->insertID();
+
+            if (!$result) {
+                // Return a JSON response
+                return $this->response->setJSON(['errors' => true, 'message' => 'Error occurred while inserting data.']);
+            } else {
+                // Get the form input values
+                $InserVehicleModelData = $this->request->getPost('VehicleModel');
+                $ModelsBatch = array();
+                foreach ($InserVehicleModelData as $key => $element) {
+                    $ModelsBatch[$key]['cmp_id'] = $lastInsertedId;
+                    $ModelsBatch[$key]['model_name'] = $element;
+                    $ModelsBatch[$key]['is_active'] = '1';
+                }
+
+                //inserting vehicel models into vehiclecompaniesmodels
+                $res = $this->CompanyModel->insert_company_models($ModelsBatch);
+
+                $db->transCommit();
+            }
+
+            // Return a success JSON response
+            return $this->response->setJSON(['status' => 'success', 'success' => true, 'message' => 'Vehicle Company added successfully.', 'VehicleCompanyId' => $lastInsertedId]);
+        } catch (\Exception $e) {
+            // An error occurred, rollback the transaction
+            $db->transRollback();
+
+            // Error handling and logging
+            $logger = \Config\Services::logger();
+            $logger->error('Error occurred while inserting vehicle information: ' . $e->getMessage());
+
+            // Throw or handle the exception as needed
+            throw $e;
+        }
+    }
+    public function view_companies()
+    {
+        // Check if the admin is logged in
+        if (!$this->session->get('adminData.isLoggedIn')) {
+            // Admin is not logged in, redirect to the login page or show an error message
+            return redirect()->to('admin/login');
+        }
+        $this->pageData['adminData'] = session()->get('adminData');
+        $this->pageData['CompanyList'] = $this->CompanyModel->getCompanyList();
+
+        return view('admin/view_companies', $this->pageData);
+    }
+    public function change_company_status($statusChange)
+    {
+        try {
+            // Get the form input values
+            $Id = $this->request->getPost('id');
+            $updated_by = $this->session->get('adminData.loggedUserInfo.id');
+            $updated_datetime = date("Y-m-d H:i:s");
+
+            // Retrieve user data
+            $cmpInfo = $this->CompanyModel->getCompanyList($Id);
+
+            if ($cmpInfo) {
+                // Prepare the data to be updated
+                if ($statusChange == "enable") {
+                    $is_active = '1';
+                    $textMsg = "Vehicle Enabled successfully.";
+                } else {
+                    $is_active = '2';
+                    $textMsg = "Vehicle Disabled successfully.";
+                }
+                $formData = [
+                    'is_active'  => $is_active,
+                    'updated_by'    => $updated_by,
+                    'updated_at' => $updated_datetime
+                ];
+
+                // Update the data into the database table
+                $result = $this->CompanyModel->updateData($Id, $formData);
+
+                if (!$result) {
+                    // Return a JSON response
+                    return $this->response->setJSON(['errors' => true, 'message' => 'Error occurred while removing data.']);
+                }
+
+                // Return a success JSON response
+                return $this->response->setJSON(['status' => 'success', 'success' => true, 'message' => $textMsg]);
+            } else {
+                // Return a JSON response
+                return $this->response->setJSON(['errors' => true, 'message' => 'Vehicle data not found.']);
+            }
+        } catch (\Exception $e) {
+            // Error handling and logging
+            $logger = \Config\Services::logger();
+            $logger->error('Error occurred while removing vehicle information: ' . $e->getMessage());
+
+            // Throw or handle the exception as needed
+            throw $e;
+        }
+    }
+    public function edit_vehicle_company($companyId)
+    {
+        // Check if the admin is logged in
+        if (!$this->session->get('adminData.isLoggedIn')) {
+            // Admin is not logged in, redirect to the login page or show an error message
+            return redirect()->to('admin/login');
+        }
+        $this->pageData['adminData'] = session()->get('adminData');
+        //adding second parameter to show details incase of no not active
+        $companyDetails = $this->CompanyModel->getCompanyList($companyId, true);
+        $this->pageData['companyDetails'] = $companyDetails[0];
+        $this->pageData['companyModels'] = array_column($companyDetails, 'model_name');
+        return view('admin/edit_vehicle_company', $this->pageData);
+    }
+    public function edit_update_vehicle_company()
+    {
+        $db = db_connect();
+        $db->transBegin();
+        try {
+
+            $file = $this->request->getFile('cmp_logo');
+            if ($file->isValid()) {
+                /* upload company logo */
+                $CmpImage = $this->request->getFile('cmp_logo');
+                $CmpImageName = $CmpImage->getRandomName();
+                $CmpImage->move(ROOTPATH . 'public/uploads/vehicle_company_logo', $CmpImageName);
+            }
+            // Load the form validation library
+            $validation = \Config\Services::validation();
+
+            // Set validation rules for each form field
+            $validation->setRules([
+                'cmp_name' => 'required',
+                'cmp_status' => 'required'
+            ]);
+
+            // Run the validation
+            if (!$validation->withRequest($this->request)->run()) {
+                // Validation failed, return errors in JSON format
+                $errors = $validation->getErrors();
+                return $this->response->setJSON(['success' => false, 'errors' => $errors]);
+            }
+            $formData = [
+                'cmp_name' => $this->request->getPost('cmp_name'),
+                'cmp_logo' => isset($CmpImageName) ? $CmpImageName : '',
+                'is_active' => $this->request->getPost('cmp_status')
+            ];
+
+            // Update the data into the database table
+            $result = $this->CompanyModel->updateData($this->request->getPost('companyId'), $formData);
+
+            if (!$result) {
+                // Return a JSON response
+                return $this->response->setJSON(['errors' => true, 'message' => 'Error in Updating data.']);
+            }
+
+            // Commit the transaction if all updations were successful
+            $db->transCommit();
+
+            // Return a success JSON response
+            return $this->response->setJSON(['status' => 'success', 'success' => true, 'message' => 'Company Details updated successfully.']);
+        } catch (\Exception $e) {
+            // An error occurred, rollback the transaction
+            $db->transRollback();
+
+            // Error handling and logging
+            $logger = \Config\Services::logger();
+            $logger->error('Error occurred while updating Company information: ' . $e->getMessage());
+
+            // Throw or handle the exception as needed
+            throw $e;
+        }
+    }
+    public function edit_update_vehicle_company_models()
+    {
+        $db = db_connect();
+        $db->transBegin();
+        try {
+
+            $InserVehicleModelDataNew = $this->request->getPost('VehicleModel');
+            
+            $ModelsBatch = array();
+            foreach ($InserVehicleModelDataNew as $key => $element) {
+                $ModelsBatch[$key]['cmp_id'] = $this->request->getPost('companyId');
+                $ModelsBatch[$key]['model_name'] = $element;
+                $ModelsBatch[$key]['is_active'] = '1';
+            }
+
+            //inserting vehicel models into vehiclecompaniesmodels
+            $res = $this->CompanyModel->insert_company_models($ModelsBatch);
+
+            if (!$res) {
+                // Return a JSON response
+                return $this->response->setJSON(['errors' => true, 'message' => 'Error in Updating data.']);
+            }
+
+            // Commit the transaction if all updations were successful
+            $db->transCommit();
+
+            // Return a success JSON response
+            return $this->response->setJSON(['status' => 'success', 'success' => true, 'message' => 'Models Added successfully.']);
+        } catch (\Exception $e) {
+            // An error occurred, rollback the transaction
+            $db->transRollback();
+
+            // Error handling and logging
+            $logger = \Config\Services::logger();
+            $logger->error('Error occurred while updating Company information: ' . $e->getMessage());
+
+            // Throw or handle the exception as needed
+            throw $e;
+        }
+    }
+    public function single_vehicle_company_info($companyId)
+    {
+        // Check if the admin is logged in
+        if (!$this->session->get('adminData.isLoggedIn')) {
+            // Admin is not logged in, redirect to the login page or show an error message
+            return redirect()->to('admin/login');
+        }
+        $this->pageData['adminData'] = session()->get('adminData');
+        //echo '<pre>'; print_r($this->pageData['vehicleDetails']); exit;
+
+        $this->pageData['adminData'] = session()->get('adminData');
+        //adding second parameter to show details incase of no not active
+        $companyDetails = $this->CompanyModel->getCompanyList($companyId, true);
+        $this->pageData['companyDetails'] = $companyDetails[0];
+        $this->pageData['companyModels'] = array_column($companyDetails, 'model_name');
+
+        return view('admin/single_vehicle_company_info', $this->pageData);
+    }
+
+    /* Santosh code End */
+}

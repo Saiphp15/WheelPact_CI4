@@ -380,5 +380,49 @@ $(document).ready(function () {
         ]
 	});
 
+    /* santosh script start */
+    $('.AtoZOnly').keypress(function (e) {
+        var regex = new RegExp(/^[a-zA-Z\s]+$/)
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode)
+        if (regex.test(str)) {
+        return true
+        } else {
+        e.preventDefault()
+        return false
+        }
+    })
+
+    $('.NumOnly').bind('keypress', function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+        $('.error').css('display', 'inline')
+        return false
+        } else {
+        $('.error').css('display', 'none')
+        }
+    })
+
+    /* add field button - add_company page start */
+
+    $('#extend').click(function (e) {
+        e.preventDefault()
+        $('#extend-field').append(
+        '<div class="form-group"><div class="input-group bootstrap-touchspin bootstrap-touchspin-injected"><input type="text" placeholder="Enter Model Name" name="VehicleModel[]" class="form-control" required><span class="input-group-btn input-group-append"><button class="btn btn-primary bootstrap-touchspin-up remove-extend-field" type="button">-</button></span></div></div>'
+        )
+    })
+
+    $('#extend-field').on('click', '.remove-extend-field', function (e) {
+        e.preventDefault()
+        $(this).closest('.form-group').remove()
+    })
+    /* add field button - add_company page end */
+
+
+    /* Datatable initiate start */
+    $(".vehicle_company_list").DataTable();
+    /* Datatable initiate end */
+
+
+    /* santosh script end */
 
 });

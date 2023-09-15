@@ -442,136 +442,137 @@ $(document).ready(function(){
         }
 	});
 
-    /* Product Action Common js for delete.activate,deactivate operations start */
-    $(".actionBtn").click(function(){
-        let action_page = $(this).data('actionurl');
-        let operation = $(this).data('operation');
-        let id = $(this).data('id');
-        if(operation=='delete'){
-            $.ajax({
-                url: action_page,
-                type: 'POST',
-                data: {"id":id},
-                success: function(response) {
-                    if (response.status=='success') {
-                        alert(response.message);
-                        window.location.reload();
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.log("An error occurred:", error);
-                }
-            });
-        }else if(operation=='activate'){
-            let id = $(this).data('id');
-            swal({
-                title: ActivateRecord,
-                text: ThisRecordwillActivate,
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: YesActivate,
-                showLoaderOnConfirm: true,
-                cancelButtonText: Nocancelplease,
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm){
-                if (isConfirm) {
-                    $.ajax
-                    ({
-                        type: "POST",
-                        data: {"id":id},
-                        url: action_page,
-                        beforeSend: function() {
-                            swal({
-                            title: "",
-                            text: (lang == "en") ? "معالجة..." : "Processing...",
-                            imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
-                            showConfirmButton: false
-                        });
-                        },
-                        success: function(resp) 
-                        {
-                            resp = JSON.parse(resp);
-                            resp_statuscode = resp.responseCode;
-                            if(resp_statuscode==200){
-                                $("#preloader").hide();
-                                resp_msg = resp.responseMessage;
-                                swal({title: Activated , text: resp_msg, type: "success"},
-                                    function(){ 
-                                       window.location.reload();
-                                    }
-                                );
-                            }else{
-                                $("#preloader").hide();
-                                resp_error = resp.responseMessage;
-                                swal("Error", resp_error, "error");
-                            }
-                        }
-                    });
-        
-                } else {
-                    swal(Cancelled, RecordIsSafe, "error");
-                }
-            });
-        }else if(operation=='deactivate'){
-            let id = $(this).data('id');
-            swal({
-                title: confirm,
-                text: " ",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: confirmBtnText,
-                showLoaderOnConfirm: true,
-                cancelButtonText: cancelBtnText,
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm){
-                if (isConfirm) {
-                    $.ajax
-                    ({
-                        type: "POST",
-                        data: {"id":id},
-                        url: action_page,
-                        beforeSend: function() {
-                            swal({
-                            title: "",
-                            text: (lang == "en") ? "معالجة..." : "Processing...",
-                            imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
-                            showConfirmButton: false
-                        });
-                        },
-                        success: function(resp) 
-                        {
-                            resp = JSON.parse(resp);
-                            resp_statuscode = resp.responseCode;
-                            if(resp_statuscode==200){
-                                $("#preloader").hide();
-                                resp_msg = resp.responseMessage;
-                                swal({title: Deactivated, text: resp_msg, type: "success"},
-                                    function(){ 
-                                       window.location.reload();
-                                    }
-                                );
-                            }else{
-                                $("#preloader").hide();
-                                resp_error = resp.responseMessage;
-                                swal("Error", resp_error, "error");
-                            }
-                        }
-                    });
-        
-                } else {
-                    swal(Cancelled, RecordIsSafe, "error");
-                }
-            });
+  /* Product Action Common js for delete.activate,deactivate operations start */
+  $('.actionBtn').click(function () {
+    let action_page = $(this).data('actionurl')
+    let operation = $(this).data('operation')
+    let id = $(this).data('id')
+    if (operation == 'delete') {
+      $.ajax({
+        url: action_page,
+        type: 'POST',
+        data: { id: id },
+        success: function (response) {
+          if (response.status == 'success') {
+            alert(response.message)
+            window.location.reload()
+          } else {
+            alert(response.message)
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log('An error occurred:', error)
         }
-    });
+      })
+    } else if (operation == 'activate') {
+      let id = $(this).data('id')
+      swal({
+          title: 'Confirm to Proceed',
+          text: '',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'Yes',
+          showLoaderOnConfirm: true,
+          cancelButtonText: 'No',
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function (isConfirm) {
+          if (isConfirm) {
+            $.ajax({
+              type: 'POST',
+              data: { id: id },
+              url: action_page,
+              beforeSend: function () {
+                swal({
+                  title: '',
+                  text: 'Processing...',
+                  imageUrl:
+                    'https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif',
+                  showConfirmButton: false
+                })
+              },
+              success: function (resp) {
+                if (resp.status == 'success') {
+                  $('#preloader').hide()
+                  swal(
+                    {
+                      title: 'Activated',
+                      text: resp.message,
+                      type: 'success'
+                    },
+                    function () {
+                      window.location.reload()
+                    }
+                  )
+                } else {
+                  $('#preloader').hide()
+                  swal('Error', resp.message, 'error')
+                }
+              }
+            })
+          } else {
+            swal('Cancelled', 'RecordIsSafe', 'error')
+          }
+        }
+      )
+    } else if (operation == 'deactivate') {
+      let id = $(this).data('id')
+      swal(
+        {
+          title: 'Confirm to Proceed',
+          text: '',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'Yes',
+          showLoaderOnConfirm: true,
+          cancelButtonText: 'No',
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function (isConfirm) {
+          if (isConfirm) {
+            $.ajax({
+              type: 'POST',
+              data: { id: id },
+              url: action_page,
+              beforeSend: function () {
+                swal({
+                  title: '',
+                  text: 'Processing...',
+                  imageUrl:
+                    'https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif',
+                  showConfirmButton: false
+                })
+              },
+              success: function (resp) {
+                if (resp.status == 'success') {
+                  $('#preloader').hide()
+                  swal(
+                    {
+                      title: 'Deactivated',
+                      text: resp.message,
+                      type: 'success'
+                    },
+                    function () {
+                      window.location.reload()
+                    }
+                  )
+                } else {
+                  $('#preloader').hide()
+                  swal('Error', resp.message, 'error')
+                }
+              }
+            })
+          } else {
+            swal('Cancelled', 'RecordIsSafe', 'error')
+          }
+        }
+      )
+    }
+  })
 
     $(".removeImg").click(function(){
         let action_page = $(this).data('actionurl');
@@ -633,6 +634,143 @@ $(document).ready(function(){
     });
     /* Product Action Common js for delete.activate,deactivate operations end */
 
+  /* santosh script start */
+  /*//save new company make & models*/
+  $('#save_vehicle_company_models').submit(function (event) {
+    event.preventDefault()
+    var formData = new FormData(this)
+    var action_page = $('#save_vehicle_company_models').attr('action')
+    $.ajax({
+      url: action_page,
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      beforeSend: function () {
+        swal({
+          title: '',
+          text: 'Processing...',
+          imageUrl: 'https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif',
+          showConfirmButton: false
+        })
+      },
+      success: function (response) {
+        $('#preloader').hide()
+        if (response.status == 'success') {
+          swal(
+            {
+              title: '',
+              text: response.message,
+              type: 'success'
+            },
+            function () {
+              window.location.reload()
+            }
+          )
+        } else {
+          $('#preloader').hide()
+          swal('Error', response.message, 'error')
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log('An error occurred:', error)
+      }
+    })
+  })
+
+  $('#edit_update_vehicle_company').submit(function (event) {
+    event.preventDefault()
+    if (!validateStep(currentStep)) {
+      return false
+    } else {
+      var formData = new FormData(this)
+      var action_page = $('#edit_update_vehicle_company').attr('action')
+      $.ajax({
+        url: action_page,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+          swal({
+            title: '',
+            text: 'Processing...',
+            imageUrl:
+              'https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif',
+            showConfirmButton: false
+          })
+        },
+        success: function (response) {
+          $('#preloader').hide()
+          if (response.status == 'success') {
+            swal(
+              {
+                title: '',
+                text: response.message,
+                type: 'success'
+              },
+              function () {
+                window.location.reload()
+              }
+            )
+          } else {
+            $('#preloader').hide()
+            swal('Error', response.message, 'error')
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log('An error occurred:', error)
+        }
+      })
+    }
+  })
+
+  $('#edit_update_vehicle_company_models').submit(function (event) {
+    event.preventDefault()
+    if (!validateStep(currentStep)) {
+      return false
+    } else {
+      var formData = new FormData(this)
+      var action_page = $('#edit_update_vehicle_company_models').attr('action')
+      $.ajax({
+        url: action_page,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        beforeSend: function () {
+          swal({
+            title: '',
+            text: 'Processing...',
+            imageUrl:
+              'https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif',
+            showConfirmButton: false
+          })
+        },
+        success: function (response) {
+          $('#preloader').hide()
+          if (response.status == 'success') {
+            swal(
+              {
+                title: '',
+                text: response.message,
+                type: 'success'
+              },
+              function () {
+                window.location.reload()
+              }
+            )
+          } else {
+            $('#preloader').hide()
+            swal('Error', response.message, 'error')
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log('An error occurred:', error)
+        }
+      })
+    }
+  })
+
+  /* santosh script end */
 });
-
-

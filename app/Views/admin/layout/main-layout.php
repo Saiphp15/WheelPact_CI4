@@ -21,7 +21,9 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/vendors/styles/style.css">
-
+	<!-- sweet alert Link -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/src/plugins/sweetalert/sweetalert.css" />
+	
 </head>
 
 <body>
@@ -198,6 +200,8 @@
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/dashboard.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/custom.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/ajax-call.js"></script>
+	<!--sweet alert js end -->
+	<script src="<?php echo base_url(); ?>assets/admin/src/plugins/sweetalert/sweetalert.min.js"></script>
 	
 </body>
 

@@ -325,6 +325,45 @@ $(document).ready(function(){
         
     });
     /* vehicle wishlist ENDS */
+
+    /* write a review start */
+    $("#writeStoreReview").click(function (e) {
+        e.preventDefault();
+        var self = $(this);
+        var customerId = $(this).data("customerid");
+        var storeid = $(this).data("storeid");
+        var action_page = base_url+"/api/customer/write-store-review";
+        if(customerId){
+            $("#writeReviewModal").modal('show');
+            $.ajax({
+                url: action_page, 
+                type: "POST",
+                data: { customer_id: customerId, branch_id: storeid },
+                success: function(response) { 
+                    if(response.responseCode == 200){
+                        swal({title: "", text: response.responseMessage, type: "success"},
+                            function(){ 
+                                window.location.reload();
+                            }
+                        );
+                    }else{
+                        swal({title: "", text: response.responseMessage, type: "error"});
+                    }
+                },
+                error: function(xhr, status, error) { 
+                    console.log(xhr.responseText);
+                }
+            });
+        }else{
+            swal({title: "", text: "Login Required.", type: "error"},
+                function(){
+                    $("#loginModal").modal('show');
+                }
+            );
+        }
+        
+    });
+    /* write a review end */
     
 
 });
