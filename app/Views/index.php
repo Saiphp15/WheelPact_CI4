@@ -145,7 +145,7 @@
                     <div class="item">
                         <a href="<?php echo base_url('store-details/'.$store['encrypted_id']); ?>">
                             <div class="store-wrapper">
-                                <img src="<?php echo isset($store['branch_thumbnail'])?$store['branch_thumbnail']:base_url('assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($store['branch_thumbnail']) && !empty($store['branch_thumbnail'])?$store['branch_thumbnail']:base_url('assets/admin/src/images/default-img.png'); ?>">
                                 <div class="store-details-box">
                                     <div class="store-wrapper-title">
                                         <h5><?php echo isset($store['name'])?$store['name']:'Store Name'; ?></h5>

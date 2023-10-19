@@ -85,8 +85,8 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item v-image-item active">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/PHVdPlNdRheH0BtVodjPaw/file.JPG"
-                                        alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['thumbnail_url']) && !empty($vehicleDetails['thumbnail_url'])?$vehicleDetails['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>"
+                                        alt="Thumbnail Image">
                                     <div class="image-angle-tag">
                                         <p>Thumbnail Image</p>
                                     </div>

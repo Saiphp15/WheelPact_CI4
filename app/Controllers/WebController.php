@@ -120,6 +120,10 @@ class WebController extends BaseController
         if($vehicleId==false){
             echo 'Access Denied'; exit;
         }
+
+        $this->pageData['vehicleDetails'] = $this->VehicleModel->getVehicleDetails($vehicleId);
+        
+        //echo '<pre>'; print_r($this->pageData['vehicleDetails']); exit;
         return view('web/pages/vehicle-details', $this->pageData);
     }
 
