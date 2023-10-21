@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Step Bootstrap Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Additional CSS for circular step indicators */
+        .step-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .step-indicators li {
+            list-style: none;
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .step-indicators .indicator {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        ul.step-indicators span.indicator.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="multiStepForm" class="card">
+            <div class="card-body">
+                <h4 class="card-title">Multi-Step Form</h4>
+                <!-- Step Indicators -->
+                <ul class="step-indicators">
+                    <li><span class="indicator active" data-step="1">1</span></li>
+                    <li><span class="indicator" data-step="2">2</span></li>
+                    <li><span class="indicator" data-step="3">3</span></li>
+                </ul>
+                <div id="step1" class="step">
+                    <h5>Step 1</h5>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <!-- Add more fields for Step 1 here -->
+                    <button type="button" class="btn btn-primary next">Next</button>
+                </div>
+                <div id="step2" class="step">
+                    <h5>Step 2</h5>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <!-- Add more fields for Step 2 here -->
+                    <button type="button" class="btn btn-primary prev">Previous</button>
+                    <button type="button" class="btn btn-primary next">Next</button>
+                </div>
+                <div id="step3" class="step">
+                    <h5>Step 3</h5>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea class="form-control" id="message" required></textarea>
+                    </div>
+                    <!-- Add more fields for Step 3 here -->
+                    <button type="button" class="btn btn-primary prev">Previous</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var currentStep = 0;
+            var steps = $(".step");
+            var stepIndicators = $(".step-indicators .indicator");
+
+            function showStep(step) {
+                steps.hide();
+                steps.eq(step).show();
+            }
+
+            function updateButtons() {
+                if (currentStep === 0) {
+                    $(".prev").hide();
+                } else {
+                    $(".prev").show();
+                }
+
+                if (currentStep === steps.length - 1) {
+                    $(".next").hide();
+                    $(".submit").show();
+                } else {
+                    $(".next").show();
+                    $(".submit").hide();
+                }
+            }
+
+            function updateStepIndicators(step) {
+                stepIndicators.removeClass("active");
+                stepIndicators.eq(step).addClass("active");
+            }
+
+            function validateStep(step) {
+                var fields = steps.eq(step).find('.form-control');
+                var allFieldsValid = fields.toArray().every(function (field) {
+                    return field.checkValidity();
+                });
+                return allFieldsValid;
+            }
+
+            showStep(currentStep);
+            updateButtons();
+            updateStepIndicators(currentStep);
+
+            $(".next").click(function () {
+                if (validateStep(currentStep)) {
+                    currentStep++;
+                    showStep(currentStep);
+                    updateButtons();
+                    updateStepIndicators(currentStep);
+                }
+            });
+
+            $(".prev").click(function () {
+                currentStep--;
+                showStep(currentStep);
+                updateButtons();
+                updateStepIndicators(currentStep);
+            });
+
+            $("#multiStepForm").submit(function (event) {
+                if (!validateStep(currentStep)) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+
