@@ -1,0 +1,35 @@
+Epic,User Story Title,Story,Acceptance Criteria,Value,Estimate
+User End,Online Platform to Buy Cars or Bikes from Dealers.,An online platform that allow the users to connect with the pre-owned dealers for Cars and Bikes.,"1. User Login with Mobile OTP.
+2. User Location Detection.
+3. Showroom Listing Feature
+4. Showroom Details Feature
+5. Car/Bike Listing Feature
+6. Car/Bike Details Feature
+7. Yearly/Monthly Plan Selection Feature
+8. Dealer Account Creation Feature
+9. User Profile Record Feature
+10. Vehicle Reservation Feature
+11. Vehicle Wishlist Feature
+12. Static Pages Development
+",,
+Dealer Admin Portal,Portal for dealers to manage their showroom inventories on main platform.,"Every dealer gets the access to the Dealer Admin Panel which allows them to manage the store like adding, editing and deleting the inventories and promotions.","1. Dealer Admin Login
+2. Dashboard Panel
+3. Vehicle Management Module
+    3.1 Car Module (Add, Edit, Delete, Promotions)
+    3.2 Bikes Module (Add, Edit, Delete, Promotions)
+4. Promotion Module
+    4.1 Showroom Promotions (Record of Initiated Showroom Promotions)
+    4.2 Vehicle Promotions (Record of Initiated Vehicle Promotions)
+5. Manage Showroom Module (Managing Main Branch & Sub-Branch of Showrooms), (Showroom Details Management)
+6. Reservations (Contains Vehicle Reservation Records)
+7. Enquiries
+8. Reviews (Review by Users)
+10. Admin Help",,
+Tableu / Qlicksense - SuperAdmin,Administrative Use,This portal allows the Software owner to track and control the business-related functionalities.,"1. Users Record
+2. Admin Controls and many major functionalities for the Super Admin",,
+End User App,Android & iOS app for End User Platform,An Mobile Application that allow the users to connect with the pre-owned dealers for Cars and Bikes.,User-End Application with the same features as the Web.,,
+Dealer App,Android & iOS app for Dealers,"An Mobile Application for dealers to manage the showroom like adding, editing and deleting the inventories and promotions.",Dealer Application with the same features as the Dealer Admin Panel Web.,,
+Web Architecture,Solution Architecture for whole Application,To build a web solution architecture in cloud based environment that allows the system to run efficiently and make the platform scalable for future enhancements.,,,
+Customer Support,Ticket raising system for users on the platfrom.,This system allows the customers/dealers to raise any issue with the platform in case if any such things happens.,,,
+User End Portal Content,Content for entire User End Portal,"SEO friendly website content which helps the application to grow in the market in a unique way covering the other important content documents as well such as Terms & Conditions, Privacy Policy, Refund & Cancellation, FAQ's etc.",,,
+Domain & Hosting Purchase,Domain & Hosting Purchase,Searching for the best suitable domain and hosting platform for the business.,,,

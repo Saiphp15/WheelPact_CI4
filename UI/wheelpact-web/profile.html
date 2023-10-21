@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WheelPact | Get the best used cars</title>
+
+    <!-- Iconfont Link -->
+    <link rel="stylesheet" href="assets/icofont/icofont.min.css" />
+
+    <!-- BOOTSTRAP -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/wheelpact-styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+
+    <!-- OWL CAROUSEL -->
+    <link rel="stylesheet" href="assets/owl-carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owl-carousel/dist/assets/owl.theme.default.min.css">
+</head>
+
+<body>
+    <!-- LOCATION MODAL STARTS -->
+    <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="modal-title text-center mb-3">
+                        <h5>Select your city</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <!-- <div class="col-md-6 col-lg-3"> -->
+                            <!-- <div class="location-wrapper">  
+                                    <img src="assets/images/mumbai-img.jpg">
+                                </div> -->
+
+                            <div class="grid-wrapper grid-col-auto">
+                                <label for="radio-card-1" class="radio-card">
+                                    <input type="radio" name="radio-card" id="radio-card-1" checked />
+                                    <div class="location-card-content-wrapper">
+                                        <span class="check-icon"></span>
+                                        <div class="location-card-content">
+                                            <img src="assets/images/mumbai-img.jpg" alt="" />
+                                            <h4>Mumbai</h4>
+                                            <!-- <h5>Lorem ipsum dolor sit amet, consectetur.</h5> -->
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- /.radio-card -->
+
+                                <label for="radio-card-2" class="radio-card">
+                                    <input type="radio" name="radio-card" id="radio-card-2" />
+                                    <div class="location-card-content-wrapper">
+                                        <span class="check-icon"></span>
+                                        <div class="location-card-content">
+                                            <img src="assets/images/mumbai-img.jpg" alt="" />
+                                            <h4>Pune</h4>
+                                            <!-- <h5>Lorem ipsum dolor sit amet, consectetur.</h5> -->
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- /.radio-card-->
+                            </div>
+                            <!--</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOCATION MODAL ENDS -->
+
+    <!-- LOGIN MODAL STARTS -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-key"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>Login / Signup</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="login-input mt-4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="brand-label mb-1">Full Name<span class="required">*</span></label>
+                                        <input type="text" class="brand-input">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="brand-label mb-1">Email Address<span
+                                                class="required">*</span></label>
+                                        <input type="email" class="brand-input">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label class="brand-label mb-1">Enter Mobile Number<span class="required">*</span></label>
+                            <input type="tel" class="brand-input" id="loginNumber">
+                        </div>
+
+                        <div class="modal-notify">
+                            <p>By loging in, I agree to <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                                    Policy</a></p>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <a href="#" type="submit" class="dg-brand-btn" data-bs-target="#otpModal"
+                                data-bs-toggle="modal" data-bs-dismiss="modal" onclick="OTPMessage()">Send OTP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGIN MODAL ENDS -->
+
+    <!-- OTP MODAL STARTS -->
+    <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-key"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>OTP Verification</h5>
+                    </div>
+
+                    <div class="modal-notify">
+                        <p>Enter the OTP sent to <span id="loginNumberShow"></span></p>
+                    </div>
+
+                    <div class="container">
+                        <div class="login-input mt-4">
+                            <label class="brand-label mb-1">Enter OTP</label>
+                            <input type="tel" class="brand-input">
+                        </div>
+
+                        <div class="modal-otp-notify">
+                            <p>Resend OTP in <span id="countdownTimer">30</span> seconds</p>
+                        </div>
+
+                        <div class="text-center mt-4 resend-otp-btn">
+                            <a href="#" class="dg-brand-btn">Resend</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- OTP MODAL ENDS -->
+
+    <!-- WRITE A REVIEW MODAL STARTS -->
+    <div class="modal fade" id="writeReviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-comment"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>Write a Review</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="review-input">
+                            <div class="mb-3">
+                                <div class="rate">
+                                    <input type="radio" id="star5" name="rate" value="5" />
+                                    <label for="star5" title="text">5 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" />
+                                    <label for="star4" title="text">4 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" />
+                                    <label for="star3" title="text">3 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <label for="star2" title="text">2 stars</label>
+                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <label for="star1" title="text">1 star</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="brand-label mb-1">Write Your Review<span class="required">*</span></label>
+                                <textarea class="brand-textarea" rows="4"></textarea>
+                            </div>
+                            <div class="text-end">
+                                <button class="dg-brand-btn">Submit Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- WRITE A REVIEW MODAL ENDS -->
+
+    <!-- VIEW ALL REVIEWS MODAL STARTS -->
+    <div class="modal fade" id="viewAllReviewModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-comment"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>View All Reviews</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="review-block">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTd8ODY2MjMwNzF8fGVufDB8fHx8&w=1000&q=80">
+                            <div class="review-detail">
+                                <h6>Reviewer Name</h6>
+                                <div class="review-rating">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="store-rating-icon">
+                                            <i class="icofont-star"></i>
+                                        </div>
+                                        <div class="store-rating-count">5.0</div>
+                                    </div>
+                                </div>
+                                <p class="main-review">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry.</p>
+                            </div>
+                        </div>
+
+                        <div class="review-block">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTd8ODY2MjMwNzF8fGVufDB8fHx8&w=1000&q=80">
+                            <div class="review-detail">
+                                <h6>Reviewer Name</h6>
+                                <div class="review-rating">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="store-rating-icon">
+                                            <i class="icofont-star"></i>
+                                        </div>
+                                        <div class="store-rating-count">5.0</div>
+                                    </div>
+                                </div>
+                                <p class="main-review">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry.</p>
+                            </div>
+                        </div>
+
+                        <div class="review-block">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTd8ODY2MjMwNzF8fGVufDB8fHx8&w=1000&q=80">
+                            <div class="review-detail">
+                                <h6>Reviewer Name</h6>
+                                <div class="review-rating">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="store-rating-icon">
+                                            <i class="icofont-star"></i>
+                                        </div>
+                                        <div class="store-rating-count">5.0</div>
+                                    </div>
+                                </div>
+                                <p class="main-review">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- VIEW ALL REVIEWS MODAL ENDS -->
+
+    <!-- RESERVATION REFUND POLICY MODAL STARTS -->
+    <div class="modal fade" id="reservationRefundModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+
+                    <div class="modal-icon-holder mx-auto">
+                        <i class="icofont-shield-alt"></i>
+                    </div>
+                    <div class="modal-title text-center mb-3">
+                        <h5>Reservation Refund Policy</h5>
+                    </div>
+
+                    <div class="container">
+                        <div class="rrp-content">
+                            <h5 class="text-center mb-4">Thankyou for your interest in reserving a vehicle on WheelPact!
+                            </h5>
+                            <ul class="rrf-list">
+                                <li>
+                                    <p>The Reservation Refund Policies are mentioned below:</p>
+                                </li>
+                                <li>
+                                    <p>1. The Reservation fee is refundable when the visiting person rejects the vehicle
+                                        and the reservation cancelled request has been raised by the Partner Dealer.</p>
+                                </li>
+                                <li>
+                                    <p>2. The Reservation fee in non-refundable if the person does not visit the vehicle
+                                        on the scheduled date and time.</p>
+                                </li>
+                                <li>
+                                    <p>3. The Reservation fee is non-refundable until the scheduled date & time.</p>
+                                </li>
+                                <li>
+                                    <p>4. The 10% service charge mentioned in Bill Summary is non-refundable in any
+                                        case, only the reservation fee will be refunded.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- RESERVATION REFUND POLICY MODAL ENDS -->
+
+    <!-- HEADER STARTS -->
+    <header>
+        <!-- DESKTOP HEADER STARTS -->
+        <div id="desk-header">
+            <div class="header-container">
+                <!-- logo -->
+                <strong class="logo">
+                    <a href="index.html">
+                        <!-- <h2>Wheelpact</h2> -->
+                        <img src="assets/images/logo.png">
+                    </a>
+                </strong>
+                <!-- open nav mobile -->
+
+                <!--search -->
+                <label class="open-search" for="open-search">
+                    <i class="icofont-search"></i>
+                    <input class="input-open-search" id="open-search" type="checkbox" name="menu" />
+                    <div class="search">
+                        <button class="button-search"><i class="icofont-search"></i></button>
+                        <input type="text" placeholder="Search your vehicle" class="input-search" />
+                    </div>
+                </label>
+                <!-- // search -->
+                <nav class="nav-content">
+                    <!-- nav -->
+                    <ul class="nav-content-list">
+                        <li class="nav-content-item"><a class="nav-content-link" href="#"
+                                data-bs-target="#locationModal" data-bs-toggle="modal"><i
+                                    class="icofont-map"></i>Location</a></li>
+
+                        <li class="nav-content-item account-login">
+                            <label class="open-menu-login-account" for="open-menu-login-account">
+
+                                <input class="input-menu" id="open-menu-login-account" type="checkbox" name="menu" />
+
+                                <i class="icofont-ui-user"></i><span class="login-text">Hello, Sign in <strong>Create
+                                        Account</strong></span> <span class="item-arrow"></span>
+
+                                <!-- submenu -->
+                                <ul class="login-list">
+                                    <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal">
+                                        <li class="login-list-item">Login / Sign up</li>
+                                    </a>
+                                    <a href="profile.html">
+                                        <li class="login-list-item">Profile Info</li>
+                                    </a>
+                                    <a href="wishlist.html">
+                                        <li class="login-list-item">Wishlist</li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="login-list-item">Logout</li>
+                                    </a>
+                            </label>
+                        </li>
+                    </ul>
+                    <!-- call to action -->
+                </nav>
+            </div>
+        </div>
+        <!-- DESKTOP HEADER ENDS -->
+
+        <!-- MOBILE HEADER STARTS -->
+        <div id="mob-header">
+            <div class="mob-nav">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex">
+                            <div class="text-end">
+                                <button class="mob-nav-btn" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft"><i
+                                        class="icofont-navigation-menu"></i></button>
+                            </div>
+                            <div class="logo">
+                                <a href="index.html">
+                                    <!-- <h2>Wheelpact</h2> -->
+                                    <img src="assets/images/logo.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mob-location">
+                            <i class="icofont-map"></i>
+                            <h6>Mumbai</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="offcanvas offcanvas-start mob-offcanvas" tabindex="-1" id="offcanvasLeft"
+            aria-labelledby="offcanvasLeftLabel">
+            <div class="offcanvas-header mob-menu-header">
+                <div class="mob-menu-user">
+                    <span class="mob-login-text">Hello, User</span>
+                </div>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body mob-menu-body">
+                <ul class="mob-nav-list">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <li><i class="icofont-login"></i>Login / Sign Up</li>
+                    </a>
+                    <a href="profile.html">
+                        <li><i class="icofont-user"></i>Profile Info</li>
+                    </a>
+                    <a href="wishlist.html">
+                        <li><i class="icofont-heart"></i> Wishlist</li>
+                    </a>
+                    <a href="#">
+                        <li><i class="icofont-logout"></i>Logout</li>
+                    </a>
+                </ul>
+
+                <ul class="mob-nav-imp-list">
+                    <a href="#">
+                        <li>About Us</li>
+                        <i class="icofont-right"></i>
+                    </a>
+                    <a href="#">
+                        <li>Pricing</li>
+                    </a>
+                    <a href="#">
+                        <li>Become Our Partner</li>
+                    </a>
+                    <a href="#">
+                        <li>Terms & Condition</li>
+                    </a>
+                    <a href="#">
+                        <li>Privacy Policy</li>
+                    </a>
+                </ul>
+
+                <div class="sidebar-title">
+                    <h6>Download Our App</h6>
+                </div>
+                <div class="sidebar-app">
+                    <a href="#">
+                        <img src="assets/images/google-play-store-transparent.png">
+                    </a>
+                    <a href="#">
+                        <img src="assets/images/apple-store.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- MOBILE HEADER ENDS -->
+    </header>
+    <!-- HEADER ENDS -->
+
+    <!-- PARTNER LOGIN/SIGNUP SECTION STARTS -->
+
+    <section class="section-spacing">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="section-title mb-3">
+                        <h3>Become Our Partner</h3>
+                    </div>
+
+                    <div class="partner-benefits-wrapper">
+                        <div class="partner-benefits">
+                            <div class="benefits-icon">
+                                <i class="icofont-tick-boxed"></i>
+                            </div>
+                            <div class="partner-benefits-content">
+                                <h5>Features</h5>
+                                <p>Enhance your store accessibility with our feature rich platform.</p>
+                            </div>
+                        </div>
+
+                        <div class="partner-benefits">
+                            <div class="benefits-icon">
+                                <i class="icofont-bullhorn"></i>
+                            </div>
+                            <div class="partner-benefits-content">
+                                <h5>Promotion</h5>
+                                <p>Promote your showroom and invetories</p>
+                            </div>
+                        </div>
+
+                        <div class="partner-benefits">
+                            <div class="benefits-icon">
+                                <i class="icofont-chart-histogram-alt"></i>
+                            </div>
+                            <div class="partner-benefits-content">
+                                <h5>Customer Reach</h5>
+                                <p>Reach millions of customers on our platform.</p>
+                            </div>
+                        </div>
+
+                        <div class="partner-benefits">
+                            <div class="benefits-icon">
+                                <i class="icofont-support"></i>
+                            </div>
+                            <div class="partner-benefits-content">
+                                <h5>Support</h5>
+                                <p>Get 24x7 Support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-7">
+                    <div class="partner-ls-wrap">
+                        <div class="section-title mb-4">
+                            <h3>Create Partner Account</h3>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Showroom Name<span class="required">*</span></label>
+                                    <input type="text" class="brand-input">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Vehicle Selling Category<span
+                                            class="required">*</span></label>
+                                    <select type="text" class="brand-select">
+                                        <option>Cars</option>
+                                        <option>Bikes</option>
+                                        <option>Both</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="brand-label mb-1">Owner Name<span class="required">*</span></label>
+                            <input type="text" class="brand-input">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Owner Contact Number<span
+                                            class="required">*</span></label>
+                                    <input type="tel" class="brand-input">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Owner WhatsApp Number<span
+                                            class="required">*</span></label>
+                                    <input type="tel" class="brand-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="brand-label mb-1">Email Address<span class="required">*</span></label>
+                            <input type="email" class="brand-input">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Password<span class="required">*</span></label>
+                                    <input type="password" class="brand-input">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Confirm Password<span
+                                            class="required">*</span></label>
+                                    <input type="password" class="brand-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="dg-brand-btn">Create Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-spacing">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills me-3 profile-filt-wrap" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <button class="nav-link profile-link active" id="v-pills-pinfo-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-pinfo" type="button" role="tab" aria-controls="v-pills-pinfo"
+                            aria-selected="true">Personal Information</button>
+                        <button class="nav-link profile-link" id="v-pills-reservation-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-reservation" type="button" role="tab"
+                            aria-controls="v-pills-reservation" aria-selected="false">Your Reservations</button>
+                        <button class="nav-link profile-link" id="v-pills-refer-earn-tab" data-bs-toggle="pill"
+                            data-bs-target="#v-pills-refer-earn" type="button" role="tab"
+                            aria-controls="v-pills-refer-earn" aria-selected="false">Refer & Earn</button>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-pinfo" role="tabpanel"
+                            aria-labelledby="v-pills-pinfo-tab">
+                            <div class="tab-title mb-4">
+                                <h4>Personal Information</h4>
+                            </div>
+
+                            <div class="tab-content-wrap">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="brand-label mb-1">Full Name<span
+                                                    class="required">*</span></label>
+                                            <input type="text" class="brand-input" value="Sultan Ahmed Siddiqui">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="brand-label mb-1">Mobile Number<span
+                                                    class="required">*</span></label>
+                                            <input type="tel" class="brand-input" value="9594127932" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Email Address<span class="required">*</span></label>
+                                    <input type="email" class="brand-input" value="sultansiddiqui33@gmail.com">
+                                </div>
+
+                                <div class="text-end">
+                                    <button class="dg-brand-btn">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-reservation" role="tabpanel"
+                            aria-labelledby="v-pills-reservation-tab">
+                            <div class="tab-title mb-4">
+                                <h4>Your Reservations</h4>
+                            </div>
+
+                            <section>
+                                <div class="container">
+                                    <div class="empty-wrap">
+                                        <img src="assets/images/empty.png">
+                                        <h4>No Reservations</h4>
+                                        <div class="text-center mt-3">
+                                            <button class="dg-brand-btn">View All Cars</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="tab-content-wrap">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="vehicle-wrapper">
+                                            <a href="#">
+                                                <img
+                                                    src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
+                                            </a>
+
+                                            <div class="vehicle-wrapper-title">
+                                                <a href="#">
+                                                    <h5>Mercedes-Benz GLE</h5>
+                                                </a>
+                                            </div>
+                                            <div class="d-flex vehicle-overview">
+                                                <div class="overview-badge">
+                                                    <h6>Year</h6>
+                                                    <h5>2021</h5>
+                                                </div>
+
+                                                <div class="overview-badge">
+                                                    <h6>Driven</h6>
+                                                    <h5>50,000km</h5>
+                                                </div>
+
+                                                <div class="overview-badge">
+                                                    <h6>Fuel Type</h6>
+                                                    <h5>Diesel</h5>
+                                                </div>
+
+                                                <div class="overview-badge">
+                                                    <h6>Owner</h6>
+                                                    <h5>1st</h5>
+                                                </div>
+                                            </div>
+                                            <div class="vehicle-price d-flex align-items-center">
+                                                <h5>₹56,00,0000</h5>
+                                                <h6>(Negotiable)</h6>
+                                            </div>
+                                            <div class="vehicle-emi d-flex">
+                                                <h6>EMI from</h6>
+                                                <h6>40,000/month</h6>
+                                            </div>
+
+                                            <div class="d-grid mt-3">
+                                                <button class="dg-brand-btn">Reservation Details</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="vehicle-wrapper">
+                                            <a href="#">
+                                                <img
+                                                    src="https://cdn.bigboytoyz.com/new-version/products/mercedes-gle300d-white-7077.jpg">
+                                            </a>
+
+                                            <div class="vehicle-wrapper-title">
+                                                <a href="#">
+                                                    <h5>Mercedes-Benz GLE</h5>
+                                                </a>
+                                            </div>
+                                            <div class="d-flex vehicle-overview">
+                                                <div class="overview-badge">
+                                                    <h6>Year</h6>
+                                                    <h5>2021</h5>
+                                                </div>
+
+                                                <div class="overview-badge">
+                                                    <h6>Driven</h6>
+                                                    <h5>50,000km</h5>
+                                                </div>
+
+                                                <div class="overview-badge">
+                                                    <h6>Fuel Type</h6>
+                                                    <h5>Diesel</h5>
+                                                </div>
+
+                                                <div class="overview-badge">
+                                                    <h6>Owner</h6>
+                                                    <h5>1st</h5>
+                                                </div>
+                                            </div>
+                                            <div class="vehicle-price d-flex align-items-center">
+                                                <h5>₹56,00,0000</h5>
+                                                <h6>(Negotiable)</h6>
+                                            </div>
+                                            <div class="vehicle-emi d-flex">
+                                                <h6>EMI from</h6>
+                                                <h6>40,000/month</h6>
+                                            </div>
+
+                                            <div class="d-grid mt-3">
+                                                <button class="dg-brand-btn">Reservation Details</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-refer-earn" role="tabpanel"
+                            aria-labelledby="v-pills-refer-earn-tab">
+                            <div class="tab-title mb-4">
+                                <h4>Refer & Earn</h4>
+                            </div>
+
+                            <div class="tab-content-wrap">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="main-footer section-spacing">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-logo">
+                            <!-- <h2>Wheelpact</h2> -->
+                            <img src="assets/images/logo-bg.png">
+                        </div>
+                        <div class="footer-comp-details">
+                            <p>** All product names, logos, and brands are property of their respective owners. All
+                                company, product and service names used in this website are for identification purposes
+                                only. Use of these names, logos, and brands does not imply endorsement.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-title">
+                            <h3>Important Links</h3>
+                        </div>
+                        <ul class="footer-link">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="become-partner.html">Become Our Partner</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Refund & Return Policy</a></li>
+                            <li><a href="#">FAQ's</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-title">
+                            <h3>Popular Brands</h3>
+                        </div>
+                        <ul class="footer-link">
+                            <li><a href="#">Maruti Suzuki</a></li>
+                            <li><a href="#">Hyundai</a></li>
+                            <li><a href="#">Mahindra</a></li>
+                            <li><a href="#">Toyota</a></li>
+                            <li><a href="#">Tata</a></li>
+                            <li><a href="#">Honda</a></li>
+                            <li><a href="#">Skoda</a></li>
+                            <li><a href="#">Volkswagen</a></li>
+                            <li><a href="#">BMW</a></li>
+                            <li><a href="#">Mercedes</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="footer-title">
+                            <h3>Connect with us</h3>
+                        </div>
+                        <ul class="footer-social-media">
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-facebook"></i>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-instagram"></i>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-twitter"></i>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-linkedin"></i>
+                                </li>
+                            </a>
+                            <a href="#">
+                                <li>
+                                    <i class="icofont-whatsapp"></i>
+                                </li>
+                            </a>
+                        </ul>
+                        <div class="footer-title mt-4">
+                            <h3>Download Our App</h3>
+                        </div>
+                        <div class="footer-app">
+                            <a href="#" target="_blank">
+                                <img src="assets/images/google-play-store-transparent.png">
+                            </a>
+                            <a href="#" target="_blank">
+                                <img src="assets/images/apple-store.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer">
+            <div class="text-center text-white">
+                <p>&copy; Copyright 2022. All Rights Reserved | Product by <a href="https://parastone.in"
+                        target="_blank">Parastone</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JQUERY SCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- LOCAL SCRIPT -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- OWL CAROUSEL SCCRIPT -->
+    <script src="assets/owl-carousel/dist/owl.carousel.min.js"></script>
+
+</body>
+
+</html>

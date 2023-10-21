@@ -1,0 +1,56 @@
+@media (max-width: 569px) {
+    button.owl-next {
+        right: -1rem;
+    }
+
+    button.owl-prev {
+        left: -1rem;
+    }
+
+    .v-banner-wrapper {
+        padding: 0 !important;
+    }
+
+    .v-banner-wrapper img {
+        height: 250px !important;
+    }
+
+    .table-head-stick {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-head-stick thead {
+        position: relative;
+        top: unset;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .s-banner-wrapper img, .v-banner-wrapper img {
+        height: 350px;
+    }
+
+    .review-block{
+        display: block;
+    }
+
+    .review-block img {
+        margin-bottom: 5px;
+    }
+
+    #desk-header {
+        display: none;
+    }
+
+    #mob-header {
+        display: block;
+    }
+
+    .banner-filter-pills {
+        width: 100%;
+    }
+}
+
+
