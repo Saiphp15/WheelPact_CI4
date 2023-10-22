@@ -556,7 +556,7 @@ class WebController extends BaseController
         }
 
         $vehicleDetails = $this->VehicleModel->getVehicleDetails($vehicleId);
-        $this->pageData['vehicleDetails'] = '';
+        $this->pageData['vehicleDetails'] = $vehicleDetails;
         //echo '<pre>'; print_r($vehicleDetails); exit;
         if(isset($vehicleDetails) && !empty($vehicleDetails)){
                 
@@ -577,6 +577,15 @@ class WebController extends BaseController
             $result = array_merge($array1,$array2); 
             
             $this->pageData['vehicleDetails'] = $result;
+        }
+
+        // get vehicle images
+        $vehicleImages = $this->VehicleModel->getVehicleImages($vehicleId);
+        $this->pageData['vehicleDetails']['vehicleImages'] = [];
+        if(isset($vehicleImages) &&!empty($vehicleImages)){
+            
+            $this->pageData['vehicleDetails']['vehicleImages'] = $vehicleImages;
+            
         }
         
         //echo '<pre>'; print_r($this->pageData['vehicleDetails']); exit;

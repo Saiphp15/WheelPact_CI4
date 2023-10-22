@@ -55,6 +55,13 @@ class VehicleModel extends Model {
         return $builder->get()->getRowArray();
     }
 
+    public function getVehicleImages($vehicleId){
+        $builder = $this->db->table('vehicleimages');
+        $builder->select('*');
+        $builder->where('vehicle_id', $vehicleId);
+        return $builder->get()->getRowArray();
+    }
+
     public function updateData($id, $data){
         return $this->update($id, $data);
     }
