@@ -85,253 +85,222 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item v-image-item active">
+<<<<<<< HEAD
                                     <img src="<?php echo isset($vehicleDetails['thumbnail_url']) && !empty($vehicleDetails['thumbnail_url'])?$vehicleDetails['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>"
                                         alt="Thumbnail Image">
+=======
+                                    <img src="<?php echo isset($vehicleDetails['thumbnail_url']) && !empty($vehicleDetails['thumbnail_url'])?$vehicleDetails['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>" alt="Thumbnail Image">
+>>>>>>> f546bc76c6b75862143b375bf6e090eb8a5d3e95
                                     <div class="image-angle-tag">
                                         <p>Thumbnail Image</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/7VvIoyk1SdeZpesQ6BsR6Q/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_main_front_img']) && !empty($vehicleDetails['vehicleImages']['exterior_main_front_img'])?$vehicleDetails['vehicleImages']['exterior_main_front_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Front</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/igwB%2Bvh_SPuGjFQKSpw91Q/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_diagnoal_right_front_img']) && !empty($vehicleDetails['vehicleImages']['exterior_diagnoal_right_front_img'])?$vehicleDetails['vehicleImages']['exterior_diagnoal_right_front_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Right Front Diagonal</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/Gjd9OJTJR7WVkQ7d7cuedA/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_main_right_img']) && !empty($vehicleDetails['vehicleImages']['exterior_main_right_img'])?$vehicleDetails['vehicleImages']['exterior_main_right_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Right</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/_2oS_06CRhW2UCtxLqI9sQ/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_diagnoal_right_back_img']) && !empty($vehicleDetails['vehicleImages']['exterior_diagnoal_right_back_img'])?$vehicleDetails['vehicleImages']['exterior_diagnoal_right_back_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Right Back Diagonal</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/zlOhknFBQOG9XWyKzkjuyQ/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_main_back_img']) && !empty($vehicleDetails['vehicleImages']['exterior_main_back_img'])?$vehicleDetails['vehicleImages']['exterior_main_back_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Back</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/UTKxvQEgT4%2BfVa2Np9EiIw/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_diagnoal_left_back_img']) && !empty($vehicleDetails['vehicleImages']['exterior_diagnoal_left_back_img'])?$vehicleDetails['vehicleImages']['exterior_diagnoal_left_back_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Left Back Diagonal</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/APR_g71bS5yuLWrkL_5nbA/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_main_left_img']) && !empty($vehicleDetails['vehicleImages']['exterior_main_left_img'])?$vehicleDetails['vehicleImages']['exterior_main_left_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Left</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/PHVdPlNdRheH0BtVodjPaw/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_diagnoal_left_front_img']) && !empty($vehicleDetails['vehicleImages']['exterior_diagnoal_left_front_img'])?$vehicleDetails['vehicleImages']['exterior_diagnoal_left_front_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Left Front Diagonal</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/9obVP4CqQBKbMTlL98tXRg/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_main_bonetopen_img']) && !empty($vehicleDetails['vehicleImages']['exterior_main_bonetopen_img'])?$vehicleDetails['vehicleImages']['exterior_main_bonetopen_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Open Bonet</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/sthBvchqSpuFPo6h8S_LBg/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_wheel_right_front_img']) && !empty($vehicleDetails['vehicleImages']['exterior_wheel_right_front_img'])?$vehicleDetails['vehicleImages']['exterior_wheel_right_front_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Right Front Wheel</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/%2BRlu8691QBazTBiHos7wmA/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_wheel_right_back_img']) && !empty($vehicleDetails['vehicleImages']['exterior_wheel_right_back_img'])?$vehicleDetails['vehicleImages']['exterior_wheel_right_back_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Right Back Wheel</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/gMv4fTNORIyz4dtt5XVGbQ/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_wheel_left_back_img']) && !empty($vehicleDetails['vehicleImages']['exterior_wheel_left_back_img'])?$vehicleDetails['vehicleImages']['exterior_wheel_left_back_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Left Back Wheel</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/4zRRSBuWS7q3kfqQ27C3qw/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_wheel_left_front_img']) && !empty($vehicleDetails['vehicleImages']['exterior_wheel_left_front_img'])?$vehicleDetails['vehicleImages']['exterior_wheel_left_front_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Left Front Wheel</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/4ffb90f6-38f1-4306-a908-0c7c5f6247c2/slot/camera-Right-Front-Tyre-Tread.jpg?w=1080&auto=format"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_tyrethread_right_front_img']) && !empty($vehicleDetails['vehicleImages']['exterior_tyrethread_right_front_img'])?$vehicleDetails['vehicleImages']['exterior_tyrethread_right_front_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Right Front Tyre Tread</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/62cbc8ad-6e3e-445c-abd4-f1615ee310e1/slot/camera-Right-Rear-Tyre-Tread.jpg?w=1080&auto=format"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_tyrethread_right_back_img']) && !empty($vehicleDetails['vehicleImages']['exterior_tyrethread_right_back_img'])?$vehicleDetails['vehicleImages']['exterior_tyrethread_right_back_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Right Rear Tyre Tread</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/49e749d7-2a9d-4379-a2ee-1de4feae6224/slot/camera-Left-Rear-Tyre-Tread.jpg?w=1080&auto=format"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_tyrethread_left_back_img']) && !empty($vehicleDetails['vehicleImages']['exterior_tyrethread_left_back_img'])?$vehicleDetails['vehicleImages']['exterior_tyrethread_left_back_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Left Rear Tyre Tread</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/49e749d7-2a9d-4379-a2ee-1de4feae6224/slot/camera-Left-Rear-Tyre-Tread.jpg?w=1080&auto=format"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_tyrethread_left_front_img']) && !empty($vehicleDetails['vehicleImages']['exterior_tyrethread_left_front_img'])?$vehicleDetails['vehicleImages']['exterior_tyrethread_left_front_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Left Front Tyre Tread</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/tibkA1dHTlWcpxlQCpbRvw/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_wheel_spare_img']) && !empty($vehicleDetails['vehicleImages']['exterior_wheel_spare_img'])?$vehicleDetails['vehicleImages']['exterior_wheel_spare_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Spare Wheels</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/heX0ey55RYavzk__AFV88g/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_main_roof_img']) && !empty($vehicleDetails['vehicleImages']['exterior_main_roof_img'])?$vehicleDetails['vehicleImages']['exterior_main_roof_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Roof</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/xXz2xFzQQke648Dg2l0pqg/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_underbody_front_img']) && !empty($vehicleDetails['vehicleImages']['exterior_underbody_front_img'])?$vehicleDetails['vehicleImages']['exterior_underbody_front_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Front Underbody</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/3j%2BxFRLrQ12a1p9oEp8AeA/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['exterior_underbody_rear_img']) && !empty($vehicleDetails['vehicleImages']['exterior_underbody_rear_img'])?$vehicleDetails['vehicleImages']['exterior_underbody_rear_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Rear Underbody</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/PdrA9UE3SzmWE0yh7ctMLA/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_dashboard_img']) && !empty($vehicleDetails['vehicleImages']['interior_dashboard_img'])?$vehicleDetails['vehicleImages']['interior_dashboard_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Dashboard</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/Lk5wGfigTiaiV0mYF3q5IA/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_infotainment_system_img']) && !empty($vehicleDetails['vehicleImages']['interior_infotainment_system_img'])?$vehicleDetails['vehicleImages']['interior_infotainment_system_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Infotainment System</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/JpUf1CgDSJK%2BFpvq0tGeVg/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_steering_wheel_img']) && !empty($vehicleDetails['vehicleImages']['interior_steering_wheel_img'])?$vehicleDetails['vehicleImages']['interior_steering_wheel_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Steering Wheel</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/O14fglAjTWiNBZiFGrp5TQ/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_odometer_img']) && !empty($vehicleDetails['vehicleImages']['interior_odometer_img'])?$vehicleDetails['vehicleImages']['interior_odometer_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Odometer</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/hpoQVMTTSnKf_0Wqnae%2Bfg/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_gear_lever_img']) && !empty($vehicleDetails['vehicleImages']['interior_gear_lever_img'])?$vehicleDetails['vehicleImages']['interior_gear_lever_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Gear Lever</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/WSKqUoKkSCOtOOjd8xiSug/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_pedals_img']) && !empty($vehicleDetails['vehicleImages']['interior_pedals_img'])?$vehicleDetails['vehicleImages']['interior_pedals_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Pedals</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/xIL6AXART4OtO_1RZ5saUw/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_front_cabin_img']) && !empty($vehicleDetails['vehicleImages']['interior_front_cabin_img'])?$vehicleDetails['vehicleImages']['interior_front_cabin_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Front Cabin</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/3pb0cePKQQKpsWFtO9DIlw/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_mid_cabin_img']) && !empty($vehicleDetails['vehicleImages']['interior_mid_cabin_img'])?$vehicleDetails['vehicleImages']['interior_mid_cabin_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Mid Cabin</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/hHofOJZSRTWp5LWk%2B6QdNw/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_rear_cabin_img']) && !empty($vehicleDetails['vehicleImages']['interior_rear_cabin_img'])?$vehicleDetails['vehicleImages']['interior_rear_cabin_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Rear Cabin</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/cb2aa17c-a639-49c7-9ab0-417c7ff25c52/slot/camera-Driver-Side-Door-Panels-Control-.jpg?w=1080&auto=format"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_driver_side_door_panel_img']) && !empty($vehicleDetails['vehicleImages']['interior_driver_side_door_panel_img'])?$vehicleDetails['vehicleImages']['interior_driver_side_door_panel_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Driver Side Door Panel</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://fastly-production.24c.in/hello-ar/dev/uploads/3338bc2c-78d3-494c-a78c-8dfbd1936e5b/617d04f7-83ad-4984-9ea7-29c2fff4a64d/slot/camera-Driver-Side-Adjustment-Panel.jpg?w=1080&auto=format"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_driver_side_adjustment_img']) && !empty($vehicleDetails['vehicleImages']['interior_driver_side_adjustment_img'])?$vehicleDetails['vehicleImages']['interior_driver_side_adjustment_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Driver Side Adjustment</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/U3gnFdf0TSC0Y5Wbwo9Ocg/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_boot_inside_img']) && !empty($vehicleDetails['vehicleImages']['interior_boot_inside_img'])?$vehicleDetails['vehicleImages']['interior_boot_inside_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Boot Inside</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/lpxG2DDCTpaXpZqAMya6tQ/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['interior_boot_door_open_img']) && !empty($vehicleDetails['vehicleImages']['interior_boot_door_open_img'])?$vehicleDetails['vehicleImages']['interior_boot_door_open_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Boot Door Open</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item v-image-item">
-                                    <img src="https://d308ljkq6e62o1.cloudfront.net/img/St687SCoQ%2BmxMaQ8qHkpmQ/file.JPG"
-                                        class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($vehicleDetails['vehicleImages']['others_keys_img']) && !empty($vehicleDetails['vehicleImages']['others_keys_img'])?$vehicleDetails['vehicleImages']['others_keys_img']:base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                     <div class="image-angle-tag">
                                         <p>Keys</p>
                                     </div>

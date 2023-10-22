@@ -53,6 +53,16 @@ class VehicleModel extends Model {
         $builder->join('transmissions as t', 't.id = v.transmission_id');
         $builder->where('v.id', $vehicleId);
         return $builder->get()->getRowArray();
+<<<<<<< HEAD
+=======
+    }
+
+    public function getVehicleImages($vehicleId){
+        $builder = $this->db->table('vehicleimages');
+        $builder->select('*');
+        $builder->where('vehicle_id', $vehicleId);
+        return $builder->get()->getRowArray();
+>>>>>>> f546bc76c6b75862143b375bf6e090eb8a5d3e95
     }
 
     public function updateData($id, $data){
