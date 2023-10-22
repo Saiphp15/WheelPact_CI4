@@ -85,12 +85,7 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item v-image-item active">
-<<<<<<< HEAD
-                                    <img src="<?php echo isset($vehicleDetails['thumbnail_url']) && !empty($vehicleDetails['thumbnail_url'])?$vehicleDetails['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>"
-                                        alt="Thumbnail Image">
-=======
                                     <img src="<?php echo isset($vehicleDetails['thumbnail_url']) && !empty($vehicleDetails['thumbnail_url'])?$vehicleDetails['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>" alt="Thumbnail Image">
->>>>>>> f546bc76c6b75862143b375bf6e090eb8a5d3e95
                                     <div class="image-angle-tag">
                                         <p>Thumbnail Image</p>
                                     </div>

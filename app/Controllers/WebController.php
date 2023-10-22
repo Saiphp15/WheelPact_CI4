@@ -556,11 +556,7 @@ class WebController extends BaseController
         }
 
         $vehicleDetails = $this->VehicleModel->getVehicleDetails($vehicleId);
-<<<<<<< HEAD
-        $this->pageData['vehicleDetails'] = '';
-=======
         $this->pageData['vehicleDetails'] = $vehicleDetails;
->>>>>>> f546bc76c6b75862143b375bf6e090eb8a5d3e95
         //echo '<pre>'; print_r($vehicleDetails); exit;
         if(isset($vehicleDetails) && !empty($vehicleDetails)){
                 
@@ -582,8 +578,6 @@ class WebController extends BaseController
             
             $this->pageData['vehicleDetails'] = $result;
         }
-<<<<<<< HEAD
-=======
 
         // get vehicle images
         $vehicleImages = $this->VehicleModel->getVehicleImages($vehicleId);
@@ -593,7 +587,6 @@ class WebController extends BaseController
             $this->pageData['vehicleDetails']['vehicleImages'] = $vehicleImages;
             
         }
->>>>>>> f546bc76c6b75862143b375bf6e090eb8a5d3e95
         
         //echo '<pre>'; print_r($this->pageData['vehicleDetails']); exit;
         return view('web/pages/vehicle-details', $this->pageData);
