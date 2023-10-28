@@ -48,6 +48,7 @@ $routes->get('/', 'HomeController::index');
  $routes->get('/view-all-featured-vehicles', 'WebController::view_all_featured_vehicles');
  $routes->get('/view-all-latest-addition-vehicles', 'WebController::view_all_latest_addition_vehicles');
  $routes->get('/view-all-onsale-vehicles', 'WebController::view_all_onsale_vehicles');
+ $routes->get('/reserve-vehicle/(:any)', 'WebController::reserve_vehicle/$1');
  
  $routes->match(['get', 'post'], 'load-more-featured-vehicles', 'WebController::load_more_featured_vehicles');
  $routes->match(['get', 'post'], 'load-more-latest-addition-vehicles', 'WebController::load_more_latest_addition_vehicles');

@@ -448,7 +448,7 @@
                         <div class="row align-items-center">
                             <div class="col-10">
                                 <h6>Parked At</h6>
-                                <a href="#">
+                                <a href="<?php echo base_url('store-details/'.$vehicleDetails['encrypted_branch_id']); ?>">
                                     <div class="d-flex">
                                         <h5><?php echo isset($vehicleDetails['branch_name']) && !empty($vehicleDetails['branch_name']) ? $vehicleDetails['branch_name'] : 'NA'; ?></h5>
                                         <span class="verification-badge"><i class="icofont-check-circled"></i> Verified Seller</span>
@@ -460,14 +460,17 @@
                                     <i class="icofont-location-arrow"></i>
                                 </div>
                             </div>
-                            <a href="#">
-                                <p class="mt-2">Sanjari Business Park, Near Mira Industrial Estate, Western Express
-                                    Highway, Mira Road (East), Thane-401107.</p>
+                            <a href="<?php echo base_url('store-details/'.$vehicleDetails['encrypted_branch_id']); ?>">  
+                                <p class="mt-2"><?php echo isset($vehicleDetails['branch_location']) && !empty($vehicleDetails['branch_location']) ? $vehicleDetails['branch_location'] : 'NA'; ?></p>
                             </a>
                         </div>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button class="dg-brand-btn">Reserve Now</button>
+                        <?php if(isset($customerData) && !empty($customerData)){ ?>
+                            <a href="<?php echo base_url('reserve-vehicle/'.$vehicleDetails['encrypted_id']); ?>" class="dg-brand-btn">Reserve Now</a>
+                        <?php }else{ ?>
+                            <a href="javascript:void(0);" data-bs-target="#loginModal" data-bs-toggle="modal" class="dg-brand-btn">Reserve Now</a>
+                        <?php } ?>
                         <button class="dg-brand-btn">Contact Seller</button>
                         <button class="whatsapp-brand-btn"><i class="icofont-whatsapp"></i> WhatsApp</button>
                     </div>
