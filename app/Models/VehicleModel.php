@@ -44,13 +44,18 @@ class VehicleModel extends Model {
 
     public function getVehicleDetails($vehicleId){
         $builder = $this->db->table('vehicles as v');
-        $builder->select('v.*, vc.cmp_name as cmp_name, vcm.model_name as cmp_model_name, fueltypes.name as fuelTypeName, indiarto.rto_state_code as indiarto_rto_state_code, b.name as branch_name, t.title as transmission_name');
+        $builder->select('v.*, vc.cmp_name as cmp_name, vcm.model_name as cmp_model_name, fueltypes.name as fuelTypeName, indiarto.rto_state_code as indiarto_rto_state_code, b.id as branch_id, b.name as branch_name, CONCAT(countries.name, "," , states.name , "," , cities.name) AS branch_location , t.title as transmission_name');
         $builder->join('vehiclecompanies as vc', 'vc.id = v.cmp_id');
         $builder->join('vehiclecompaniesmodels as vcm', 'vcm.id = v.model_id');
         $builder->join('fueltypes', 'fueltypes.id = v.fuel_type', 'left');
         $builder->join('indiarto', 'indiarto.id = v.rto', 'left');
         $builder->join('branches as b', 'b.id = v.branch_id');
         $builder->join('transmissions as t', 't.id = v.transmission_id');
+
+        $builder->join('countries', 'countries.id = b.country_id');
+        $builder->join('states', 'states.id = b.state_id');
+        $builder->join('cities', 'cities.id = b.city_id');
+
         $builder->where('v.id', $vehicleId);
         return $builder->get()->getRowArray();
     }

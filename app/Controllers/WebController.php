@@ -572,8 +572,10 @@ class WebController extends BaseController
             $monthly_emi = round($emi, 2);
             
             $encryptedId = $this->encryptId($vehicleDetails['id']);
+            $encryptedBranchId = $this->encryptId($vehicleDetails['branch_id']);
+            
             $array1 = $vehicleDetails;
-            $array2 = array("encrypted_id"=>$encryptedId, "monthly_emi"=>$monthly_emi);
+            $array2 = array("encrypted_id"=>$encryptedId, "encrypted_branch_id"=>$encryptedBranchId, "monthly_emi"=>$monthly_emi);
             $result = array_merge($array1,$array2); 
             
             $this->pageData['vehicleDetails'] = $result;
@@ -590,6 +592,51 @@ class WebController extends BaseController
         
         //echo '<pre>'; print_r($this->pageData['vehicleDetails']); exit;
         return view('web/pages/vehicle-details', $this->pageData);
+    }
+
+    public function reserve_vehicle($vehicleId=''){
+        $vehicleId = $this->decryptId($vehicleId);
+        if($vehicleId==false){
+            echo 'Access Denied'; exit;
+        }
+
+        $vehicleDetails = $this->VehicleModel->getVehicleDetails($vehicleId);
+        $this->pageData['vehicleDetails'] = $vehicleDetails;
+        //echo '<pre>'; print_r($vehicleDetails); exit;
+        if(isset($vehicleDetails) && !empty($vehicleDetails)){
+                
+            $vehicleDetails['monthly_emi'] = 0.0;
+            $vehicleDetails['wishlist_status'] = 0;
+            if(isset($this->pageData['customerData']) && !empty($this->pageData['customerData'])){
+                $wishlistStatus = $this->CommonModel->getWishlistStatus($this->pageData['customerData']['id'],$vehicleDetails['id']); // Fetch wishlist status for the current vehicle
+                $vehicleDetails['wishlist_status'] = $wishlistStatus; // Merge wishlist status with vehicle data
+            }
+
+            // Calculate the EMI
+            $emi = $this->calculateEMI($vehicleDetails['selling_price'], $vehicleDetails['avg_interest_rate'], $vehicleDetails['tenure_months']);
+            $monthly_emi = round($emi, 2);
+            
+            $encryptedId = $this->encryptId($vehicleDetails['id']);
+            $encryptedBranchId = $this->encryptId($vehicleDetails['branch_id']);
+            
+            $array1 = $vehicleDetails;
+            $array2 = array("encrypted_id"=>$encryptedId, "encrypted_branch_id"=>$encryptedBranchId, "monthly_emi"=>$monthly_emi);
+            $result = array_merge($array1,$array2); 
+            
+            $this->pageData['vehicleDetails'] = $result;
+        }
+
+        // get vehicle images
+        $vehicleImages = $this->VehicleModel->getVehicleImages($vehicleId);
+        $this->pageData['vehicleDetails']['vehicleImages'] = [];
+        if(isset($vehicleImages) &&!empty($vehicleImages)){
+            
+            $this->pageData['vehicleDetails']['vehicleImages'] = $vehicleImages;
+            
+        }
+        
+        //echo '<pre>'; print_r($this->pageData['vehicleDetails']); exit;
+        return view('web/pages/reserve-vehicle', $this->pageData);
     }
 
 }

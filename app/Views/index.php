@@ -206,7 +206,7 @@
                                 </div>
                                 <div class="overview-badge">
                                     <h6>Driven</h6>
-                                    <h5><?php echo isset($vehicle['kms_driven'])?$vehicle['kms_driven']:''; ?>km</h5>
+                                    <h5><?php echo isset($vehicle['kms_driven'])?number_format($vehicle['kms_driven'], 0, '.', ','):''; ?>km</h5>
                                 </div>
                                 <div class="overview-badge">
                                     <h6>Fuel Type</h6>
