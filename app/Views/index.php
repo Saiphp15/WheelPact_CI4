@@ -56,17 +56,17 @@
 
                         <div class="app-link d-flex mt-2 mb-2">
                             <a href="#">
-                                <img src="<?php echo base_url(); ?>public/assets/web/images/google-play-store-transparent.png">
+                                <img src="<?php echo base_url(); ?>assets/web/images/google-play-store-transparent.png">
                             </a>
                             <a href="#">
-                                <img src="<?php echo base_url(); ?>public/assets/web/images/apple-store.png">
+                                <img src="<?php echo base_url(); ?>assets/web/images/apple-store.png">
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="banner-img">
-                        <img class="img-fluid" src="<?php echo base_url(); ?>public/assets/web/images/banner-image.jpg">
+                        <img class="img-fluid" src="<?php echo base_url(); ?>assets/web/images/banner-image.jpg">
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@
                     <div class="item">
                         <a href="<?php echo base_url('store-details/'.$store['encrypted_id']); ?>">
                             <div class="store-wrapper">
-                                <img src="<?php echo isset($store['branch_thumbnail']) && !empty($store['branch_thumbnail'])?$store['branch_thumbnail']:base_url('public/assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($store['branch_thumbnail']) && !empty($store['branch_thumbnail'])?$store['branch_thumbnail']:base_url('assets/admin/src/images/default-img.png'); ?>">
                                 <div class="store-details-box">
                                     <div class="store-wrapper-title">
                                         <h5><?php echo isset($store['name'])?$store['name']:'Store Name'; ?></h5>
@@ -192,7 +192,7 @@
                     <div class="item">
                         <div class="vehicle-wrapper">
                             <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
-                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('public/assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
                             </a>
                             <div class="vehicle-wrapper-title">
                                 <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
@@ -284,7 +284,7 @@
                     <div class="item">
                         <div class="vehicle-wrapper">
                             <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
-                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('public/assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
                             </a>
                             <div class="vehicle-wrapper-title">
                                 <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
@@ -379,7 +379,7 @@
                     <div class="item">
                         <div class="vehicle-wrapper">
                             <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
-                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('public/assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
                             </a>
                             <div class="vehicle-wrapper-title">
                                 <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
@@ -474,7 +474,7 @@
                     <div class="item">
                         <div class="vehicle-wrapper">
                             <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
-                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('public/assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
                             </a>
                             <div class="vehicle-offer-badge">
                                 <h6><i class="icofont-sale-discount"></i>₹<?php echo isset($vehicle['discounted_off_price'])?number_format($vehicle['discounted_off_price'], 0, '.', ','):''; ?> off</h6>
@@ -574,7 +574,7 @@
                     <div class="item">
                         <div class="vehicle-wrapper">
                             <a href="<?php echo base_url('vehicle-details/'.$vehicle['encrypted_id']); ?>">
-                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('public/assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($vehicle['thumbnail_url']) && !empty($vehicle['thumbnail_url'])?$vehicle['thumbnail_url']:base_url('assets/admin/src/images/default-img.png'); ?>">
                             </a>
                             <div class="vehicle-offer-badge">
                                 <h6><i class="icofont-sale-discount"></i>₹<?php echo isset($vehicle['discounted_off_price'])?$vehicle['discounted_off_price']:''; ?> off</h6>
@@ -676,7 +676,7 @@
                     <div class="item">
                         <a href="#">
                             <div class="brand-wrapper">
-                                <img src="<?php echo isset($brand['cmp_logo']) && !empty($brand['cmp_logo'])?base_url('uploads/vehicle_company_logo/'.$brand['cmp_logo']):base_url('public/assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($brand['cmp_logo']) && !empty($brand['cmp_logo'])?base_url('uploads/vehicle_company_logo/'.$brand['cmp_logo']):base_url('assets/admin/src/images/default-img.png'); ?>">
                             </div>
                         </a>
                     </div>

@@ -184,6 +184,8 @@
 	<div class="mobile-menu-overlay"></div>
 
 	<?php $this->renderSection('content'); ?>
+
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> 
 	<script src="<?php echo base_url(); ?>assets/admin/src/scripts/form-validation.js"></script>
 	<script src="<?php echo base_url(); ?>assets/admin/vendors/scripts/core.js"></script>

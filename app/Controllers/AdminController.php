@@ -98,21 +98,21 @@ class AdminController extends BaseController {
                 $file = $this->request->getFile('branchBanner1');
                 $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
                 $file->move(ROOTPATH . 'public/uploads/branch_banners', $newName); // Move the uploaded file to the public/uploads directory
-                $branchBanner1Url = base_url('uploads/branch_banners/' . $newName); // Get the image URL to display in the preview
+                $branchBanner1Url = $newName;
             }
             $branchBanner2Url = '';
             if (isset($_FILES['branchBanner2']['name']) && !empty($_FILES['branchBanner2']['name'])) {
                 $file = $this->request->getFile('branchBanner2');
                 $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
                 $file->move(ROOTPATH . 'public/uploads/branch_banners', $newName); // Move the uploaded file to the public/uploads directory
-                $branchBanner2Url = base_url('uploads/branch_banners/' . $newName); // Get the image URL to display in the preview
+                $branchBanner2Url = $newName; // Get the image URL to display in the preview
             }
             $branchBanner3Url = '';
             if (isset($_FILES['branchBanner3']['name']) && !empty($_FILES['branchBanner3']['name'])) {
                 $file = $this->request->getFile('branchBanner3');
                 $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
                 $file->move(ROOTPATH . 'public/uploads/branch_banners', $newName); // Move the uploaded file to the public/uploads directory
-                $branchBanner3Url = base_url('uploads/branch_banners/' . $newName); // Get the image URL to display in the preview
+                $branchBanner3Url = $newName; // Get the image URL to display in the preview
             }
 
             $branchThumbnailUrl = '';
@@ -120,8 +120,10 @@ class AdminController extends BaseController {
                 $file = $this->request->getFile('branchThumbnail');
                 $newName = $file->getRandomName(); // Generate a new name for the image to prevent name conflicts
                 $file->move(ROOTPATH . 'public/uploads/branch_thumbnails', $newName); // Move the uploaded file to the public/uploads directory
-                $branchThumbnailUrl = base_url('uploads/branch_thumbnails/' . $newName); // Get the image URL to display in the preview
+                $branchThumbnailUrl = $newName; // Get the image URL to display in the preview
             }
+
+
             $branchType = $this->request->getPost('branchType');
             $branchSupportedVehicleType = $this->request->getPost('branchSupportedVehicleType');
             $countryId = $this->request->getPost('chooseCountry');
@@ -131,6 +133,7 @@ class AdminController extends BaseController {
             $contactNumber = $this->request->getPost('contactNumber');
             $email = $this->request->getPost('email');
             $shortDescription = $this->request->getPost('shortDescription', FILTER_SANITIZE_STRING);
+            $branch_services = implode(', ', $this->request->getPost('branchServices'));
 
             // Prepare the data to be inserted
             $data = [
@@ -142,6 +145,7 @@ class AdminController extends BaseController {
                 'branch_thumbnail' => $branchThumbnailUrl,
                 'branch_type' => $branchType,
                 'branch_supported_vehicle_type' => $branchSupportedVehicleType,
+                'branch_services' => $branch_services,
                 'country_id' => $countryId,
                 'state_id' => $stateId,
                 'city_id' => $cityId,
@@ -156,11 +160,33 @@ class AdminController extends BaseController {
             // Insert the data into the database table
             $result = $this->BranchModel->insert($data);
 
+            // Get the last inserted ID
+            $branchLastInsertedId = $this->BranchModel->getInsertID();
+
             if (!$result) {
                 // Error occurred while inserting data
                 // Redirect or show error message
                 return redirect()->back()->with('error', 'Failed to save branch');
             }
+
+            /* inserting deliverableImg + */
+            if ($this->request->getFileMultiple('deliverableImg')) {
+
+                foreach ($this->request->getFileMultiple('deliverableImg') as $file) {
+                    $newName = $file->getRandomName();
+                    $file->move(ROOTPATH . 'public/uploads/branch_deliverables', $newName);
+
+                    $data = [
+                        'branch_id' => $branchLastInsertedId,
+                        'img_name' =>  $newName,
+                        'type'  => $file->getClientMimeType()
+                    ];
+
+                    $this->BranchModel->insert_deliverablesImg($data);
+                }
+            }
+            /* inserting deliverableImg - */
+
 
             // Commit the transaction if all insertions were successful
             $db->transCommit();
@@ -1025,6 +1051,7 @@ class AdminController extends BaseController {
         return view('admin/single_vehicle_company_info', $this->pageData);
     }
 
+    /* view all branches */
     public function view_showrooms() {
         // Check if the admin is logged in
         if (!$this->session->get('adminData.isLoggedIn')) {
@@ -1033,6 +1060,7 @@ class AdminController extends BaseController {
         }
         $this->pageData['adminData'] = session()->get('adminData');
         $this->pageData['BranchesList'] = $this->BranchModel->getBranches();
+
         return view('admin/view_branch_list', $this->pageData);
     }
 
@@ -1045,7 +1073,9 @@ class AdminController extends BaseController {
         $this->pageData['branchDetails'] = $this->BranchModel->getStoreDetails($branchId);
         $this->pageData['stateList'] = $this->CommonModel->get_country_states($this->pageData['branchDetails']['country_id']);
         $this->pageData['cityList'] = $this->CommonModel->get_state_cities($this->pageData['branchDetails']['state_id']);
-
+        $this->pageData['branchService'] = explode(",", $this->pageData['branchDetails']['branch_services']);
+        $this->pageData['branchDeliverableImgs'] = $this->BranchModel->get_branch_deliverable_imgs($branchId);
+        //echo "<pre>"; print_r($this->pageData['branchDeliverableImgs']); die;
         return view('admin/single_branch_info', $this->pageData);
     }
 

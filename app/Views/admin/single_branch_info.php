@@ -211,9 +211,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="address">Address:</label>
-                    <textarea class="form-control" id="address" name="address" disabled><?php echo isset($branchDetails['address']) ? $branchDetails['address'] : ''; ?></textarea>
+
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <textarea class="form-control" id="address" name="address" disabled><?php echo isset($branchDetails['address']) ? $branchDetails['address'] : ''; ?></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+                        <div class="form-group">
+                            <label for="address">Services:</label>
+                            <div class="btn-list">
+                                <?php foreach ($branchService as $key => $value) { ?>
+                                    <button type="button" class="btn" data-bgcolor="#3b5998" data-color="#ffffff" style="color: rgb(255, 255, 255); background-color: rgb(59, 89, 152);">
+                                        <i class="icon-copy fa fa-wrench" aria-hidden="true"></i> <?php echo isset($value) ? $value : ''; ?>
+                                    </button>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -229,16 +246,64 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="shortDescription">Short Description:</label>
-                    <textarea class="form-control" id="shortDescription" name="shortDescription" disabled><?php echo isset($branchDetails['short_description']) ? $branchDetails['short_description'] : ''; ?></textarea>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="shortDescription">Short Description:</label>
+                            <textarea class="form-control" id="shortDescription" name="shortDescription" disabled><?php echo isset($branchDetails['short_description']) ? $branchDetails['short_description'] : ''; ?></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="shortDescription">Deliverable Images:</label>
+                            <div class="product-wrap">
+                                <div class="product-detail-wrap mb-30">
+                                    <div class="row">
+                                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                            <ol class="carousel-indicators">
+                                                <?php foreach ($branchDeliverableImgs as $key => $value) { ?>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $key; ?>" <?php
+                                                                                                                                        if ($key == 0) {
+                                                                                                                                            echo 'class="active"';
+                                                                                                                                        } ?>></li>
+                                                <?php } ?>
+                                            </ol>
+                                            <div class=" carousel-inner">
+                                                <?php foreach ($branchDeliverableImgs as $k => $val) { ?>
+                                                    <div class="carousel-item <?php
+                                                                                if ($k == 0) {
+                                                                                    echo 'active';
+                                                                                } ?>">
+                                                        <img class="d-block w-100" src="<?php echo isset($val['img_name']) ? base_url() . "uploads/branch_deliverables/" . $val['img_name'] : ''; ?>">
+                                                    </div>
+                                                <?php } ?>
+
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-        </div>
-        <div class="footer-wrap pd-20 mb-20 card-box">
-            DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
         </div>
     </div>
+</div>
+<div class="footer-wrap pd-20 mb-20 card-box">
+    DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+</div>
+</div>
 </div>
 <?= $this->endSection() ?>

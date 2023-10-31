@@ -8,7 +8,8 @@ $(document).ready(function () {
 
     // Form submission validation
     //document.getElementById('save_branch_form').addEventListener('submit', function (e) {
-    $("#save_branch_form").on("submit", function (event) {
+    $("#save_branch_form").on("submit", function (e) {
+        e
         // Showroom Information
         const selectDealer = document.getElementById('selectDealer').value.trim();
         const branchType = document.getElementById('branchType').value.trim();
