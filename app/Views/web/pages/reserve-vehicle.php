@@ -63,43 +63,52 @@
                     <h3>Schedule visit</h3>
                 </div>
                 <div class="visit-wrap">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="brand-label mb-1">Full Name<span class="required">*</span></label>
-                                <input type="text" class="brand-input" value="<?php echo isset($customerData['name']) && !empty($customerData['name'])?$customerData['name']:'NA'; ?>">
+                    <?= form_open('api/customer/check-vehicle-reservation-availability', 'id="check_vehicle_reservation_availability_form" ') ?>
+                        <?= csrf_field(); ?>
+                        <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo isset($vehicleDetails['id']) && !empty($vehicleDetails['id'])?$vehicleDetails['id']:''; ?>">
+                        <input type="hidden" name="customer_id" id="customer_id" value="<?php echo isset($customerData['id']) && !empty($customerData['id'])?$customerData['id']:''; ?>">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Full Name<span class="required">*</span></label>
+                                    <input type="text" name="fullname" id="fullname" class="brand-input" value="<?php echo isset($customerData['name']) && !empty($customerData['name'])?$customerData['name']:'NA'; ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Email Address<span class="required">*</span></label>
+                                    <input type="email" name="email" id="email" class="brand-input" readonly="" value="<?php echo isset($customerData['email']) && !empty($customerData['email'])?$customerData['email']:'NA'; ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Date<span class="required">*</span></label>
+                                    <input type="date" name="date" id="date" class="brand-input">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Time<span class="required">*</span></label>
+                                    <input type="time" name="time" id="time" class="brand-input">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="brand-label mb-1">Identification Document<span class="required">*</span></label>
+                                    <select name="identity_doc" id="identity_doc" class="brand-select">
+                                        <option value="1">Aadhaar Card</option>
+                                        <option value="2">License</option>
+                                        <option value="3">Pancard</option>
+                                        <option value="4">Passport</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-warning" id="checkVehicleReservationAvailability">Check Vehicle Reservation Availability</button>
+                                <p id="availablityMessage"></p>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="brand-label mb-1">Email Address<span class="required">*</span></label>
-                                <input type="email" class="brand-input" readonly="" value="<?php echo isset($customerData['email']) && !empty($customerData['email'])?$customerData['email']:'NA'; ?>">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="brand-label mb-1">Date<span class="required">*</span></label>
-                                <input type="date" class="brand-input">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="brand-label mb-1">Time<span class="required">*</span></label>
-                                <input type="time" class="brand-input">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="brand-label mb-1">Identification Document<span class="required">*</span></label>
-                                <select class="brand-select">
-                                    <option value="1">Aadhaar Card</option>
-                                    <option value="2">License</option>
-                                    <option value="3">Pancard</option>
-                                    <option value="4">Passport</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    <?= form_close(); ?>
                 </div>
                 <div class="section-title">
                     <h3>Bill Summary</h3>

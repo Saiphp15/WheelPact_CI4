@@ -50,6 +50,7 @@ $routes->get('/', 'HomeController::index');
  $routes->get('/view-all-onsale-vehicles', 'WebController::view_all_onsale_vehicles');
  $routes->get('/reserve-vehicle/(:any)', 'WebController::reserve_vehicle/$1');
  
+ 
  $routes->match(['get', 'post'], 'load-more-featured-vehicles', 'WebController::load_more_featured_vehicles');
  $routes->match(['get', 'post'], 'load-more-latest-addition-vehicles', 'WebController::load_more_latest_addition_vehicles');
  $routes->match(['get', 'post'], 'load-more-onsale-vehicles', 'WebController::load_more_onsale_vehicles');
@@ -135,6 +136,7 @@ $routes->post('/api/customer/remove-vehicle-wishlist', 'ApiController::remove_ve
 $routes->post('/api/customer/write-store-review', 'ApiController::write_store_review');
 $routes->post('/api/customer/get-single-store-all-review', 'ApiController::get_single_store_all_review');
 
+$routes->post('/api/customer/check-vehicle-reservation-availability', 'ApiController::check_vehicle_reservation_availability');
 
 
 // $routes->get('/api/students', 'ApiController::index');

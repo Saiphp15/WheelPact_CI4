@@ -187,6 +187,21 @@ class VehicleModel extends Model {
         $builder->orderBy('vehicles.id', 'desc');
         return $builder->get()->getResultArray();
     }
+
+    public function isVehicleReserved($vehicle_id, $date, $time){
+        // Get all reservations for the given vehicle ID, date, and time
+        $builder = $this->db->table('vehicle_reservations');
+        $builder->select('*');
+        $builder->where('vehicle_reservations.vehicle_id', $vehicle_id);
+        $reservations = $builder->countAll();
+        // If there are any reservations, the vehicle is reserved
+        if ($builder->countAll() > 0) {
+            return true;
+        } else {
+            // The vehicle is not reserved
+            return false;
+        }
+    }
 	
 }
 

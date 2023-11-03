@@ -595,6 +595,31 @@ class ApiController extends BaseController
         }
     }
 
+    public function check_vehicle_reservation_availability(){
+        //echo '<pre>'; print_r($_POST); exit;
+        $vehicle_id = $this->request->getPost('vehicle_id');
+        $date = $this->request->getPost('date'); 
+        $time = $this->request->getPost('time');
+        
+        // Check if the vehicle is already reserved by any other customer on the given date and time
+        $isReserved = $this->VehicleModel->isVehicleReserved($vehicle_id, $date, $time);
+
+        // Return true if the vehicle is not reserved
+        if (!$isReserved) {
+            $response = array(
+                'responseCode'   => 200,
+                'responseMessage' => 'The vehicle is available to reserve.'
+            );
+        } else {
+            // Return false if the vehicle is reserved
+            $response = array(
+                'responseCode'   => 400,
+                'responseMessage' => 'The vehicle is not available to reserve.'
+            );
+        }
+        return $this->response->setJSON($response);
+    }
+
     /* CRUD Operations
     public function create()
     {

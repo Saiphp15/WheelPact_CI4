@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WheelPact | Get the best used cars</title>
     <!-- Iconfont Link -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/web/icofont/icofont.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/web/icofont/icofont.min.css" />
     <!-- BOOTSTRAP -->
-    <link href="<?php echo base_url(); ?>public/assets/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/web/css/normalize.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/web/css/wheelpact-styles.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/web/css/responsive.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/web/css/fonts.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/web/css/normalize.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/web/css/wheelpact-styles.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/web/css/responsive.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/web/css/fonts.css">
     <!-- OWL CAROUSEL -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/web/owl-carousel/dist/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/web/owl-carousel/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/web/owl-carousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/web/owl-carousel/dist/assets/owl.theme.default.min.css">
     <!-- sweet alert Link -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/web/css/sweetalert.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/web/css/sweetalert.css" />
 </head>
 
 <body>
@@ -37,7 +37,7 @@
                         <div class="row">
                             <!-- <div class="col-md-6 col-lg-3"> -->
                             <!-- <div class="location-wrapper">  
-                                    <img src="<?php echo base_url(); ?>public/assets/web/images/mumbai-img.jpg">
+                                    <img src="<?php echo base_url(); ?>assets/web/images/mumbai-img.jpg">
                                 </div> -->
 
                             <div class="grid-wrapper grid-col-auto">
@@ -46,7 +46,7 @@
                                     <div class="location-card-content-wrapper">
                                         <span class="check-icon"></span>
                                         <div class="location-card-content">
-                                            <img src="<?php echo base_url(); ?>public/assets/web/images/mumbai-img.jpg"
+                                            <img src="<?php echo base_url(); ?>assets/web/images/mumbai-img.jpg"
                                                 alt="" />
                                             <h4>Mumbai</h4>
                                             <!-- <h5>Lorem ipsum dolor sit amet, consectetur.</h5> -->
@@ -60,7 +60,7 @@
                                     <div class="location-card-content-wrapper">
                                         <span class="check-icon"></span>
                                         <div class="location-card-content">
-                                            <img src="<?php echo base_url(); ?>public/assets/web/images/mumbai-img.jpg"
+                                            <img src="<?php echo base_url(); ?>assets/web/images/mumbai-img.jpg"
                                                 alt="" />
                                             <h4>Pune</h4>
                                             <!-- <h5>Lorem ipsum dolor sit amet, consectetur.</h5> -->
@@ -329,7 +329,7 @@
                 <strong class="logo">
                     <a href="<?php echo base_url(); ?>">
                         <!-- <h2>Wheelpact</h2> -->
-                        <img src="<?php echo base_url(); ?>public/assets/web/images/logo.png">
+                        <img src="<?php echo base_url(); ?>assets/web/images/logo.png">
                     </a>
                 </strong>
                 <!-- open nav mobile -->
@@ -390,7 +390,7 @@
                             <div class="logo">
                                 <a href="index.html">
                                     <!-- <h2>Wheelpact</h2> -->
-                                    <img src="<?php echo base_url(); ?>public/assets/web/images/logo.png">
+                                    <img src="<?php echo base_url(); ?>assets/web/images/logo.png">
                                 </a>
                             </div>
                         </div>
@@ -440,10 +440,10 @@
                 </div>
                 <div class="sidebar-app">
                     <a href="#">
-                        <img src="<?php echo base_url(); ?>public/assets/web/images/google-play-store-transparent.png">
+                        <img src="<?php echo base_url(); ?>assets/web/images/google-play-store-transparent.png">
                     </a>
                     <a href="#">
-                        <img src="<?php echo base_url(); ?>public/assets/web/images/apple-store.png">
+                        <img src="<?php echo base_url(); ?>assets/web/images/apple-store.png">
                     </a>
                 </div>
             </div>
@@ -462,7 +462,7 @@
                     <div class="col-md-6 col-lg-3">
                         <div class="footer-logo">
                             <!-- <h2>Wheelpact</h2> -->
-                            <img src="<?php echo base_url(); ?>public/assets/web/images/logo-bg.png">
+                            <img src="<?php echo base_url(); ?>assets/web/images/logo-bg.png">
                         </div>
                         <div class="footer-comp-details">
                             <p>** All product names, logos, and brands are property of their respective owners. All
@@ -543,10 +543,10 @@
                         </div>
                         <div class="footer-app">
                             <a href="#" target="_blank">
-                                <img src="<?php echo base_url(); ?>public/assets/web/images/google-play-store-transparent.png">
+                                <img src="<?php echo base_url(); ?>assets/web/images/google-play-store-transparent.png">
                             </a>
                             <a href="#" target="_blank">
-                                <img src="<?php echo base_url(); ?>public/assets/web/images/apple-store.png">
+                                <img src="<?php echo base_url(); ?>assets/web/images/apple-store.png">
                             </a>
                         </div>
                     </div>
@@ -563,18 +563,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- <script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js"></script>  -->
     <!-- LOCAL SCRIPT -->
-    <script src="<?php echo base_url(); ?>public/assets/web/js/main.js"></script>
+    <script src="<?php echo base_url(); ?>assets/web/js/main.js"></script>
     <!-- BOOTSTRAP SCRIPT -->
-    <script src="<?php echo base_url(); ?>public/assets/web/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/web/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- OWL CAROUSEL SCCRIPT -->
-    <script src="<?php echo base_url(); ?>public/assets/web/owl-carousel/dist/owl.carousel.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/web/owl-carousel/dist/owl.carousel.min.js"></script>
     <!--Jquery Validation js start-->
-    <script src="<?php echo base_url(); ?>public/assets/web/js/jquery-validate.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/web/js/form-validation.js"></script>
+    <script src="<?php echo base_url(); ?>assets/web/js/jquery-validate.js"></script>
+    <script src="<?php echo base_url(); ?>assets/web/js/form-validation.js"></script>
     <!--sweet alert js end -->
-    <script src="<?php echo base_url(); ?>public/assets/web/js/sweetalert.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/web/js/sweetalert.min.js"></script>
     <!--ajax js end -->
-    <script src="<?php echo base_url(); ?>public/assets/web/js/ajax-call.js"></script>
+    <script src="<?php echo base_url(); ?>assets/web/js/ajax-call.js"></script>
     <script type="module">
         // // Import the functions you need from the SDKs you need
         // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";

@@ -158,6 +158,36 @@ $(document).ready(function() {
             }
         }
     });
+
+    $("#check_vehicle_reservation_availability_form").validate({
+        rules: {
+            fullname:{
+                required:true
+            },
+            email:{
+                required:true
+            },
+            date:{
+                required:true
+            },
+            time:{
+                required:true
+            }
+        },
+        messages: { /* For custom messages */ 
+        },
+        debug: true,
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+            var placement = $(element).data('error');
+            if(placement) {
+                $(placement).append(error);
+                $(placement).css('color','red');
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
     
 
 });
