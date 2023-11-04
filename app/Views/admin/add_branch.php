@@ -55,125 +55,121 @@
                             <label for="selectDealer">Select Dealer:</label>
                             <select class="form-control" id="selectDealer" name="selectDealer">
                                 <option value="">Choose Dealer</option>
-                                <?php if (isset($dealerList) && !empty($dealerList)) {
-                                    foreach ($dealerList as $value) { ?>
-                                        <option value="<?php echo isset($value['id']) ? $value['id'] : ''; ?>"><?php echo isset($value['name']) ? $value['name'] : ''; ?></option>
-                                <?php }
-                                } ?>
-                            </select>
+                                    <?php if(isset($dealerList) && !empty($dealerList)){ foreach ($dealerList as $value) { ?>
+                                        <option value="<?php echo isset($value['id'])?$value['id']:''; ?>"><?php echo isset($value['name'])?$value['name']:''; ?></option>
+                                    <?php } } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="branchType">Branch Type:</label>
+                                <select class="form-control" id="branchType" name="branchType">
+                                    <option value="">Choose Branch</option>
+                                    <option value="1">Main Branch</option>
+                                    <option value="2">Sub Branch</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="branchType">Supported Vehicle Type:</label>
+                                <select class="form-control" id="branchSupportedVehicleType" name="branchSupportedVehicleType">
+                                    <option value="">Choose Type</option>
+                                    <option value="1">Only Cars</option>
+                                    <option value="2">Only Bikes</option>
+                                    <option value="3">Both</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="branchType">Branch Type:</label>
-                            <select class="form-control" id="branchType" name="branchType">
-                                <option value="">Choose Branch</option>
-                                <option value="1">Main Branch</option>
-                                <option value="2">Sub Branch</option>
-                            </select>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="branchName">Branch Name:</label>
+                                <input type="text" class="form-control" id="branchName" name="branchName" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="branchName">Branch Thumbnail:</label>
+                                <input type="file" class="form-control" id="branchThumbnail" name="branchThumbnail" >
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="branchType">Supported Vehicle Type:</label>
-                            <select class="form-control" id="branchSupportedVehicleType" name="branchSupportedVehicleType">
-                                <option value="">Choose Type</option>
-                                <option value="1">Only Cars</option>
-                                <option value="2">Only Bikes</option>
-                                <option value="3">Both</option>
-                            </select>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="branchBanner">Banner 1:</label>
+                                <input type="file" class="form-control" id="branchBanner1" name="branchBanner1" >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="branchBanner">Banner 2:</label>
+                                <input type="file" class="form-control" id="branchBanner2" name="branchBanner2" >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="branchBanner">Banner 3:</label>
+                                <input type="file" class="form-control" id="branchBanner3" name="branchBanner3" >
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="branchName">Branch Name:</label>
-                            <input type="text" class="form-control" id="branchName" name="branchName">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="chooseCountry">Choose Country:</label>
+                                <select class="form-control" id="chooseCountry" name="chooseCountry">
+                                    <option value="">Choose Country</option>
+                                    <?php if(isset($countryList) && !empty($countryList)){ foreach($countryList as $countryData){ ?>
+                                    <option value="<?php echo isset($countryData->id)?$countryData->id:''; ?>"><?php echo isset($countryData->name)?$countryData->name:''; ?></option>
+                                    <?php } } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="chooseState">Choose State:</label>
+                                <select class="form-control" id="chooseState" name="chooseState">
+                                    <!-- Populate options dynamically based on the selected country -->
+                                    <!-- Example: if the selected country is "Country 1", then the states could be dynamically loaded here -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="chooseCity">Choose City:</label>
+                                <select class="form-control" id="chooseCity" name="chooseCity">
+                                    <!-- Populate options dynamically based on the selected state -->
+                                    <!-- Example: if the selected state is "State 1", then the cities could be dynamically loaded here -->
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="branchName">Branch Thumbnail:</label>
-                            <input type="file" class="form-control" id="branchThumbnail" name="branchThumbnail">
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <textarea class="form-control" id="address" name="address" ></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="contactNumber">Contact Number:</label>
+                                <input type="text" class="form-control" id="contactNumber" name="contactNumber" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" >
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="branchBanner">Banner 1:</label>
-                            <input type="file" class="form-control" id="branchBanner1" name="branchBanner1">
-                        </div>
+                    <div class="form-group">
+                        <label for="shortDescription">Short Description:</label>
+                        <textarea class="form-control" id="shortDescription" name="shortDescription" ></textarea>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="branchBanner">Banner 2:</label>
-                            <input type="file" class="form-control" id="branchBanner2" name="branchBanner2">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="branchBanner">Banner 3:</label>
-                            <input type="file" class="form-control" id="branchBanner3" name="branchBanner3">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="chooseCountry">Choose Country:</label>
-                            <select class="form-control" id="chooseCountry" name="chooseCountry">
-                                <option value="">Choose Country</option>
-                                <?php if (isset($countryList) && !empty($countryList)) {
-                                    foreach ($countryList as $countryData) { ?>
-                                        <option value="<?php echo isset($countryData->id) ? $countryData->id : ''; ?>"><?php echo isset($countryData->name) ? $countryData->name : ''; ?></option>
-                                <?php }
-                                } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="chooseState">Choose State:</label>
-                            <select class="form-control" id="chooseState" name="chooseState">
-                                <!-- Populate options dynamically based on the selected country -->
-                                <!-- Example: if the selected country is "Country 1", then the states could be dynamically loaded here -->
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="chooseCity">Choose City:</label>
-                            <select class="form-control" id="chooseCity" name="chooseCity">
-                                <!-- Populate options dynamically based on the selected state -->
-                                <!-- Example: if the selected state is "State 1", then the cities could be dynamically loaded here -->
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address:</label>
-                    <textarea class="form-control" id="address" name="address"></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="contactNumber">Contact Number:</label>
-                            <input type="text" class="form-control NumOnly" id="contactNumber" name="contactNumber">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="shortDescription">Short Description:</label>
-                    <textarea class="form-control" id="shortDescription" name="shortDescription"></textarea>
-                </div>
 
                 <button type="submit" class="btn btn-primary pull-right">Submit</button><br /><br />
                 <?= form_close(); ?>

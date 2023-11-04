@@ -590,45 +590,6 @@ $(document).ready(function(){
         }
     })); 
 
-    // $("#checkVehicleReservationAvailability").click(function (e) {
-    //     e.preventDefault();
-
-    //     // Get the vehicle ID, date, and time from the form
-    //     const vehicle_id = document.querySelector('#vehicle_id').value;
-    //     const date = document.querySelector('#date').value;
-    //     const time = document.querySelector('#time').value;
-
-    //     var action_page = base_url+"/api/customer/check-vehicle-reservation-availability";
-    //     $.ajax({
-    //         url: action_page, 
-    //         type: "POST",
-    //         data: { branch_id: storeid },
-    //         beforeSend: function() {
-    //             swal({
-    //                 title: "",
-    //                 text: "Processing...",
-    //                 imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
-    //                 showConfirmButton: false
-    //             });
-    //         },
-    //         success: function(response) { 
-    //             if(response.status == 200){
-    //                 swal.close();
-    //                 $("#viewAllReviewModal").modal('show');
-    //                 var html_content = '';
-    //                 var singleStoreAllReview = response.data;
-                    
-                    
-    //                 $("#viewAllReviewModal").find("#allReviewBlockWrapper").html(html_content);
-    //             }else{
-    //                 swal({title: "", text: response.message, type: "error"});
-    //             }
-    //         },
-    //         error: function(xhr, status, error) { 
-    //             console.log(xhr.responseText);
-    //         }
-    //     });
-    // });
 
     /* check check Vehicle Reservation Availability section start */
 

@@ -444,9 +444,8 @@ class AdminController extends BaseController {
         }
         $this->pageData['adminData'] = session()->get('adminData');
         $vehicleId = $this->decryptId($vehicleId);
-        if ($vehicleId == false) {
-            echo 'Access Denied';
-            exit;
+        if($vehicleId==false){
+            echo 'Access Denied'; exit;
         }
         $this->pageData['vehicleDetails'] = $this->VehicleModel->getVehicleDetails($vehicleId);
         $this->pageData['vehicleImagesDetails'] = $this->VehicleImagesModel->getVehicleImagesDetails($vehicleId);
@@ -687,9 +686,8 @@ class AdminController extends BaseController {
         }
         $this->pageData['adminData'] = session()->get('adminData');
         $vehicleId = $this->decryptId($vehicleId);
-        if ($vehicleId == false) {
-            echo 'Access Denied';
-            exit;
+        if($vehicleId==false){
+            echo 'Access Denied'; exit;
         }
         $this->pageData['vehicleDetails'] = $this->VehicleModel->getVehicleDetails($vehicleId);
         $this->pageData['vehicleImagesDetails'] = $this->VehicleImagesModel->getVehicleImagesDetails($vehicleId);

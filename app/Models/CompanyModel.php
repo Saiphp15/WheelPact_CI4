@@ -45,3 +45,5 @@ class CompanyModel extends Model {
         return $this->update($id, $data);
     }
 }
+
+?>
