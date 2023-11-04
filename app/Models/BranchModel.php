@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class BranchModel extends Model {
     protected $table = 'branches';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['dealer_id', 'name', 'branch_banner1', 'branch_banner2', 'branch_banner3', 'branch_thumbnail', 'branch_type', 'branch_supported_vehicle_type', 'country_id', 'state_id', 'city_id', 'address', 'contact_number', 'email', 'short_description', 'is_active', 'created_at', 'updated_at'];
+    protected $allowedFields = ['dealer_id', 'name', 'branch_banner1', 'branch_banner2', 'branch_banner3', 'branch_thumbnail', 'branch_type', 'branch_supported_vehicle_type', 'branch_services', 'country_id', 'state_id', 'city_id', 'address', 'contact_number', 'email', 'short_description', 'is_active', 'created_at', 'updated_at'];
 
     protected $db;
 
@@ -19,9 +19,9 @@ class BranchModel extends Model {
 
     public function getBranches() {
         $builder = $this->db->table('branches');
-        $builder->select('branches.id as branch_id, dealer_id, branches.name as branch_name, branch_type, branch_supported_vehicle_type, address, contact_number, branches.email as branch_email, short_description, branches.is_active as branch_active, users.id as user_id, users.name as owner_name');
+        $builder->select('branches.id as branch_id, dealer_id, branches.name as branch_name, branch_type, branch_supported_vehicle_type, branch_services, address, contact_number, branches.email as branch_email, short_description, branches.is_active as branch_active, users.id as user_id, users.name as owner_name');
         $builder->join('users', 'users.id = branches.dealer_id', 'left');
-        $builder->orderBy('', 'desc');
+        $builder->orderBy('branches.id', 'desc');
         return $builder->get()->getResultArray();
     }
 
@@ -64,5 +64,17 @@ class BranchModel extends Model {
 
     public function updateData($id, $data) {
         return $this->update($id, $data);
+    }
+
+    public function insert_deliverablesImg($data) {
+        return $this->db
+            ->table('branch_deliverable_images')
+            ->insert($data);
+    }
+
+    public function get_branch_deliverable_imgs($branch_id) {
+        $builder = $this->db->table('branch_deliverable_images');
+        $builder->where('branch_id', $branch_id);
+        return $builder->get()->getResultArray();
     }
 }
