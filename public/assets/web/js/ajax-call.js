@@ -541,7 +541,7 @@ $(document).ready(function(){
     });
     /* review section end */
 
-    /* check check Vehicle Reservation Availability section start */
+    /* Vehicle Reservation Availability section start */
     
     $("#check_vehicle_reservation_availability_form").on('submit',(function(e) {
 		e.preventDefault();
@@ -591,8 +591,54 @@ $(document).ready(function(){
         }
     })); 
 
+    
+    $("#save_vehicle_reservation_info_form").on('submit',(function(e) {
+		e.preventDefault();
+        var isvalidate = $("#save_vehicle_reservation_info_form").valid();
+	    if (!isvalidate) {
+	        return false;
+	    }else{
+            var form = $('#save_vehicle_reservation_info_form')[0];  /* Get form */
+            var requestData = new FormData(form);  /* Create an FormData object  */
+            var action_page = $("#save_vehicle_reservation_info_form").attr('action');
+            $.ajax({
+                url: action_page,                       
+                type: 'POST',                           
+                enctype: 'multipart/form-data',
+                data: requestData,
+                contentType: false,
+                cache: false,             /* To unable request pages to be cached */
+                processData:false,        /* Important! To send DOMDocument or non processed data file it is set to false */
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                beforeSend: function() {
+                    swal({
+                        title: "",
+                        text: "Processing...",
+                        imageUrl: "https://media.tenor.com/OzAxe6-8KvkAAAAi/blue_spinner.gif",
+                        showConfirmButton: false
+                    });
+                },
+                success: function(response) { 
+                    if(response.responseCode == 200){
+                        swal({title: "", text: response.responseMessage, type: "success"},
+		                    function(){ 
+                                window.location.reload();
+		                    }
+		                );
+                    }else{
+                        swal({title: "", text: response.responseMessage, type: "error"});
+                    }
+                },
+                error: function(xhr, status, error) { 
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+    })); 
 
-    /* check check Vehicle Reservation Availability section start */
+    /* Vehicle Reservation Availability section start */
 
     $(".banner-filter-link").click(function (e) {
         e.preventDefault();

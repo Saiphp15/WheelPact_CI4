@@ -189,5 +189,31 @@ $(document).ready(function() {
         }
     });
     
+    $("#save_vehicle_reservation_info_form").validate({
+        rules: {
+            date:{
+                required:true
+            },
+            time:{
+                required:true
+            },
+            agree_t_and_c:{
+                required:true
+            }
+        },
+        messages: { /* For custom messages */ 
+        },
+        debug: true,
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+            var placement = $(element).data('error');
+            if(placement) {
+                $(placement).append(error);
+                $(placement).css('color','red');
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
 
 });

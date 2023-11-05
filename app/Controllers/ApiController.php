@@ -100,7 +100,7 @@ class ApiController extends BaseController
                 $otp = OTPService::generateOTP();
                 $this->CustomerModel->update($customer['id'], ['otp' => $otp, 'otp_status'=>true]);
                 
-                $to = $customer['email'];
+                /* $to = $customer['email'];
                 $subject = 'Login OTP Verification';
                 $body = '<html>
                     <head>
@@ -128,7 +128,13 @@ class ApiController extends BaseController
                         'responseMessage' => 'OTP generated successfully',
                         'responseData' => $contact_no
                     );
-                }
+                }*/
+
+                $response = array(
+                    'responseCode'   => 200,
+                    'responseMessage' => 'OTP generated successfully',
+                    'responseData' => $contact_no
+                );
                 
             } else {
                 $response = array(
@@ -362,6 +368,7 @@ class ApiController extends BaseController
         return $this->response->setJSON($response);
     }
 
+    /*
     public function index()
     {
         $bearer_token = $this->jwtLib->get_bearer_token();
@@ -384,6 +391,7 @@ class ApiController extends BaseController
 			return $this->failUnauthorized('Unauthorized Access');
 		}
     }
+    */
 
     public function get_country_state(){
         $countryId = $this->request->getVar('country_id');
@@ -636,6 +644,57 @@ class ApiController extends BaseController
                 'responseCode'   => 200,
                 'responseMessage' => 'The vehicle is available to reserve.'
             );
+        } else {
+            // Return false if the vehicle is reserved
+            $response = array(
+                'responseCode'   => 400,
+                'responseMessage' => 'The vehicle is not available to reserve.'
+            );
+        }
+        return $this->response->setJSON($response);
+    }
+
+    public function save_vehicle_reservation_info(){
+        //echo '<pre>'; print_r($_POST); exit;
+        $vehicle_id = $this->request->getPost('vehicle_id');
+        $customer_id = $this->request->getPost('customer_id');
+        $date = $this->request->getPost('date');
+        //$date = date("Y-m-d",strtotime($scheduleDate)); 
+        $time = $this->request->getPost('time');
+        
+        // Check if the vehicle is already reserved by any other customer on the given date and time
+        $isReserved = $this->VehicleModel->isVehicleReserved($vehicle_id, $date, $time);
+
+        // Return true if the vehicle is not reserved
+        if (!$isReserved) {
+
+            // Generate and store OTP
+            $reservation_id = OTPService::generateOTP();
+            
+            $data = array(
+                'customer_id' => $customer_id,
+                'vehicle_id' => $vehicle_id,
+                'reservation_id' => $reservation_id,
+                'date' => $date,
+                'time' => $time,
+                'is_active' => 1,
+                'created_by' => $customer_id,
+                'created_datetime' => DATETIME
+            );
+            $insertStatus = $this->VehicleModel->save_vehicle_reservation_info($data);
+            if($insertStatus) {
+                
+                $response = array(
+                    'responseCode'   => 200,
+                    'responseMessage' => 'Vehicle Reserved Successfully'
+                );
+            } else {
+                $response = array(
+                    'responseCode'   => 500,
+                    'responseMessage' => 'Error while vehicle reservation'
+                );
+            }
+
         } else {
             // Return false if the vehicle is reserved
             $response = array(

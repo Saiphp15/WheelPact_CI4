@@ -136,6 +136,7 @@ $routes->post('/api/customer/write-store-review', 'ApiController::write_store_re
 $routes->post('/api/customer/get-single-store-all-review', 'ApiController::get_single_store_all_review');
 
 $routes->post('/api/customer/check-vehicle-reservation-availability', 'ApiController::check_vehicle_reservation_availability');
+$routes->post('/api/customer/save-vehicle-reservation-info', 'ApiController::save_vehicle_reservation_info');
 
 
 // $routes->get('/api/students', 'ApiController::index');

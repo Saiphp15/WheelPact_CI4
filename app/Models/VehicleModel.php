@@ -188,11 +188,12 @@ class VehicleModel extends Model {
         return $builder->get()->getResultArray();
     }
 
-    public function isVehicleReserved($vehicle_id, $date, $time){
+    public function isVehicleReserved($vehicle_id, $date='', $time=''){
         // Get all reservations for the given vehicle ID, date, and time
         $builder = $this->db->table('vehicle_reservations');
         $builder->select('*');
         $builder->where('vehicle_reservations.vehicle_id', $vehicle_id);
+        $builder->where('vehicle_reservations.is_active', 1);
         $reservations = $builder->countAll();
         // If there are any reservations, the vehicle is reserved
         if ($builder->countAll() > 0) {
@@ -201,6 +202,19 @@ class VehicleModel extends Model {
             // The vehicle is not reserved
             return false;
         }
+    }
+
+    public function save_vehicle_reservation_info($data){
+        $builder = $this->db->table('vehicle_reservations');
+        return $builder->insert($data);
+    }
+
+    public function getReservedVehicleDetails($vehicleId){
+        $builder = $this->db->table('vehicle_reservations');
+        $builder->select('vehicle_reservations.*,customers.name as customer_name');
+        $builder->join('customers', 'customers.id = vehicle_reservations.customer_id', 'left');
+        $builder->where('vehicle_id', $vehicleId);
+        return $builder->get()->getRowArray();
     }
 	
 }

@@ -560,6 +560,15 @@ class WebController extends BaseController
         //echo '<pre>'; print_r($vehicleDetails); exit;
         if(isset($vehicleDetails) && !empty($vehicleDetails)){
                 
+            // Check if the vehicle is already reserved by any other customer on the given date and time
+            $isReserved = $this->VehicleModel->isVehicleReserved($vehicleDetails['id']);
+            // Return true if the vehicle is not reserved
+            if (!$isReserved) {
+                $isReserved = 0;
+            } else {
+                $isReserved = 1;
+            }
+
             $vehicleDetails['monthly_emi'] = 0.0;
             $vehicleDetails['wishlist_status'] = 0;
             if(isset($this->pageData['customerData']) && !empty($this->pageData['customerData'])){
@@ -575,7 +584,7 @@ class WebController extends BaseController
             $encryptedBranchId = $this->encryptId($vehicleDetails['branch_id']);
             
             $array1 = $vehicleDetails;
-            $array2 = array("encrypted_id"=>$encryptedId, "encrypted_branch_id"=>$encryptedBranchId, "monthly_emi"=>$monthly_emi);
+            $array2 = array("encrypted_id"=>$encryptedId, "encrypted_branch_id"=>$encryptedBranchId, "monthly_emi"=>$monthly_emi, "isReserved"=>$isReserved);
             $result = array_merge($array1,$array2); 
             
             $this->pageData['vehicleDetails'] = $result;
@@ -604,6 +613,17 @@ class WebController extends BaseController
         $this->pageData['vehicleDetails'] = $vehicleDetails;
         //echo '<pre>'; print_r($vehicleDetails); exit;
         if(isset($vehicleDetails) && !empty($vehicleDetails)){
+
+            // Check if the vehicle is already reserved by any other customer on the given date and time
+            $isReserved = $this->VehicleModel->isVehicleReserved($vehicleDetails['id']);
+            // Return true if the vehicle is not reserved
+            if (!$isReserved) {
+                $isReserved = 0;
+            } else {
+                $isReserved = 1;
+                // get reservation information
+                $vehicleDetails['reservedVehicleInfo'] = $this->VehicleModel->getReservedVehicleDetails($vehicleDetails['id']);
+            }
                 
             $vehicleDetails['monthly_emi'] = 0.0;
             $vehicleDetails['wishlist_status'] = 0;
@@ -620,7 +640,7 @@ class WebController extends BaseController
             $encryptedBranchId = $this->encryptId($vehicleDetails['branch_id']);
             
             $array1 = $vehicleDetails;
-            $array2 = array("encrypted_id"=>$encryptedId, "encrypted_branch_id"=>$encryptedBranchId, "monthly_emi"=>$monthly_emi);
+            $array2 = array("encrypted_id"=>$encryptedId, "encrypted_branch_id"=>$encryptedBranchId, "monthly_emi"=>$monthly_emi, "isReserved"=>$isReserved);
             $result = array_merge($array1,$array2); 
             
             $this->pageData['vehicleDetails'] = $result;

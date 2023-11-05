@@ -466,9 +466,14 @@
                         </div>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <?php if(isset($customerData) && !empty($customerData)){ ?>
+                        <?php 
+                            if(isset($customerData) && !empty($customerData)){ 
+                                if($vehicleDetails['isReserved']==0){
+                        ?>
                             <a href="<?php echo base_url('reserve-vehicle/'.$vehicleDetails['encrypted_id']); ?>" class="dg-brand-btn">Reserve Now</a>
                         <?php }else{ ?>
+                            <a href="javascript:void(0);" class="btn btn-success">Reserved</a>
+                        <?php } }else{ ?>
                             <a href="javascript:void(0);" data-bs-target="#loginModal" data-bs-toggle="modal" class="dg-brand-btn">Reserve Now</a>
                         <?php } ?>
                         <button class="dg-brand-btn">Contact Seller</button>
