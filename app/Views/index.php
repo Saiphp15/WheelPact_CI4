@@ -141,7 +141,7 @@
                     <div class="item">
                         <a href="<?php echo base_url('store-details/'.$store['encrypted_id']); ?>">
                             <div class="store-wrapper">
-                                <img src="<?php echo isset($store['branch_thumbnail']) && !empty($store['branch_thumbnail'])?$store['branch_thumbnail']:base_url('assets/admin/src/images/default-img.png'); ?>">
+                                <img src="<?php echo isset($store['branch_thumbnail']) && !empty($store['branch_thumbnail'])?base_url('uploads/branch_thumbnails/'.$store['branch_thumbnail']):base_url('assets/admin/src/images/default-img.png'); ?>">
                                 <div class="store-details-box">
                                     <div class="store-wrapper-title">
                                         <h5><?php echo isset($store['name'])?$store['name']:'Store Name'; ?></h5>
@@ -709,7 +709,7 @@
 
                     <div class="item">
                         <div class="testimonials-wrapper">
-                            <img src="https://watertolife.com.au/wp-content/uploads/2017/08/testimonial-face.jpg">
+                            <img src="https://smilequestdental.com/wp-content/uploads/2016/11/GettyImages-500394316.jpg">
                             <h5>John Mendes</h5>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
                                 has been the industry's standard dummy text ever since the 1500s, when an unknown

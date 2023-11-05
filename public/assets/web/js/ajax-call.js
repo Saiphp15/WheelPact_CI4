@@ -89,16 +89,16 @@ $(document).ready(function(){
                     });
                 },
                 success: function(response) { 
-                    respData = JSON.parse(response);
-                    if(respData.responseCode == 200){
-                        swal({title: "", text: respData.responseMessage, type: "success"},
+                    //respData = JSON.parse(response);
+                    if(response.responseCode == 200){
+                        swal({title: "", text: response.responseMessage, type: "success"},
 		                    function(){ 
                                 $("#save_customer_register_form")[0].reset();
                                 window.location.reload(); 
 		                    }
 		                );
                     }else{
-                        swal({title: "", text: respData.responseMessage, type: "error"});
+                        swal({title: "", text: response.responseMessage, type: "error"});
                     }
                 },
                 error: function(xhr, status, error) { 
@@ -117,6 +117,7 @@ $(document).ready(function(){
             var form = $('#customer_login_form')[0];  /* Get form */
             var requestData = new FormData(form);  /* Create an FormData object  */
             var action_page = $("#customer_login_form").attr('action');
+            //console.log(action_page);
             $.ajax({
                 url: action_page,                       
                 type: 'POST',                           
@@ -137,7 +138,7 @@ $(document).ready(function(){
                     });
                 },
                 success: function(response) { 
-                    console.log(response);
+                    //console.log(response);
                     //respData = JSON.parse(response);
 
                     if(response.responseCode == 200){

@@ -115,7 +115,7 @@
                                 <p>By loging in, I agree to <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></p>
                             </div>
                             <div class="text-center mt-4">
-                                <button type="submit" class="dg-brand-btn">Send OTP</button>
+                                <button type="submit" class="dg-brand-btn">Submit</button>
                             </div>
                         </form>
                     </div>

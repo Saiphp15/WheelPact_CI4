@@ -14,13 +14,13 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="<?php echo isset($storeDetails['branch_banner1']) && !empty($storeDetails['branch_banner1'])? $storeDetails['branch_banner1']:base_url('public/assets/admin/src/images/default-img.png'); ?>" alt="...">
+                                    <img src="<?php echo isset($storeDetails['branch_banner1']) && !empty($storeDetails['branch_banner1'])? base_url('uploads/branch_banners/'.$storeDetails['branch_banner1']):base_url('assets/admin/src/images/default-img.png'); ?>" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?php echo isset($storeDetails['branch_banner2']) && !empty($storeDetails['branch_banner2'])?$storeDetails['branch_banner2']:base_url('public/assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($storeDetails['branch_banner2']) && !empty($storeDetails['branch_banner2'])?base_url('uploads/branch_banners/'.$storeDetails['branch_banner2']):base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?php echo isset($storeDetails['branch_banner3']) && !empty($storeDetails['branch_banner3'])?$storeDetails['branch_banner3']:base_url('public/assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
+                                    <img src="<?php echo isset($storeDetails['branch_banner3']) && !empty($storeDetails['branch_banner3'])?base_url('uploads/branch_banners/'.$storeDetails['branch_banner3']):base_url('assets/admin/src/images/default-img.png'); ?>" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -33,7 +33,7 @@
                             </button>
                         </div>
                         <div class="store-logo">
-                            <img src="<?php echo isset($storeDetails['branch_thumbnail']) && !empty($storeDetails['branch_thumbnail'])? $storeDetails['branch_thumbnail']:base_url('public/assets/admin/src/images/default-img.png'); ?>">
+                            <img src="<?php echo isset($storeDetails['branch_thumbnail']) && !empty($storeDetails['branch_thumbnail'])? base_url('uploads/branch_thumbnails/'.$storeDetails['branch_thumbnail']):base_url('public/assets/admin/src/images/default-img.png'); ?>">
                         </div>
                     </div>
                 </div>

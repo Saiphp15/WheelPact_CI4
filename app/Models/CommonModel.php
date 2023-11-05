@@ -50,17 +50,17 @@ class CommonModel extends Model {
     }
 
     public function get_all_country_data(){
-		$query = $this->db->query('select * from Countries order by name asc');
+		$query = $this->db->query('select * from countries order by name asc');
         return $query->getResult();
 	}
 
 	public function get_all_state_data(){
-		$query = $this->db->query('select * from States order by name asc');
+		$query = $this->db->query('select * from states order by name asc');
         return $query->getResult();
 	}
 
 	public function get_all_city_data(){
-		$query = $this->db->query('select * from Cities order by name asc');
+		$query = $this->db->query('select * from cities order by name asc');
         return $query->getResult();
 	}
 

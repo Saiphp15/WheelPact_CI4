@@ -57,7 +57,7 @@ abstract class BaseController extends Controller
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
-    protected $session,$vtype;
+    protected $session,$email,$vtype;
 
     /**
      * Constructor.
@@ -70,6 +70,8 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         $this->session = \Config\Services::session();
+        $this->email = \Config\Services::email();
+        
         
         $this->pageData['locale'] = $request->getLocale();
         $this->pageData['supportedLocales'] = $request->config->supportedLocales;
@@ -223,6 +225,24 @@ abstract class BaseController extends Controller
         $emi = ($loanAmount * $monthlyInterestRate * pow((1 + $monthlyInterestRate), $numOfMonths)) / (pow((1 + $monthlyInterestRate), $numOfMonths) - 1);
     
         return $emi;
+    }
+
+    public function sendMail($to,$subject,$body){
+
+        $this->email->setTo($to);
+        $this->email->setFrom('info@parastoneglobal-ksa.com', 'WheelPact');
+        $this->email->setSubject($subject);
+        $this->email->setMessage($body);
+
+        if ($this->email->send()) {
+            //echo 'Email sent successfully';
+            return true;
+        } else {
+            $data['error'] = $this->email->printDebugger(['headers']);
+            echo 'Email not sent. ' . $data['error'];
+            return $data;
+        }
+
     }
 
 }

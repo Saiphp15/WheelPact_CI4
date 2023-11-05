@@ -49,7 +49,10 @@ class ApiController extends BaseController
         if(isset($name) && !empty($name)){
             if(isset($email) && !empty($email)){
                 if(isset($contact_no) && !empty($contact_no)){
-                    $customer = $this->CustomerModel->where('email', $email)->where('contact_no', $contact_no)->first();
+                    $customer = $this->CustomerModel->where('email', $email)->orWhere('contact_no', $contact_no)->first();
+                    // Get the generated query
+                    // $query = $this->CustomerModel->getLastQuery();
+                    // echo '<pre>'; print_r($query); exit;
                     if($customer) {
                         $response = array(
                             'responseCode'   => 409,
@@ -92,18 +95,41 @@ class ApiController extends BaseController
         if(isset($contact_no) && !empty($contact_no)){
             $customer = $this->CustomerModel->where('contact_no', $contact_no)->first();
             if($customer) {
-                
+
                 // Generate and store OTP
                 $otp = OTPService::generateOTP();
                 $this->CustomerModel->update($customer['id'], ['otp' => $otp, 'otp_status'=>true]);
                 
-                //$contact_no = $this->jwtLib->base64url_encode($customer['contact_no']);
-
-                $response = array(
-                    'responseCode'   => 200,
-                    'responseMessage' => 'OTP generated successfully',
-                    'responseData' => $contact_no
-                );
+                $to = $customer['email'];
+                $subject = 'Login OTP Verification';
+                $body = '<html>
+                    <head>
+                        <title>Your OTP Code</title>
+                    </head>
+                    <body>
+                        <p>Hello '.$customer['name'].',</p>
+                        <p>Your OTP code for authentication is: <strong>'.$otp.'</strong></p>
+                        <p>This code will expire in 60 seconds. Please do not share it with anyone.</p>
+                        <p>If you did not request this OTP, please ignore this email.</p>
+                        <p>Thank you for using our service.</p>
+                        <p>Sincerely,<br> WheelPact Team</p>
+                    </body>
+                    </html>';
+                $mailResult = $this->sendMail($to,$subject,$body);
+                if($mailResult<>true){
+                    $response = array(
+                        'responseCode'   => 500,
+                        'responseMessage' => 'Error sending mail',
+                        'responseData' => $mailResult
+                    );
+                }else{
+                    $response = array(
+                        'responseCode'   => 200,
+                        'responseMessage' => 'OTP generated successfully',
+                        'responseData' => $contact_no
+                    );
+                }
+                
             } else {
                 $response = array(
                    'responseCode'   => 404,
